@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Throwing Exceptions</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Throwing Exceptions</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Miscellaneous_40208948.html">Miscellaneous</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Miscellaneous_40208948.html">Miscellaneous</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Throwing Exceptions
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Drew Hudson</span>, last modified by <span class='editor'> Damon German</span> on Jan 03, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>Throwing exceptions slows down programs. It causes the stack to unwind. Try to avoid this. Instead, consider returning a class that represents a custom tuple of a generic type containing an object that contains the result. The tuple could also have a boolean value indicating if the operation was successful or not. For example, the BFF and HCW API use the <code>RepositoryResponse</code> record. Any error handling and or throwing exceptions is moved to the controllers or adapters if applicable.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"> public record RepositoryResponse&lt;T&gt;
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Drew Hudson</span>, last modified by <span
+                    class='editor'> Damon German</span> on Jan 03, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p>Throwing exceptions slows down programs. It causes the stack to unwind. Try to avoid this. Instead,
+                    consider returning a class that represents a custom tuple of a generic type containing an object
+                    that contains the result. The tuple could also have a boolean value indicating if the operation was
+                    successful or not. For example, the BFF and HCW API use the <code>RepositoryResponse</code> record.
+                    Any error handling and or throwing exceptions is moved to the controllers or adapters if applicable.
+                </p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence"
+     data-theme="Confluence"> public record RepositoryResponse&lt;T&gt;
     {
         #region public properties
         
@@ -64,28 +68,56 @@
 
         #endregion
     }</pre>
-</div></div><p><span class="inline-comment-marker" data-ref="bf2838b0-7d5e-42c5-af26-f302e9abda8e">Instead of returning a custom type, it also might be appropriate to return </span><code><span class="inline-comment-marker" data-ref="bf2838b0-7d5e-42c5-af26-f302e9abda8e">null</span></code><span class="inline-comment-marker" data-ref="bf2838b0-7d5e-42c5-af26-f302e9abda8e">, an empty list or empty string.</span></p><p>Throwing exceptions can be appropriate like in constructors, for example, when checking if the passed in object is <code>null </code>or not.</p><p>If external code might throw an exception, then wrap it in a try-catch. Then instead of throwing another exception, safely catch it and return the custom tuple as already explained.</p><p>If the codebase does not follow this standard (see &quot;Be consistent with the existent&quot; <a href="Code-Review-Checklist_40214289.html" data-linked-resource-id="40214289" data-linked-resource-version="4" data-linked-resource-type="page">here</a>), then perhaps it’s not the time to adhere to this standard. However, a refactor could occur in the future, but it might be a hefty one.</p><p>Damon wrote the article found in the snippet below:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/410290219/413139788.png?width=680" data-image-src="attachments/410290219/413139788.png" data-height="775" data-width="1436" data-unresolved-comment-count="0" data-linked-resource-id="413139788" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20220906-184404.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="410290219" data-linked-resource-container-version="5" data-media-id="018dd3f3-89f7-4442-8d54-7a8cf740cab7" data-media-type="file"></span><p />
                     </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/410290219/413139788.png">image-20220906-184404.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                </div>
+                <p><span class="inline-comment-marker" data-ref="bf2838b0-7d5e-42c5-af26-f302e9abda8e">Instead of returning a custom type, it also might be appropriate to return </span><code><span
+                        class="inline-comment-marker" data-ref="bf2838b0-7d5e-42c5-af26-f302e9abda8e">null</span></code><span
+                        class="inline-comment-marker" data-ref="bf2838b0-7d5e-42c5-af26-f302e9abda8e">, an empty list or empty string.</span>
+                </p>
+                <p>Throwing exceptions can be appropriate like in constructors, for example, when checking if the passed
+                    in object is <code>null </code>or not.</p>
+                <p>If external code might throw an exception, then wrap it in a try-catch. Then instead of throwing
+                    another exception, safely catch it and return the custom tuple as already explained.</p>
+                <p>If the codebase does not follow this standard (see &quot;Be consistent with the existent&quot; <a
+                        data-linked-resource-id="40214289" data-linked-resource-type="page"
+                        data-linked-resource-version="4" href="Code-Review-Checklist_40214289.html">here</a>), then perhaps it’s
+                    not the time to adhere to this standard. However, a refactor could occur in the future, but it might
+                    be a hefty one.</p>
+                <p>Damon wrote the article found in the snippet below:</p><span
+                    class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-center" data-base-url="https://hyland.atlassian.net/wiki" data-height="775"
+                    data-image-src="attachments/410290219/413139788.png"
+                    data-linked-resource-container-id="410290219" data-linked-resource-container-version="5" data-linked-resource-content-type="image/png"
+                    data-linked-resource-default-alias="image-20220906-184404.png" data-linked-resource-id="413139788"
+                    data-linked-resource-type="attachment" data-linked-resource-version="1"
+                    data-media-id="018dd3f3-89f7-4442-8d54-7a8cf740cab7"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="1436" loading="lazy"
+                    src="attachments/410290219/413139788.png?width=680" width="680"></span>
+                <p/>
             </div>
-        </div>     </body>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
+                </div>
+
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/410290219/413139788.png">image-20220906-184404.png</a> (image/png)
+                    <br/>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

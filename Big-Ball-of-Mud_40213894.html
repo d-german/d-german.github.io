@@ -1,75 +1,105 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Big Ball of Mud</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Big Ball of Mud</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40209042.html">Code Smells / Anti-Patterns</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40209042.html">Code Smells / Anti-Patterns</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Big Ball of Mud
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Aug 17, 2021
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p style="margin-left: 40.0px;">A Big Ball of Mud is a haphazardly structured, sprawling, sloppy,
+                    duct-tape-and-baling-wire, spaghetti-code jungle. These systems show unmistakable signs of
+                    unregulated growth, and repeated, expedient repair. Information is shared promiscuously among
+                    distant elements of the system, often to the point where nearly all the important information
+                    becomes global or duplicated.<br/>The overall structure of the system may never have been well
+                    defined.</p>
+                <p style="margin-left: 40.0px;">Unfortunately, this architecture anti-pattern occurs quite commonly in
+                    the real world. Few designers intend to create one, but many projects inadvertently manage to create
+                    a mess because of lack of governance around code quality and structure. For example, Neal worked
+                    with a client project whose structure appears here:</p>
+                <p style="margin-left: 40.0px;"><span
+                        class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40213894/40256739.png"
+                        data-linked-resource-container-id="40213894"
+                        data-linked-resource-container-version="2" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-8-17_10-42-21.png" data-linked-resource-id="40256739"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="d0a1084c-1675-49fc-a8bc-201794c58c9a" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40213894/40256739.png?height=400"></span></p>
+                <p style="margin-left: 40.0px;">The client (whose name is withheld for obvious reasons) created a
+                    Java-based web application as quickly as possible over several years. The technical visualization
+                    shows their architectural <a data-linked-resource-id="40212681" data-linked-resource-type="page"
+                                                 data-linked-resource-version="7" href="Coupling_40212681.html">coupling</a>:
+                    each dot on the perimeter of the circle represents a class, and each line represents connections
+                    between the classes, where bolder lines indicate stronger connections. In this code base, any change
+                    to a class makes it difficult to predict rippling side effects to other classes, making change a
+                    terrifying affair.</p>
+                <p><br/></p>
+                <p>(<span style="color: rgb(23,43,77);">Mark Richards, Neal Ford)</span></p>
+                <p>See <a data-linked-resource-id="40212681" data-linked-resource-type="page"
+                          data-linked-resource-version="7" href="Coupling_40212681.html">Coupling</a></p>
+                <p><br/></p>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Aug 17, 2021
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p style="margin-left: 40.0px;">A Big Ball of Mud is a haphazardly structured, sprawling, sloppy, duct-tape-and-baling-wire, spaghetti-code jungle. These systems show unmistakable signs of unregulated growth, and repeated, expedient repair. Information is shared promiscuously among distant elements of the system, often to the point where nearly all the important information becomes global or duplicated.<br/>The overall structure of the system may never have been well defined.</p><p style="margin-left: 40.0px;">Unfortunately, this architecture anti-pattern occurs quite commonly in the real world. Few designers intend to create one, but many projects inadvertently manage to create a mess because of lack of governance around code quality and structure. For example, Neal worked with a client project whose structure appears here:</p><p style="margin-left: 40.0px;"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40213894/40256739.png?height=400" data-image-src="attachments/40213894/40256739.png" data-unresolved-comment-count="0" data-linked-resource-id="40256739" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_10-42-21.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40213894" data-linked-resource-container-version="2" data-media-id="d0a1084c-1675-49fc-a8bc-201794c58c9a" data-media-type="file"></span></p><p style="margin-left: 40.0px;">The client (whose name is withheld for obvious reasons) created a Java-based web application as quickly as possible over several years. The technical visualization shows their architectural <a href="Coupling_40212681.html" data-linked-resource-id="40212681" data-linked-resource-version="7" data-linked-resource-type="page">coupling</a>: each dot on the perimeter of the circle represents a class, and each line represents connections between the classes, where bolder lines indicate stronger connections. In this code base, any change to a class makes it difficult to predict rippling side effects to other classes, making change a terrifying affair.</p><p><br/></p><p>(<span style="color: rgb(23,43,77);">Mark Richards, Neal Ford)</span></p><p>See <a href="Coupling_40212681.html" data-linked-resource-id="40212681" data-linked-resource-version="7" data-linked-resource-type="page">Coupling</a></p><p><br/></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40213894/40256806.png">image2021-8-17_10-36-0.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40213894/40256754.png">image2021-8-17_10-41-37.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40213894/40256739.png">image2021-8-17_10-42-21.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40213894/40256806.png">image2021-8-17_10-36-0.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40213894/40256754.png">image2021-8-17_10-41-37.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40213894/40256739.png">image2021-8-17_10-42-21.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

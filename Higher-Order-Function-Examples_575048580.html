@@ -1,80 +1,131 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Higher Order Function Examples</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Higher Order Function Examples</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Functional-in-the-Small%2C-Object-Oriented-in-the-Large_470647891.html">Functional in the Small, Object-Oriented in the Large</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Functional-in-the-Small%2C-Object-Oriented-in-the-Large_470647891.html">Functional in the Small, Object-Oriented in the Large</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Higher Order Function Examples
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span> on Feb 04, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>Converting <code>for</code> loops into a higher order function.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">for (var i = 0; i &lt; foods.Length; i++)
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span> on Feb 04, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p>Converting <code>for</code> loops into a higher order function.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">for (var i = 0; i &lt; foods.Length; i++)
 {
     Cook(foods[i]);
 }</pre>
-</div></div><p>The <code>for</code> loop is one of the most common things you can do with an array. Writing this repeatedly gets tedious. Notice that the only difference is what we're doing inside the body of the <code>for</code> loop. Therefore, most languages provide the <code>foreach</code> statement:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">foreach (var food in foods)
+                    </div>
+                </div>
+                <p>The <code>for</code> loop is one of the most common things you can do with an array. Writing this
+                    repeatedly gets tedious. Notice that the only difference is what we're doing inside the body of the
+                    <code>for</code> loop. Therefore, most languages provide the <code>foreach</code> statement:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">foreach (var food in foods)
 {
     Cook(food);
 }</pre>
-</div></div><p>This code performs the same loop as the previous example, but with less syntax. The <code>foreach </code>statement takes care of incrementing the index and getting the current element in the array. This can make your code more readable and maintainable. We can improve this further by creating a higher-order extension method called <code>ForEach</code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public static void ForEach&lt;T&gt;(this T[] array, Action&lt;T&gt; action)
+                    </div>
+                </div>
+                <p>This code performs the same loop as the previous example, but with less syntax. The
+                    <code>foreach </code>statement takes care of incrementing the index and getting the current element
+                    in the array. This can make your code more readable and maintainable. We can improve this further by
+                    creating a higher-order extension method called <code>ForEach</code>.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public static void ForEach&lt;T&gt;(this T[] array, Action&lt;T&gt; action)
 {
     foreach (var t in array)
     {
         action(t);
     }
 }</pre>
-</div></div><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
-<p><code>Action&lt;T&gt;</code> is a delegate type in .NET that represents a method that takes a single input argument of type <code>T</code> and does not return any value. </p>
-</div></div><p>The <code>ForEach</code> method is a higher-order extension method that can be used to perform the same action on each element in an array, without having to write the same code repeatedly. It takes an <code>Action&lt;T&gt;</code> delegate as an argument, which specifies the operation to be performed on each element and applies it to each element in the array using a <code>foreach</code> loop. This way, you can write more concise and readable code, and avoid repetition.</p><p>Now we can use our higher-order <code>ForEach</code> method instead:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">foods.ForEach(Cook);</pre>
-</div></div><p>This is powerful, we can now do anything we want with our food.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">foods.ForEach(food =&gt; { Cook(food); Eat(food); });</pre>
-</div></div><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
-<p>The .NET framework provides the <code>ForEach</code> method as part of the <code>List&lt;T&gt;</code> class. <br/>The article introduces functional programming concepts using common functional programming terminology. It provides examples to illustrate these concepts, but it is important to note that most of these examples are already available in the .NET framework. This article includes C# .NET equivalents for each example.</p>
-</div></div><h4 id="HigherOrderFunctionExamples-ReturningFunctionsfromFunctions">Returning Functions from Functions</h4><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
-<p>In .NET, <code>Action</code> is a delegate type that represents a void method that takes no arguments.</p>
-</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">Action WrapLogging(Action action)
+                    </div>
+                </div>
+                <div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;">
+                    <div class="panelContent" style="background-color: #EAE6FF;">
+                        <p><code>Action&lt;T&gt;</code> is a delegate type in .NET that represents a method that takes a
+                            single input argument of type <code>T</code> and does not return any value. </p>
+                    </div>
+                </div>
+                <p>The <code>ForEach</code> method is a higher-order extension method that can be used to perform the
+                    same action on each element in an array, without having to write the same code repeatedly. It takes
+                    an <code>Action&lt;T&gt;</code> delegate as an argument, which specifies the operation to be
+                    performed on each element and applies it to each element in the array using a <code>foreach</code>
+                    loop. This way, you can write more concise and readable code, and avoid repetition.</p>
+                <p>Now we can use our higher-order <code>ForEach</code> method instead:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+                        <pre class="syntaxhighlighter-pre"
+                             data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+                             data-theme="Confluence">foods.ForEach(Cook);</pre>
+                    </div>
+                </div>
+                <p>This is powerful, we can now do anything we want with our food.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+                        <pre class="syntaxhighlighter-pre"
+                             data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+                             data-theme="Confluence">foods.ForEach(food =&gt; { Cook(food); Eat(food); });</pre>
+                    </div>
+                </div>
+                <div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;">
+                    <div class="panelContent" style="background-color: #EAE6FF;">
+                        <p>The .NET framework provides the <code>ForEach</code> method as part of the <code>List&lt;T&gt;</code>
+                            class. <br/>The article introduces functional programming concepts using common functional
+                            programming terminology. It provides examples to illustrate these concepts, but it is
+                            important to note that most of these examples are already available in the .NET framework.
+                            This article includes C# .NET equivalents for each example.</p>
+                    </div>
+                </div>
+                <h4 id="HigherOrderFunctionExamples-ReturningFunctionsfromFunctions">Returning Functions from
+                    Functions</h4>
+                <div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;">
+                    <div class="panelContent" style="background-color: #EAE6FF;">
+                        <p>In .NET, <code>Action</code> is a delegate type that represents a void method that takes no
+                            arguments.</p>
+                    </div>
+                </div>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">Action WrapLogging(Action action)
 {
     return () =&gt;
     {
@@ -87,31 +138,60 @@
             Console.WriteLine(e);
         }
     };</pre>
-</div></div><p>The function <code>WrapLogging</code> takes a single argument <code>action</code>, which is an <code>Action</code> delegate, and returns a new anonymous delegate that wraps the original action in a try-catch statement. If any exceptions are thrown during the execution of the original action, they are caught and logged to the console. The resulting wrapped action can be assigned to a variable <code>cookFoodWithLogging</code> and executed later.</p><p>We can use it like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// defer execution of Cook, nothing is logged
+                    </div>
+                </div>
+                <p>The function <code>WrapLogging</code> takes a single argument <code>action</code>, which is an <code>Action</code>
+                    delegate, and returns a new anonymous delegate that wraps the original action in a try-catch
+                    statement. If any exceptions are thrown during the execution of the original action, they are caught
+                    and logged to the console. The resulting wrapped action can be assigned to a variable <code>cookFoodWithLogging</code>
+                    and executed later.</p>
+                <p>We can use it like this:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">// defer execution of Cook, nothing is logged
 var cookFoodWithLogging = WrapLogging(() =&gt; Cook(Foods[-1])); 
 
 // logs System.IndexOutOfRangeException
 cookFoodWithLogging();</pre>
-</div></div><p><strong>Deferred execution</strong> refers to the practice of not executing a piece of code immediately, but instead waiting for it to be executed later.  The actual execution of the <code>Cook</code> method is triggered when the returned <code>Action </code>is invoked, which is done in the line <code>cookFoodWithLogging();</code></p><p><strong>Partial application</strong> refers to the process of taking a higher-order function and supplying some of its arguments, but not all of them. This results in a new function that has fewer arguments and has some of its arguments already &quot;fixed&quot;. For instance, we can write a function named <code>MakeAdder</code> that creates a function to add a &quot;fixed&quot; integer to another integer.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">Func&lt;int, int&gt; MakeAdder(int x)
+                    </div>
+                </div>
+                <p><strong>Deferred execution</strong> refers to the practice of not executing a piece of code
+                    immediately, but instead waiting for it to be executed later. The actual execution of the
+                    <code>Cook</code> method is triggered when the returned <code>Action </code>is invoked, which is
+                    done in the line <code>cookFoodWithLogging();</code></p>
+                <p><strong>Partial application</strong> refers to the process of taking a higher-order function and
+                    supplying some of its arguments, but not all of them. This results in a new function that has fewer
+                    arguments and has some of its arguments already &quot;fixed&quot;. For instance, we can write a
+                    function named <code>MakeAdder</code> that creates a function to add a &quot;fixed&quot; integer to
+                    another integer.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">Func&lt;int, int&gt; MakeAdder(int x)
 {
     return y =&gt; x + y;
 }
 
 var add2 = MakeAdder(2);
 Assert.That(add2(3), Is.EqualTo(5));</pre>
-</div></div><p>When <code>MakeAdder(2)</code> is called, it returns a function that takes an integer <code>y</code> and returns the sum of <code>2</code> and <code>y</code>.  By doing this, the number <code>2</code> is &quot;fixed&quot; or &quot;partially applied&quot; to the returned function.</p><p />
                     </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                </div>
+                <p>When <code>MakeAdder(2)</code> is called, it returns a function that takes an integer <code>y</code>
+                    and returns the sum of <code>2</code> and <code>y</code>. By doing this, the number <code>2</code>
+                    is &quot;fixed&quot; or &quot;partially applied&quot; to the returned function.</p>
+                <p/>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

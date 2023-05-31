@@ -1,61 +1,89 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Open Closed Principle (OCP)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Open Closed Principle (OCP)</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                    </li>
+                    <li>
+                        <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Open Closed Principle (OCP)
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Apr 22, 2021
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <ul><li><span>A software <a href="Modularity%2C-Module_40212639.html" data-linked-resource-id="40212639" data-linked-resource-version="10" data-linked-resource-type="page">module&nbsp;</a>should be open for extension but closed for modification. (2002 Martin 99)</span></li><ul><li><span>The OCP is at the heart of many of the claims made for OOD. (2002 Martin 125)</span></li><li><span>The gist is that for software systems to be easy to change, they must be designed to allow the behavior of those systems to be changed by adding new code, rather than changing existing code.</span></li></ul><li><span>OCP relates to the <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">Single Responsibility Principle (SRP)</a>, and <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">Dependency Inversion Principle (DIP)</a></span><ul><li><span>Clearly, some new code must be written. But how much old code will have to change?</span></li><li><span>We should reduce the amount of changed code to the barest minimum. Ideally, zero.</span></li><li><span>How? By properly separating the things that change for different reasons (SRP), and then organizing the dependencies between those things properly (DIP). (2017 Martin 70)</span><ul><li><span>If class A should be protected from changes in class B, then class B should depend on class A.</span></li></ul></li></ul></li></ul><p><span>See <a href="Coupling_40212681.html" data-linked-resource-id="40212681" data-linked-resource-version="7" data-linked-resource-type="page">Coupling</a></span></p>
-                    </div>
+        <div class="view" id="content">
+            <div class="page-metadata">
 
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+
+                Created by <span class='author'> Damon German</span>, last modified on Apr 22, 2021
             </div>
-        </div>     </body>
+            <div class="wiki-content group" id="main-content">
+                <ul>
+                    <li><span>A software <a data-linked-resource-id="40212639" data-linked-resource-type="page"
+                                            data-linked-resource-version="10" href="Modularity%2C-Module_40212639.html">module&nbsp;</a>should be open for extension but closed for modification. (2002 Martin 99)</span>
+                    </li>
+                    <ul>
+                        <li><span>The OCP is at the heart of many of the claims made for OOD. (2002 Martin 125)</span>
+                        </li>
+                        <li><span>The gist is that for software systems to be easy to change, they must be designed to allow the behavior of those systems to be changed by adding new code, rather than changing existing code.</span>
+                        </li>
+                    </ul>
+                    <li><span>OCP relates to the <a data-linked-resource-id="40210166" data-linked-resource-type="page"
+                                                    data-linked-resource-version="9" href="40210166.html">Single Responsibility Principle (SRP)</a>, and <a
+                            data-linked-resource-id="40210080" data-linked-resource-type="page" data-linked-resource-version="15"
+                            href="40210080.html">Dependency Inversion Principle (DIP)</a></span>
+                        <ul>
+                            <li>
+                                <span>Clearly, some new code must be written. But how much old code will have to change?</span>
+                            </li>
+                            <li>
+                                <span>We should reduce the amount of changed code to the barest minimum. Ideally, zero.</span>
+                            </li>
+                            <li><span>How? By properly separating the things that change for different reasons (SRP), and then organizing the dependencies between those things properly (DIP). (2017 Martin 70)</span>
+                                <ul>
+                                    <li><span>If class A should be protected from changes in class B, then class B should depend on class A.</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p><span>See <a data-linked-resource-id="40212681" data-linked-resource-type="page"
+                                data-linked-resource-version="7" href="Coupling_40212681.html">Coupling</a></span>
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

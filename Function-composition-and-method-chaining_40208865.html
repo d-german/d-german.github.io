@@ -1,84 +1,179 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Function composition and method chaining</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Function composition and method chaining</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Function composition and method chaining
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Mar 18, 2021
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p><span style="color: rgb(32,33,34);">In computer science, function composition is an act or mechanism to combine simple functions to build more complicated ones. Like the usual composition of functions in mathematics, we pass the result of each function as the argument of the next, and the result of the last one results from the whole. <a
+                        class="external-link"
+                        href="https://en.wikipedia.org/wiki/Function_composition_(computer_science)" rel="nofollow">wikipedia</a></span></p>
+                <p>For example, say you want to get an email address for someone working at Manning. You can have a
+                    method to calculate the local part (identifying the person) and another append the domain:</p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208865/40226828.png"
+                                                                       data-linked-resource-container-id="40208865"
+                                                                       data-linked-resource-container-version="4"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="image2021-3-18_17-21-51.png"
+                                                                       data-linked-resource-id="40226828"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="2260fa55-427f-482c-a9b3-04cccaf6832b"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208865/40226828.png"></span></p>
+                <p><br/></p>
+                <p><code>AbbreviateName</code> and <code>AppendDomain</code> are two methods that you can compose to get
+                    a new function that will yield the Manning email for a hypothetical person:</p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208865/40226822.png"
+                        data-linked-resource-container-id="40208865"
+                        data-linked-resource-container-version="4" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-18_17-24-50.png" data-linked-resource-id="40226822"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="99aed3d8-4ba5-49bb-a7d8-aeac31cdea8e" data-media-type="file"
+                        data-unresolved-comment-count="0" height="40"
+                        loading="lazy" src="attachments/40208865/40226822.png?height=40"></span></p>
+                <p><br/></p>
+                <p>How to use it:</p>
+                <p style="margin-left: 60.0px;"><span
+                        class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208865/40226954.png"
+                        data-linked-resource-container-id="40208865"
+                        data-linked-resource-container-version="4" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-18_17-30-14.png" data-linked-resource-id="40226954"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="43723274-98dd-4f5d-93e8-052a36f1b0f4" data-media-type="file"
+                        data-unresolved-comment-count="0" height="36"
+                        loading="lazy" src="attachments/40208865/40226954.png?height=36"></span></p>
+                <p><br/></p>
+                <p>In function composition, functions appear in the reverse order in which they’re performed. For
+                    example, in <code>AppendDomain(AbbreviateName(p))</code>, you first execute the rightmost function,
+                    and then the one to its left. This is, of course, not ideal for readability, especially if you want
+                    to compose several functions. Therefore, in C# it’s usual to resort to method chaining instead.</p>
+                <p>The method chaining syntax (that is, chaining the invocation of several methods with the
+                    <code>.</code> operator) provides a more readable way of achieving function composition in C#. Given
+                    an expression, you can chain to it any method that’s defined as an instance or extension method on
+                    the type of the expression. </p>
+                <p>The previous example would need to be changed:</p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208865/40226916.png"
+                        data-linked-resource-container-id="40208865"
+                        data-linked-resource-container-version="4" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-18_18-46-23.png" data-linked-resource-id="40226916"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="929ca2b3-7ea2-48ca-b7df-2c8e2dc03cc6" data-media-type="file"
+                        data-unresolved-comment-count="0" height="62"
+                        loading="lazy" src="attachments/40208865/40226916.png?height=62"></span></p>
+                <p><br/></p>
+                <p>How to use it:</p>
+                <p style="margin-left: 60.0px;"><span
+                        class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208865/40226910.png"
+                        data-linked-resource-container-id="40208865"
+                        data-linked-resource-container-version="4" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-18_18-48-52.png" data-linked-resource-id="40226910"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="da661e35-abed-465f-9715-b95c37fa7a49" data-media-type="file"
+                        data-unresolved-comment-count="0" height="102"
+                        loading="lazy" src="attachments/40208865/40226910.png?height=102"></span></p>
+                <p style="margin-left: 60.0px;"><br/></p>
+                <p>Notice that now the extension methods appear in the order in which they will be executed. This
+                    significantly improves readability, especially as the complexity of the workflow increases, and it’s
+                    why method chaining is the preferable way of achieving function composition in C#.</p>
+                <p>There are some properties that make some functions more composable than others:</p>
+                <ul>
+                    <li>Pure: If your function has side effects, it’s less reusable.</li>
+                    <li>Chainable: A <code>this</code> argument (implicit on instance methods and explicit on extension
+                        methods) makes it possible to compose through chaining.
+                    </li>
+                    <li>General: The more specific the function, the fewer cases there will be where it’s useful to
+                        compose it.
+                    </li>
+                    <li>Shape-preserving: The function preserves the “shape” of the structure; so, if it takes an
+                        IEnumerable, it returns an IEnumerable, and so on.
+                    </li>
+                </ul>
+                <p>Function composition is not only powerful and expressive but also pleasant to work with. For example,
+                    have you noticed that when you use LINQ to work with lists, you can get a lot done with only a few
+                    lines of code? That’s because LINQ is a functional API, designed with composition in mind. </p>
+                <p>This information came from Buonanno 102-104</p>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Mar 18, 2021
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><span style="color: rgb(32,33,34);">In computer science, function composition is an act or mechanism to combine simple functions to build more complicated ones. Like the usual composition of functions in mathematics, we pass the result of each function as the argument of the next, and the result of the last one results from the whole. <a href="https://en.wikipedia.org/wiki/Function_composition_(computer_science)" class="external-link" rel="nofollow">wikipedia</a></span></p><p>For example, say you want to get an email address for someone working at Manning. You can have a method to calculate the local part (identifying the person) and another append the domain:</p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208865/40226828.png" data-image-src="attachments/40208865/40226828.png" data-unresolved-comment-count="0" data-linked-resource-id="40226828" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-18_17-21-51.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208865" data-linked-resource-container-version="4" data-media-id="2260fa55-427f-482c-a9b3-04cccaf6832b" data-media-type="file"></span></p><p><br/></p><p><code>AbbreviateName</code> and <code>AppendDomain</code> are two methods that you can compose to get a new function that will yield the Manning email for a hypothetical person:</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="40" loading="lazy" src="attachments/40208865/40226822.png?height=40" data-image-src="attachments/40208865/40226822.png" data-unresolved-comment-count="0" data-linked-resource-id="40226822" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-18_17-24-50.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208865" data-linked-resource-container-version="4" data-media-id="99aed3d8-4ba5-49bb-a7d8-aeac31cdea8e" data-media-type="file"></span></p><p><br/></p><p>How to use it:</p><p style="margin-left: 60.0px;"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="36" loading="lazy" src="attachments/40208865/40226954.png?height=36" data-image-src="attachments/40208865/40226954.png" data-unresolved-comment-count="0" data-linked-resource-id="40226954" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-18_17-30-14.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208865" data-linked-resource-container-version="4" data-media-id="43723274-98dd-4f5d-93e8-052a36f1b0f4" data-media-type="file"></span></p><p><br/></p><p>In function composition, functions appear in the reverse order in which they’re performed. For example, in <code>AppendDomain(AbbreviateName(p))</code>, you first execute the rightmost function, and then the one to its left. This is, of course, not ideal for readability, especially if you want to compose several functions. Therefore, in C# it’s usual to resort to method chaining instead.</p><p>The method chaining syntax (that is, chaining the invocation of several methods with the <code>.</code> operator) provides a more readable way of achieving function composition in C#. Given an expression, you can chain to it any method that’s defined as an instance or extension method on the type of the expression. </p><p>The previous example would need to be changed:</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="62" loading="lazy" src="attachments/40208865/40226916.png?height=62" data-image-src="attachments/40208865/40226916.png" data-unresolved-comment-count="0" data-linked-resource-id="40226916" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-18_18-46-23.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208865" data-linked-resource-container-version="4" data-media-id="929ca2b3-7ea2-48ca-b7df-2c8e2dc03cc6" data-media-type="file"></span></p><p><br/></p><p>How to use it:</p><p style="margin-left: 60.0px;"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="102" loading="lazy" src="attachments/40208865/40226910.png?height=102" data-image-src="attachments/40208865/40226910.png" data-unresolved-comment-count="0" data-linked-resource-id="40226910" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-18_18-48-52.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208865" data-linked-resource-container-version="4" data-media-id="da661e35-abed-465f-9715-b95c37fa7a49" data-media-type="file"></span></p><p style="margin-left: 60.0px;"><br/></p><p>Notice that now the extension methods appear in the order in which they will be executed. This significantly improves readability, especially as the complexity of the workflow increases, and it’s why method chaining is the preferable way of achieving function composition in C#.</p><p>There are some properties that make some functions more composable than others:</p><ul><li>Pure: If your function has side effects, it’s less reusable.</li><li>Chainable: A <code>this</code> argument (implicit on instance methods and explicit on extension methods) makes it possible to compose through chaining.</li><li>General: The more specific the function, the fewer cases there will be where it’s useful to compose it.</li><li>Shape-preserving: The function preserves the “shape” of the structure; so, if it takes an IEnumerable, it returns an IEnumerable, and so on.</li></ul><p>Function composition is not only powerful and expressive but also pleasant to work with. For example, have you noticed that when you use LINQ to work with lists, you can get a lot done with only a few lines of code? That’s because LINQ is a functional API, designed with composition in mind. </p><p>This information came from Buonanno 102-104</p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208865/40226783.png">image2021-3-18_15-17-15.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208865/40226828.png">image2021-3-18_17-21-51.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208865/40226822.png">image2021-3-18_17-24-50.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208865/40226954.png">image2021-3-18_17-30-14.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208865/40226916.png">image2021-3-18_18-46-23.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208865/40226910.png">image2021-3-18_18-48-52.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208865/40226783.png">image2021-3-18_15-17-15.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208865/40226828.png">image2021-3-18_17-21-51.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208865/40226822.png">image2021-3-18_17-24-50.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208865/40226954.png">image2021-3-18_17-30-14.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208865/40226916.png">image2021-3-18_18-46-23.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208865/40226910.png">image2021-3-18_18-48-52.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

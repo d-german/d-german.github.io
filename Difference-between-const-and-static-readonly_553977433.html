@@ -1,56 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Difference between const and static readonly</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Difference between const and static readonly</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Difference between const and static readonly
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Apr 04, 2023
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Apr 04, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <div class="contentLayout2">
+                    <div class="columnLayout fixed-width" data-layout="fixed-width">
+                        <div class="cell normal" data-type="normal">
+                            <div class="innerCell">
+                                <p>In C#, the difference between <code>static readonly</code> and <code>const</code> is
+                                    as follows:</p>
+                                <ol start="1">
+                                    <li><p><code>static readonly</code> is a <strong>run time </strong>constant. The
+                                        value can be initialized either at the time of declaration or in a constructor,
+                                        and it cannot be changed after that. It can be accessed by class name and it's
+                                        memory is allocated only once.</p></li>
+                                    <li><p><code>const</code> is a <strong>compile time </strong>constant. The value
+                                        must be initialized when it is declared, and it cannot be changed at runtime. It
+                                        can also be accessed by class name and its memory is also allocated only once.
+                                    </p></li>
+                                    <li><p>The main difference between the two is that a <code>static readonly</code>
+                                        can be initialized at runtime, whereas a <code>const</code> must be initialized
+                                        at compile time.</p></li>
+                                    <li><p>Another difference is that <code>static readonly</code> variables can be of
+                                        any type, including a reference type, whereas <code>const</code> variables can
+                                        only be of a primitive type such as an integer, or a char.</p></li>
+                                </ol>
+                                <p/>
+                                <p>Now, let's explore the differences between <code>const</code> and <code>static
+                                    readonly</code> by examining how they are compiled and discussing their impact on
+                                    performance.</p>
+                                <p/></div>
                         </div>
-                    <div id="main-content" class="wiki-content group">
-                    <div class="contentLayout2">
-<div class="columnLayout fixed-width" data-layout="fixed-width">
-<div class="cell normal" data-type="normal">
-<div class="innerCell">
-<p>In C#, the difference between <code>static readonly</code> and <code>const</code> is as follows:</p><ol start="1"><li><p><code>static readonly</code>  is a <strong>run time </strong>constant. The value can be initialized either at the time of declaration or in a constructor, and it cannot be changed after that. It can be accessed by class name and it's memory is allocated only once.</p></li><li><p><code>const</code> is a <strong>compile time </strong>constant. The value must be initialized when it is declared, and it cannot be changed at runtime. It can also be accessed by class name and its memory is also allocated only once.</p></li><li><p>The main difference between the two is that a <code>static readonly</code>  can be initialized at runtime, whereas a <code>const</code> must be initialized at compile time.</p></li><li><p>Another difference is that <code>static readonly</code> variables can be of any type, including a reference type, whereas <code>const</code> variables can only be of a primitive type such as an integer, or a char.</p></li></ol><p /><p>Now, let's explore the differences between <code>const</code> and <code>static readonly</code> by examining how they are compiled and discussing their impact on performance.</p><p /></div>
-</div>
-</div>
-<div class="columnLayout two-equal" data-layout="two-equal">
-<div class="cell normal" data-type="normal">
-<div class="innerCell">
-<h3 id="Differencebetweenconstandstaticreadonly-OriginalC#Code:">Original C# Code:</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public class ConstVsStaticReadonlyDemo
+                    </div>
+                    <div class="columnLayout two-equal" data-layout="two-equal">
+                        <div class="cell normal" data-type="normal">
+                            <div class="innerCell">
+                                <h3 id="Differencebetweenconstandstaticreadonly-OriginalC#Code:">Original C# Code:</h3>
+                                <div class="code panel pdl" style="border-width: 1px;">
+                                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public class ConstVsStaticReadonlyDemo
 {
     private const string ConstStr = &quot;Hello, world!&quot;;
     private static readonly string StaticReadonlyStr = &quot;Hello, world!&quot;;   
@@ -67,12 +87,18 @@
         Console.WriteLine(StaticReadonlyList[0]);
     }
 }</pre>
-</div></div><p /></div>
-</div>
-<div class="cell normal" data-type="normal">
-<div class="innerCell">
-<h3 id="Differencebetweenconstandstaticreadonly-CompiledLow-LevelC#Code:">Compiled Low-Level C# Code:</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">[NullableContext(1)]
+                                    </div>
+                                </div>
+                                <p/></div>
+                        </div>
+                        <div class="cell normal" data-type="normal">
+                            <div class="innerCell">
+                                <h3 id="Differencebetweenconstandstaticreadonly-CompiledLow-LevelC#Code:">Compiled
+                                    Low-Level C# Code:</h3>
+                                <div class="code panel pdl" style="border-width: 1px;">
+                                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">[NullableContext(1)]
 [Nullable(0)]
 public class ConstVsStaticReadonlyDemo 
 {
@@ -100,26 +126,67 @@ public class ConstVsStaticReadonlyDemo
         stringList.Add(&quot;Hello, world!&quot;);        
     }
 }</pre>
-</div></div><p /></div>
-</div>
-</div>
-<div class="columnLayout fixed-width" data-layout="fixed-width">
-<div class="cell normal" data-type="normal">
-<div class="innerCell">
-<p /><p>On the left we have a class called <code>ConstVsStaticReadonlyDemo</code> that contains two string declarations: a <code>static readonly string</code> and a <code>constant string</code>. Both are assigned the same value, &quot;Hello, world!&quot;. Additionally, there is a static readonly List of strings. This List must be declared as <code>static readonly</code> <strong>*</strong> and cannot be declared as <code>const</code> because it is a reference type that gets instantiated at runtime. The instantiation process occurs when the object is created, which happens at runtime and not during compilation. The class also has a static method, <code>PrintValues()</code>, which prints the values of these strings to the console. On the right we have the low-level compiled C# code. Notice what the compiler does to these two strings.  </p><p>When the C# compiler encounters a constant string, it embeds the string's value directly into the code wherever the constant is referenced.</p><p>When a class contains a <code>static readonly</code> field, the C# compiler generates a static constructor for that class. The static constructor is responsible for initializing the <code>static readonly</code> field during the class's first usage at runtime. </p><p><code>const</code> variables offer better performance because the compiler replaces all references to the constant with its value, resulting in no additional memory overhead and faster access times.</p><p>For <code>static readonly</code>, the static constructor adds a small overhead to the first usage of the class containing the <code>static readonly field</code>, as it initializes the field during the class's first access.</p><h3 id="Differencebetweenconstandstaticreadonly-Conclusion">Conclusion</h3><p>In conclusion, both <code>static readonly</code> and <code>const</code> are used to declare constants in C#, but they differ in terms of initialization, allowed data types, and performance.</p><p>While <code>static readonly</code> variables can be initialized at runtime and support any data type, <code>const</code> must be initialized at compile time with a constant expression.</p><p><code>const</code> offer better performance due to the compiler embedding their values directly into the code, resulting in faster access times and no additional memory overhead. <code>static readonly</code>, on the other hand, require a static constructor, which introduces a small overhead during the class's first usage.</p><p /><p /><p><strong>*</strong>Note: using <code>static readonly</code> for a List ensures its reference remains constant, but it still allows the addition or removal of items at runtime.<br/></p></div>
-</div>
-</div>
-</div>
+                                    </div>
+                                </div>
+                                <p/></div>
+                        </div>
                     </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                    <div class="columnLayout fixed-width" data-layout="fixed-width">
+                        <div class="cell normal" data-type="normal">
+                            <div class="innerCell">
+                                <p/>
+                                <p>On the left we have a class called <code>ConstVsStaticReadonlyDemo</code> that
+                                    contains two string declarations: a <code>static readonly string</code> and a <code>constant
+                                        string</code>. Both are assigned the same value, &quot;Hello, world!&quot;.
+                                    Additionally, there is a static readonly List of strings. This List must be declared
+                                    as <code>static readonly</code> <strong>*</strong> and cannot be declared as <code>const</code>
+                                    because it is a reference type that gets instantiated at runtime. The instantiation
+                                    process occurs when the object is created, which happens at runtime and not during
+                                    compilation. The class also has a static method, <code>PrintValues()</code>, which
+                                    prints the values of these strings to the console. On the right we have the
+                                    low-level compiled C# code. Notice what the compiler does to these two strings. </p>
+                                <p>When the C# compiler encounters a constant string, it embeds the string's value
+                                    directly into the code wherever the constant is referenced.</p>
+                                <p>When a class contains a <code>static readonly</code> field, the C# compiler generates
+                                    a static constructor for that class. The static constructor is responsible for
+                                    initializing the <code>static readonly</code> field during the class's first usage
+                                    at runtime. </p>
+                                <p><code>const</code> variables offer better performance because the compiler replaces
+                                    all references to the constant with its value, resulting in no additional memory
+                                    overhead and faster access times.</p>
+                                <p>For <code>static readonly</code>, the static constructor adds a small overhead to the
+                                    first usage of the class containing the <code>static readonly field</code>, as it
+                                    initializes the field during the class's first access.</p>
+                                <h3 id="Differencebetweenconstandstaticreadonly-Conclusion">Conclusion</h3>
+                                <p>In conclusion, both <code>static readonly</code> and <code>const</code> are used to
+                                    declare constants in C#, but they differ in terms of initialization, allowed data
+                                    types, and performance.</p>
+                                <p>While <code>static readonly</code> variables can be initialized at runtime and
+                                    support any data type, <code>const</code> must be initialized at compile time with a
+                                    constant expression.</p>
+                                <p><code>const</code> offer better performance due to the compiler embedding their
+                                    values directly into the code, resulting in faster access times and no additional
+                                    memory overhead. <code>static readonly</code>, on the other hand, require a static
+                                    constructor, which introduces a small overhead during the class's first usage.</p>
+                                <p/>
+                                <p/>
+                                <p><strong>*</strong>Note: using <code>static readonly</code> for a List ensures its
+                                    reference remains constant, but it still allows the addition or removal of items at
+                                    runtime.<br/></p></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

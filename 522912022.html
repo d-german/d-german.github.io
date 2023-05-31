@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Lazy Map() Extension Method</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Lazy Map() Extension Method</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Low-level-or-IL-code_471925099.html">Low level or IL code</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Low-level-or-IL-code_471925099.html">Low level or IL code</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Lazy Map() Extension Method
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Jan 02, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public static class ExtensionMethods
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Jan 02, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public static class ExtensionMethods
 {
     public static IEnumerable&lt;TResult&gt; Map&lt;TResult, TSource&gt;(this IEnumerable&lt;TSource&gt; items, Func&lt;TSource, TResult&gt; func)
     {
@@ -53,8 +50,25 @@
         }
     }
 }</pre>
-</div></div><p>“Note the <code>yield return</code> statement.  A normal <code>return</code> statement expresses, &quot;Here's the value you asked me to return from this method,” A <code>yield return</code> statement expresses, &quot;Here's the next element you asked me to yield from this enumerator.” On each yield statement, control is returned to the caller, but the callee’s state is maintained so that the method can continue executing as soon as the caller enumerates the next element. The compiler converts iterator methods into private classes that implement <code>IEnumerable&lt;T&gt;</code> and/or <code>IEnumerator&lt;T&gt;</code>. The logic within the iterator block is &quot;inverted&quot; and spliced into the <code>MoveNext</code> method and <code>Current</code> property on the compiler-written enumerator class. This means that when you call an iterator method, all you're doing is instantiating the compiler-written class; none of your code actually runs! Your code runs only when you start enumerating over the resultant sequence, typically with a <code>foreach</code> statement. “From Iterators in C# 10 in a Nutshell.</p><p>The above code is converted to this by the compiler:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">using System;
+                    </div>
+                </div>
+                <p>“Note the <code>yield return</code> statement. A normal <code>return</code> statement expresses,
+                    &quot;Here's the value you asked me to return from this method,” A <code>yield return</code>
+                    statement expresses, &quot;Here's the next element you asked me to yield from this enumerator.” On
+                    each yield statement, control is returned to the caller, but the callee’s state is maintained so
+                    that the method can continue executing as soon as the caller enumerates the next element. The
+                    compiler converts iterator methods into private classes that implement
+                    <code>IEnumerable&lt;T&gt;</code> and/or <code>IEnumerator&lt;T&gt;</code>. The logic within the
+                    iterator block is &quot;inverted&quot; and spliced into the <code>MoveNext</code> method and <code>Current</code>
+                    property on the compiler-written enumerator class. This means that when you call an iterator method,
+                    all you're doing is instantiating the compiler-written class; none of your code actually runs! Your
+                    code runs only when you start enumerating over the resultant sequence, typically with a <code>foreach</code>
+                    statement. “From Iterators in C# 10 in a Nutshell.</p>
+                <p>The above code is converted to this by the compiler:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -291,17 +305,19 @@ namespace System.Runtime.CompilerServices
         }
     }
 }</pre>
-</div></div>
                     </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

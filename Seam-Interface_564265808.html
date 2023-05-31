@@ -1,54 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Seam Interface</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Seam Interface</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Glossary_40212597.html">Glossary</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Glossary_40212597.html">Glossary</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Seam Interface
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Jan 26, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>A Seam Interface is a design pattern in which an interface is created to isolate a complex dependency, to make it more testable and easier to replace or mock in test scenarios. It allows us to isolate the complex/hard-to-test dependencies and to control how they interact with the rest of the system.</p><p>The term &quot;seam&quot; comes from Michael Feathers' book &quot;Working Effectively with Legacy Code&quot;, where he introduces the concept of &quot;seamful design&quot; as a way to design code that is more testable by creating seams, or small, focused interfaces, which allow you to test parts of the system in isolation.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public interface IFullTextDocumentDataProvider
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Jan 26, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p>A Seam Interface is a design pattern in which an interface is created to isolate a complex
+                    dependency, to make it more testable and easier to replace or mock in test scenarios. It allows us
+                    to isolate the complex/hard-to-test dependencies and to control how they interact with the rest of
+                    the system.</p>
+                <p>The term &quot;seam&quot; comes from Michael Feathers' book &quot;Working Effectively with Legacy
+                    Code&quot;, where he introduces the concept of &quot;seamful design&quot; as a way to design code
+                    that is more testable by creating seams, or small, focused interfaces, which allow you to test parts
+                    of the system in isolation.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public interface IFullTextDocumentDataProvider
 {
 	PageData GetPage(ISession session, Rendition rendition, int pageNumber, GetPageProperties properties);
 }</pre>
-</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">internal class FullTextDocumentDataProvider : IFullTextDocumentDataProvider
+                    </div>
+                </div>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">internal class FullTextDocumentDataProvider : IFullTextDocumentDataProvider
 {
 	// Test wrapper for concrete complex dependency that should already be tested
 	[ExcludeFromCodeCoverage]
@@ -57,17 +66,30 @@
 		return new DocumentDataProvider(session as Session).GetPage(rendition, pageNumber, properties);
 	}
 }</pre>
-</div></div><p>The <code>DocumentDataProvider</code> class is a dependency that is difficult or impossible to mock in a test environment. Wrapping it in an interface, <code>IFullTextDocumentDataProvider</code> and creating an implementation of that interface, <code>FullTextDocumentDataProvider</code>, allows for the <code>GetPage()</code> method to be tested in isolation by providing a mock implementation of the interface. By wrapping the complex dependency in an interface, it allows to test the class depend on the <code>DocumentDataProvider</code> without having to use the real implementation of the <code>DocumentDataProvider</code> class and its dependencies.</p><p>see <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">Stable vs Volatile Dependences</a> </p><p />
                     </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                </div>
+                <p>The <code>DocumentDataProvider</code> class is a dependency that is difficult or impossible to mock
+                    in a test environment. Wrapping it in an interface, <code>IFullTextDocumentDataProvider</code> and
+                    creating an implementation of that interface, <code>FullTextDocumentDataProvider</code>, allows for
+                    the <code>GetPage()</code> method to be tested in isolation by providing a mock implementation of
+                    the interface. By wrapping the complex dependency in an interface, it allows to test the class
+                    depend on the <code>DocumentDataProvider</code> without having to use the real implementation of the
+                    <code>DocumentDataProvider</code> class and its dependencies.</p>
+                <p>see <a data-linked-resource-id="40212174" data-linked-resource-type="page"
+                          data-linked-resource-version="9" href="Stable-vs-Volatile-Dependences_40212174.html">Stable vs Volatile
+                    Dependences</a></p>
+                <p/>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

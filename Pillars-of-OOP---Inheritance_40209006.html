@@ -1,87 +1,200 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Pillars of OOP - Inheritance</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Pillars of OOP - Inheritance</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Pillars of OOP - Inheritance
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Sep 12, 2022
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <ul>
+                    <li>
+                        <span>If we have </span><span>Class1</span><span> and we want to create </span><span>Class2</span><span> that has everything </span><span>Class1</span><span> has but more, we can copy everything in </span><span>Class1</span><span> and paste* it into </span><span>Class2</span><span> and add the new data and behavior. </span>
+                    </li>
+                    <li><span>This would cause duplicated code. See <a data-linked-resource-id="40215302"
+                                                                       data-linked-resource-type="page"
+                                                                       data-linked-resource-version="6"
+                                                                       href="DRY-Principle_40215302.html">DRY Principle</a>.</span>
+                    </li>
+                    <li><span>Instead, use inheritance. </span>
+                        <ul>
+                            <li>
+                                <span>Create </span><span>Class2</span><span> that inherits from </span><span>Class1</span><span>.</span>
+                                <ul>
+                                    <li><span>We can make entire class hierarchies this way. From a base class, one or more classes can be derived. From each of these classes, zero or more classes can be derived, and so on. The power of inheritance lies in its abstraction and organization techniques.</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span>An inheritance tree can grow quite large. This is one reason many developers are wary of using inheritance at all. Often, it is difficult to decide how much abstraction is required.</span>
+                            </li>
+                            <li><span>You should <a data-linked-resource-id="40218236" data-linked-resource-type="page"
+                                                    data-linked-resource-version="8" href="40218236.html">Prefer composition over class inheritance (GOF 20)</a>. </span>
+                            </li>
+                            <li><span>Inheritance is an “is-a” relationship. We say, “a cat is a mammal” and “a mammal is an animal.”</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span>Top-down/Bottom-up perspective - specialization/ generalization</span></li>
+                    <li><span>Guidelines:</span>
+                        <ul>
+                            <li><span>Protected access specifier (see pg 439 of text)</span>
+                                <ul>
+                                    <li><span>All fields in a base class should be private; do not use protected data (Riel 82)</span>
+                                    </li>
+                                    <li><span>Protected fields are implementation details that derived class shouldn't need to know about.</span>
+                                    </li>
+                                    <li><span>Every class in the inheritance hierarchy, depending on that data, is subject to breaking changes. </span>
+                                    </li>
+                                    <li><span><span class="confluence-embedded-file-wrapper"><img
+                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                            data-image-src="attachments/40209006/417988974.png"
+                                            data-linked-resource-container-id="40209006"
+                                            data-linked-resource-container-version="5" data-linked-resource-content-type="image/png"
+                                            data-linked-resource-default-alias="Inheritance.png" data-linked-resource-id="417988974"
+                                            data-linked-resource-type="attachment"
+                                            data-linked-resource-version="2"
+                                            data-media-id="32327318-7e56-4927-a10c-3246235aef18"
+                                            data-media-type="file"
+                                            data-unresolved-comment-count="0"
+                                            loading="lazy" src="attachments/40209006/417988974.png"></span></span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span>Multiple Inheritance</span>
+                        <ul>
+                            <li><span>If you have an example of multiple inheritance in your design, assume you have made a mistake and then prove otherwise. (Riel 134)</span>
+                            </li>
+                            <li><span>The major disadvantage with multiple inheritance is that it often reduces understanding of class hierarchy</span><span>. </span><span>(Jacobson 67)</span>
+                                <ul>
+                                    <li><span>When is multiple inheritance valid?</span>
+                                        <ul>
+                                            <li><span>Useful for capturing a relationship known as subtyping for combination (mixings). It is used to define a new class that is actually a special type of two other classes and those two base classes are from </span><strong><em>different
+                                                domains</em></strong><span>. (Riel 6.3)</span>
+                                                <ul>
+                                                    <li><span>In C# we achieve this using interfaces.</span></li>
+                                                    <li><span><span
+                                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                            data-image-src="attachments/40209006/40240634.png"
+                                                            data-linked-resource-container-id="40209006"
+                                                            data-linked-resource-container-version="5"
+                                                            data-linked-resource-content-type="image/png"
+                                                            data-linked-resource-default-alias="image2021-8-10_10-59-13.png"
+                                                            data-linked-resource-id="40240634"
+                                                            data-linked-resource-type="attachment"
+                                                            data-linked-resource-version="1"
+                                                            data-media-id="2ebd50ad-ca0b-4934-8d4c-3a71b79dfcaf"
+                                                            data-media-type="file"
+                                                            data-unresolved-comment-count="0"
+                                                            height="250"
+                                                            loading="lazy"
+                                                            src="attachments/40209006/40240634.png?height=250"></span></span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><span>The &quot;</span><strong>diamond problem</strong><span>&quot; (sometimes referred to as the &quot;Deadly Diamond of Death&quot;</span><span>) is an ambiguity that arises when two classes B and C inherit from A, and class D inherits from both B and C. If there is a method in A that B and C have </span><span>overridden</span><span>, and D does not override it, then which version of the method does D inherit: that of B, or that of C? <a
+                                            class="external-link"
+                                            href="https://en.wikipedia.org/wiki/Multiple_inheritance" rel="nofollow">https://en.wikipedia.org/wiki/Multiple_inheritance</a></span>
+                                        <ul>
+                                            <li><span><span
+                                                    class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                                    class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40209006/40240523.png"
+                                                    data-linked-resource-container-id="40209006"
+                                                    data-linked-resource-container-version="5"
+                                                    data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-10_11-3-7.png"
+                                                    data-linked-resource-id="40240523"
+                                                    data-linked-resource-type="attachment"
+                                                    data-linked-resource-version="1"
+                                                    data-media-id="62a58183-a14b-4e2e-8532-5e3069a39666"
+                                                    data-media-type="file"
+                                                    data-unresolved-comment-count="0"
+                                                    height="250"
+                                                    loading="lazy"
+                                                    src="attachments/40209006/40240523.png?height=250"></span></span></li>
+                                            <li>
+                                                <span>C# avoids by not allowing </span><span>multiple inheritance </span><span>and providing interfaces</span><span>.</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Sep 12, 2022
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <ul><li><span>If we have </span><span>Class1</span><span> and we want to create </span><span>Class2</span><span> that has everything </span><span>Class1</span><span> has but more, we can copy everything in </span><span>Class1</span><span> and paste* it into </span><span>Class2</span><span> and add the new data and behavior. </span></li><li><span>This would cause duplicated code. See <a href="DRY-Principle_40215302.html" data-linked-resource-id="40215302" data-linked-resource-version="6" data-linked-resource-type="page">DRY Principle</a>.</span></li><li><span>Instead, use inheritance. </span><ul><li><span>Create </span><span>Class2</span><span> that inherits from </span><span>Class1</span><span>.</span><ul><li><span>We can make entire class hierarchies this way. From a base class, one or more classes can be derived. From each of these classes, zero or more classes can be derived, and so on. The power of inheritance lies in its abstraction and organization techniques.</span></li></ul></li><li><span>An inheritance tree can grow quite large. This is one reason many developers are wary of using inheritance at all. Often, it is difficult to decide how much abstraction is required.</span></li><li><span>You should <a href="40218236.html" data-linked-resource-id="40218236" data-linked-resource-version="8" data-linked-resource-type="page">Prefer composition over class inheritance (GOF 20)</a>. </span></li><li><span>Inheritance is an “is-a” relationship. We say, “a cat is a mammal” and “a mammal is an animal.”</span></li></ul></li><li><span>Top-down/Bottom-up perspective - specialization/ generalization</span></li><li><span>Guidelines:</span><ul><li><span>Protected access specifier (see pg 439 of text)</span><ul><li><span>All fields in a base class should be private; do not use protected data (Riel 82)</span></li><li><span>Protected fields are implementation details that derived class shouldn't need to know about.</span></li><li><span>Every class in the inheritance hierarchy, depending on that data, is subject to breaking changes. </span></li><li><span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40209006/417988974.png" data-image-src="attachments/40209006/417988974.png" data-unresolved-comment-count="0" data-linked-resource-id="417988974" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="Inheritance.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209006" data-linked-resource-container-version="5" data-media-id="32327318-7e56-4927-a10c-3246235aef18" data-media-type="file"></span></span></li></ul></li></ul></li><li><span>Multiple Inheritance</span><ul><li><span>If you have an example of multiple inheritance in your design, assume you have made a mistake and then prove otherwise. (Riel 134)</span></li><li><span>The major disadvantage with multiple inheritance is that it often reduces understanding of class hierarchy</span><span>. </span><span>(Jacobson 67)</span><ul><li><span>When is multiple inheritance valid?</span><ul><li><span>Useful for capturing a relationship known as subtyping for combination (mixings). It is used to define a new class that is actually a special type of two other classes and those two base classes are from </span><strong><em>different domains</em></strong><span>. (Riel 6.3)</span><ul><li><span>In C# we achieve this using interfaces.</span></li><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40209006/40240634.png?height=250" data-image-src="attachments/40209006/40240634.png" data-unresolved-comment-count="0" data-linked-resource-id="40240634" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-10_10-59-13.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209006" data-linked-resource-container-version="5" data-media-id="2ebd50ad-ca0b-4934-8d4c-3a71b79dfcaf" data-media-type="file"></span></span></li></ul></li></ul></li><li><span>The &quot;</span><strong>diamond problem</strong><span>&quot; (sometimes referred to as the &quot;Deadly Diamond of Death&quot;</span><span>) is an ambiguity that arises when two classes B and C inherit from A, and class D inherits from both B and C. If there is a method in A that B and C have </span><span>overridden</span><span>, and D does not override it, then which version of the method does D inherit: that of B, or that of C? <a href="https://en.wikipedia.org/wiki/Multiple_inheritance" class="external-link" rel="nofollow">https://en.wikipedia.org/wiki/Multiple_inheritance</a></span><ul><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40209006/40240523.png?height=250" data-image-src="attachments/40209006/40240523.png" data-unresolved-comment-count="0" data-linked-resource-id="40240523" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-10_11-3-7.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209006" data-linked-resource-container-version="5" data-media-id="62a58183-a14b-4e2e-8532-5e3069a39666" data-media-type="file"></span></span></li><li><span>C# avoids by not allowing </span><span>multiple inheritance </span><span>and providing interfaces</span><span>.</span></li></ul></li></ul></li></ul></li></ul>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209006/40240601.png">image2021-8-10_10-57-4.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209006/40240607.png">image2021-8-10_10-57-15.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209006/40240618.png">image2021-8-10_10-58-10.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209006/40240634.png">image2021-8-10_10-59-13.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209006/40240523.png">image2021-8-10_11-3-7.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209006/418414952.png">Inheritance.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209006/417988974.png">Inheritance.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209006/40240601.png">image2021-8-10_10-57-4.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209006/40240607.png">image2021-8-10_10-57-15.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209006/40240618.png">image2021-8-10_10-58-10.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209006/40240634.png">image2021-8-10_10-59-13.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209006/40240523.png">image2021-8-10_11-3-7.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209006/418414952.png">Inheritance.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209006/417988974.png">Inheritance.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

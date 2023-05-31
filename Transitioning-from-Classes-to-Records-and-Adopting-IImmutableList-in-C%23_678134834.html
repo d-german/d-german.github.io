@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Transitioning from Classes to Records and Adopting IImmutableList in C#</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Transitioning from Classes to Records and Adopting IImmutableList in C#</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Transitioning from Classes to Records and Adopting IImmutableList in C#
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on May 16, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>The purpose of this article is to express my desire that going forward in our code base, we should use read-only records and immutable data structures when creating new types. Moreover, whenever we get an opportunity to update existing types, we should convert them to use the same.</p><p>In this article, we'll discuss how we've updated a C# code snippet to use records instead of classes and switched the collection type to <code>IImmutableList&lt;T&gt;</code>. We'll also demonstrate two common implementations of <code>IImmutableList&lt;T&gt;</code> and briefly compare their differences.</p><p>Initially, we had the following class definitions:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public class HCDocumentType
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on May 16, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p>The purpose of this article is to express my desire that going forward in our code base, we should
+                    use read-only records and immutable data structures when creating new types. Moreover, whenever we
+                    get an opportunity to update existing types, we should convert them to use the same.</p>
+                <p>In this article, we'll discuss how we've updated a C# code snippet to use records instead of classes
+                    and switched the collection type to <code>IImmutableList&lt;T&gt;</code>. We'll also demonstrate two
+                    common implementations of <code>IImmutableList&lt;T&gt;</code> and briefly compare their
+                    differences.</p>
+                <p>Initially, we had the following class definitions:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public class HCDocumentType
 {
     public string Id { get; set; }
     public string SystemName { get; set; }
@@ -52,8 +57,20 @@ public class HCDocumentTypes
 {
     public IEnumerable&lt;HCDocumentType&gt; Items;
 }</pre>
-</div></div><p>We made the following changes:</p><ol start="1"><li><p>Converted <code>HCDocumentType</code> and <code>HCDocumentTypes</code> from classes to records.</p></li><li><p>Changed the <code>Items</code> property in <code>HCDocumentTypes</code> to use <code>IImmutableList&lt;HCDocumentType&gt;</code>.</p></li></ol><p>The updated code now looks like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public record HCDocumentType
+                    </div>
+                </div>
+                <p>We made the following changes:</p>
+                <ol start="1">
+                    <li><p>Converted <code>HCDocumentType</code> and <code>HCDocumentTypes</code> from classes to
+                        records.</p></li>
+                    <li><p>Changed the <code>Items</code> property in <code>HCDocumentTypes</code> to use <code>IImmutableList&lt;HCDocumentType&gt;</code>.
+                    </p></li>
+                </ol>
+                <p>The updated code now looks like this:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public record HCDocumentType
 {
     public string Id { get; init; }
     public string SystemName { get; init; }
@@ -62,8 +79,23 @@ public record HCDocumentTypes
 {
     public IImmutableList&lt;HCDocumentType&gt; Items { get; init; }
 }</pre>
-</div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Having an immutable list doesn't prevent someone from modifying the contents of an element in the list. To prevent unintended modifications, it's recommended to make the items in the list immutable. Since <code>HCDocumentType</code> is now a read-only record and its properties are <code>string</code>s, which are also immutable, we don't have to worry about someone modifying the contents of an element in the list.</p></div></div><p>To demonstrate the flexibility of <code>IImmutableList&lt;T&gt;</code>, we implemented two tests using <code>ImmutableArray&lt;T&gt;</code> and <code>ImmutableList&lt;T&gt;</code> as concrete implementations:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">[Test]
+                    </div>
+                </div>
+                <div class="confluence-information-macro confluence-information-macro-information"><span
+                        class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span>
+                    <div class="confluence-information-macro-body"><p>Having an immutable list doesn't prevent someone
+                        from modifying the contents of an element in the list. To prevent unintended modifications, it's
+                        recommended to make the items in the list immutable. Since <code>HCDocumentType</code> is now a
+                        read-only record and its properties are <code>string</code>s, which are also immutable, we don't
+                        have to worry about someone modifying the contents of an element in the list.</p></div>
+                </div>
+                <p>To demonstrate the flexibility of <code>IImmutableList&lt;T&gt;</code>, we implemented two tests
+                    using <code>ImmutableArray&lt;T&gt;</code> and <code>ImmutableList&lt;T&gt;</code> as concrete
+                    implementations:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">[Test]
 public void DocumentTypesImmutableArray()
 {
     var documentTypes = new HCDocumentTypes
@@ -92,29 +124,99 @@ public void DocumentTypesImmutableList()
     
     Assert.That(hcDocumentTypes.Items, Has.Count.EqualTo(2));
 }</pre>
-</div></div><p>Both <code>ImmutableArray&lt;T&gt;</code> and <code>ImmutableList&lt;T&gt;</code> are immutable collections, but they have different performance characteristics:</p><ul><li><p><code>ImmutableArray&lt;T&gt;</code>: Backed by a simple, contiguous array, it has lower memory overhead and better cache locality, making it ideal for scenarios with good random-access performance.</p></li><li><p><code>ImmutableList&lt;T&gt;</code>: Uses a more complex binary tree (AVL tree) data structure, providing better performance for insertions and deletions in the middle of the collection but at a higher memory cost.</p></li></ul><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
-<p>These performance differences stem from data structure choice, not immutability, which ensures unmodifiable collections.</p>
-</div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>For brevity, for the remainder of this article, I will focus solely on the <code>ImmutableArray&lt;T&gt;</code>.</p></div></div><h3 id="TransitioningfromClassestoRecordsandAdoptingIImmutableListinC#-CreatingImmutableArraysinC#withtheImmutableArray&lt;T&gt;Class">Creating Immutable Arrays in C# with the <code>ImmutableArray&lt;T&gt;</code> Class</h3><p>The <code>ImmutableArray&lt;T&gt;</code> class provides several methods to create immutable collections, each with its own benefits and trade-offs.</p><p><code>ToImmutableArray()</code>: This extension method is part of the <code>System.Collections.Immutable</code> namespace and is available for any <code>IEnumerable&lt;T&gt;</code>. It creates an <code>ImmutableArray&lt;T&gt;</code> from the given enumerable by copying the elements into a new array. This method is convenient when you want to convert an existing mutable collection to an immutable one.</p><p><code>ImmutableArray.Create&lt;T&gt;(params T[] items)</code>: This static method creates an <code>ImmutableArray&lt;T&gt;</code> from a given set of items. It is convenient when you have a small number of items or when the items are known at compile time. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var array = 
+                    </div>
+                </div>
+                <p>Both <code>ImmutableArray&lt;T&gt;</code> and <code>ImmutableList&lt;T&gt;</code> are immutable
+                    collections, but they have different performance characteristics:</p>
+                <ul>
+                    <li><p><code>ImmutableArray&lt;T&gt;</code>: Backed by a simple, contiguous array, it has lower
+                        memory overhead and better cache locality, making it ideal for scenarios with good random-access
+                        performance.</p></li>
+                    <li><p><code>ImmutableList&lt;T&gt;</code>: Uses a more complex binary tree (AVL tree) data
+                        structure, providing better performance for insertions and deletions in the middle of the
+                        collection but at a higher memory cost.</p></li>
+                </ul>
+                <div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;">
+                    <div class="panelContent" style="background-color: #EAE6FF;">
+                        <p>These performance differences stem from data structure choice, not immutability, which
+                            ensures unmodifiable collections.</p>
+                    </div>
+                </div>
+                <div class="confluence-information-macro confluence-information-macro-information"><span
+                        class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span>
+                    <div class="confluence-information-macro-body"><p>For brevity, for the remainder of this article, I
+                        will focus solely on the <code>ImmutableArray&lt;T&gt;</code>.</p></div>
+                </div>
+                <h3 id="TransitioningfromClassestoRecordsandAdoptingIImmutableListinC#-CreatingImmutableArraysinC#withtheImmutableArray&lt;T&gt;Class">
+                    Creating Immutable Arrays in C# with the <code>ImmutableArray&lt;T&gt;</code> Class</h3>
+                <p>The <code>ImmutableArray&lt;T&gt;</code> class provides several methods to create immutable
+                    collections, each with its own benefits and trade-offs.</p>
+                <p><code>ToImmutableArray()</code>: This extension method is part of the <code>System.Collections.Immutable</code>
+                    namespace and is available for any <code>IEnumerable&lt;T&gt;</code>. It creates an <code>ImmutableArray&lt;T&gt;</code>
+                    from the given enumerable by copying the elements into a new array. This method is convenient when
+                    you want to convert an existing mutable collection to an immutable one.</p>
+                <p><code>ImmutableArray.Create&lt;T&gt;(params T[] items)</code>: This static method creates an <code>ImmutableArray&lt;T&gt;</code>
+                    from a given set of items. It is convenient when you have a small number of items or when the items
+                    are known at compile time. </p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">var array = 
 ImmutableArray.Create(new HCDocumentType { Id = &quot;1&quot;, SystemName = &quot;SystemName1&quot; },
                       new HCDocumentType { Id = &quot;2&quot;, SystemName = &quot;SystemName2&quot; });
 </pre>
-</div></div><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><code>ImmutableArray.Create&lt;T&gt;()</code> and <code>ToImmutableArray()</code> are both simple and convenient, but they require copying items into a new array. This can be inefficient for large collections.</p></div></div><p><code>ImmutableArray.CreateBuilder&lt;T&gt;()</code>: This method creates a mutable <code>ImmutableArray&lt;T&gt;.Builder</code>. This builder allows you to add or remove items and then create an <code>ImmutableArray&lt;T&gt;</code> from it using the <code>ToImmutable()</code> method. This approach is more efficient for constructing large collections or when the number of items is unknown at compile time.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var builder = ImmutableArray.CreateBuilder&lt;HCDocumentType&gt;();
+                    </div>
+                </div>
+                <div class="confluence-information-macro confluence-information-macro-note"><span
+                        class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span>
+                    <div class="confluence-information-macro-body"><p><code>ImmutableArray.Create&lt;T&gt;()</code> and
+                        <code>ToImmutableArray()</code> are both simple and convenient, but they require copying items
+                        into a new array. This can be inefficient for large collections.</p></div>
+                </div>
+                <p><code>ImmutableArray.CreateBuilder&lt;T&gt;()</code>: This method creates a mutable <code>ImmutableArray&lt;T&gt;.Builder</code>.
+                    This builder allows you to add or remove items and then create an
+                    <code>ImmutableArray&lt;T&gt;</code> from it using the <code>ToImmutable()</code> method. This
+                    approach is more efficient for constructing large collections or when the number of items is unknown
+                    at compile time.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">var builder = ImmutableArray.CreateBuilder&lt;HCDocumentType&gt;();
 builder.Add(new HCDocumentType { Id = &quot;1&quot;, SystemName = &quot;SystemName1&quot; });
 builder.Add(new HCDocumentType { Id = &quot;2&quot;, SystemName = &quot;SystemName2&quot; });
 var array = builder.ToImmutable();</pre>
-</div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This is like how <a href="https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder?view=net-7.0#the-string-and-stringbuilder-types" class="external-link" rel="nofollow">StringBuilder </a>efficiently constructs strings.</p></div></div><p>This article explores updating a C# code snippet by converting classes to records and implementing <code>IImmutableList&lt;T&gt;</code>. We demonstrate the usage of <code>ImmutableArray&lt;T&gt;</code> and <code>ImmutableList&lt;T&gt;</code>, discuss their differences in performance, and highlight various methods for creating <code>ImmutableArray&lt;T&gt;</code> instances. The performance differences stem from data structure choice, not immutability.</p><p /><p>see: <a class="createlink" href="/wiki/pages/createpage.action?spaceKey=ASTRA&amp;title=Immutability&amp;linkCreation=true&amp;fromPageId=678134834">Immutability</a> <a href="668764072.html" data-linked-resource-id="668764072" data-linked-resource-version="15" data-linked-resource-type="page">You Gotta Have Faith in init – How We Embraced Immutability in .NET</a> </p>
                     </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                </div>
+                <div class="confluence-information-macro confluence-information-macro-information"><span
+                        class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span>
+                    <div class="confluence-information-macro-body"><p>This is like how <a
+                            class="external-link"
+                            href="https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder?view=net-7.0#the-string-and-stringbuilder-types" rel="nofollow">StringBuilder </a>efficiently constructs strings.</p>
+                    </div>
+                </div>
+                <p>This article explores updating a C# code snippet by converting classes to records and implementing
+                    <code>IImmutableList&lt;T&gt;</code>. We demonstrate the usage of
+                    <code>ImmutableArray&lt;T&gt;</code> and <code>ImmutableList&lt;T&gt;</code>, discuss their
+                    differences in performance, and highlight various methods for creating
+                    <code>ImmutableArray&lt;T&gt;</code> instances. The performance differences stem from data structure
+                    choice, not immutability.</p>
+                <p/>
+                <p>see: <a class="createlink"
+                           href="/wiki/pages/createpage.action?spaceKey=ASTRA&amp;title=Immutability&amp;linkCreation=true&amp;fromPageId=678134834">Immutability</a>
+                    <a data-linked-resource-id="668764072" data-linked-resource-type="page" data-linked-resource-version="15"
+                       href="668764072.html">You Gotta Have Faith in init – How We Embraced Immutability in
+                        .NET</a></p>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

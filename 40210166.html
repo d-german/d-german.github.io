@@ -1,78 +1,187 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Single Responsibility Principle (SRP)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Single Responsibility Principle (SRP)</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                    </li>
+                    <li>
+                        <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Single Responsibility Principle (SRP)
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Apr 06, 2022
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <ul>
+                    <li><strong>SRP</strong><span>: The Single Responsibility Principle</span>
+                        <ul>
+                            <li><span>In the most general form, it applies to both classes and components.</span>
+                                <ul>
+                                    <li><span>Gather together those things that change at the same time and for the same reasons. Separate those things that change at different times or for different reasons. (2017 Martin 107)</span>
+                                    </li>
+                                    <li><span>Relates to DIP with regards of determining levels</span>
+                                        <ul>
+                                            <li><span>I.e. Policies that change for different reasons, or at different times, are at different levels. (2017 Martin 184)</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="external-link"
+                                           href="https://hackernoon.com/you-dont-understand-the-single-responsibility-principle-abfdd005b137" rel="nofollow"><span>The hard thing to remember about the SRP is that it is based on likely patterns of change, not dependency or functional relationships within the code.</span></a>
+                                    </li>
+                                    <li><span>A class should have one, and only one, reason to change.</span></li>
+                                    <li>
+                                        <span>A class should be responsible to one, and only one, user or stakeholder.</span>
+                                    </li>
+                                    <li><span>A class should be responsible to one, and only one actor.</span></li>
+                                    <li><span>Separate code that supports different actors.</span></li>
+                                </ul>
+                            </li>
+                            <li><span>Does not mean that every class should do just one thing.</span>
+                                <ul>
+                                    <li><span>True, a </span><strong>function </strong><span>should do one, and only one, thing, but this is not the SRP</span>
+                                        <ul>
+                                            <li><p>Of all the SOLID principles, the Single Responsibility Principle
+                                                (SRP) might be the least well understood. That’s likely because it has a
+                                                particularly inappropriate name. It is too easy for programmers to hear
+                                                the name and then assume that it means that every module should do just
+                                                one thing. Make no mistake, there is a principle like that. A function
+                                                should do one, and only one, thing. We use that principle when we are
+                                                refactoring large functions into smaller functions; we use it at the
+                                                lowest levels. But it is not one of the SOLID principles—it is not the
+                                                SRP. Martin 2017</p></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span>Example SRP Violation:</span></li>
+                            <li><span><span
+                                    class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                    class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40210166/40253112.png"
+                                    data-linked-resource-container-id="40210166"
+                                    data-linked-resource-container-version="9" data-linked-resource-content-type="image/png"
+                                    data-linked-resource-default-alias="image2020-8-17_10-30-56.png" data-linked-resource-id="40253112"
+                                    data-linked-resource-type="attachment"
+                                    data-linked-resource-version="1"
+                                    data-media-id="cd53e66e-8260-46e3-9d0e-5f52357d7bbc"
+                                    data-media-type="file"
+                                    data-unresolved-comment-count="0"
+                                    height="250"
+                                    loading="lazy" src="attachments/40210166/40253112.png?height=250"></span></span>
+                                <ul>
+                                    <li><span>The calculatePay() method is specified by the accounting department, which reports to the CFO.</span>
+                                    </li>
+                                    <li><span>The reportHours() method is specified and used by the human resources department, which reports to the COO.</span>
+                                    </li>
+                                    <li><span>The save() method is specified by the database administrators (DBAs), who report to the CTO.</span>
+                                    </li>
+                                    <li><span>One possible solution:</span></li>
+                                    <li><span><span
+                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40210166/40253021.png"
+                                            data-linked-resource-container-id="40210166"
+                                            data-linked-resource-container-version="9"
+                                            data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-8-17_10-43-16.png"
+                                            data-linked-resource-id="40253021" data-linked-resource-type="attachment"
+                                            data-linked-resource-version="1"
+                                            data-media-id="b8bc93b7-04a6-4ea3-b065-c4905df2caa3"
+                                            data-media-type="file"
+                                            data-unresolved-comment-count="0"
+                                            height="250"
+                                            loading="lazy" src="attachments/40210166/40253021.png?height=250"></span></span>
+                                    </li>
+                                    <li><span>Another possible solution uses the Facade Pattern:</span></li>
+                                    <li><span><span
+                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40210166/40253015.png"
+                                            data-linked-resource-container-id="40210166"
+                                            data-linked-resource-container-version="9"
+                                            data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-8-17_10-44-4.png"
+                                            data-linked-resource-id="40253015" data-linked-resource-type="attachment"
+                                            data-linked-resource-version="1"
+                                            data-media-id="eeeb50e8-8419-4d25-a8d0-717e8b8a9bb9"
+                                            data-media-type="file"
+                                            data-unresolved-comment-count="0"
+                                            height="250"
+                                            loading="lazy" src="attachments/40210166/40253015.png?height=250"></span></span>
+                                        <ul>
+                                            <li><span>Facade Pattern: Provide a unified interface to a set of interfaces in a subsystem. (GOF 185)</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span>Relates to the ISP</span>
+                                <ul>
+                                    <li><span>There are two ways to violate the Single Responsibility Principle. It can be violated at the interface level and at the implementation level. SRP is violated at the interface level when a class presents an interface that makes it appear that it is responsible for a very large number of things. (Feathers 262)</span>
+                                    </li>
+                                    <li><span>When violating the SRP at the interface level this is also violating the ISP.</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p><span>see <a data-linked-resource-id="40212666" data-linked-resource-type="page"
+                                data-linked-resource-version="7" href="Cohesion_40212666.html">Cohesion</a></span>
+                </p>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Apr 06, 2022
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <ul><li><strong>SRP</strong><span>: The Single Responsibility Principle</span><ul><li><span>In the most general form, it applies to both classes and components.</span><ul><li><span>Gather together those things that change at the same time and for the same reasons. Separate those things that change at different times or for different reasons. (2017 Martin 107)</span></li><li><span>Relates to DIP with regards of determining levels</span><ul><li><span>I.e. Policies that change for different reasons, or at different times, are at different levels. (2017 Martin 184)</span></li></ul></li><li><a href="https://hackernoon.com/you-dont-understand-the-single-responsibility-principle-abfdd005b137" class="external-link" rel="nofollow"><span>The hard thing to remember about the SRP is that it is based on likely patterns of change, not dependency or functional relationships within the code.</span></a></li><li><span>A class should have one, and only one, reason to change.</span></li><li><span>A class should be responsible to one, and only one, user or stakeholder.</span></li><li><span>A class should be responsible to one, and only one actor.</span></li><li><span>Separate code that supports different actors.</span></li></ul></li><li><span>Does not mean that every class should do just one thing.</span><ul><li><span>True, a </span><strong>function </strong><span>should do one, and only one, thing, but this is not the SRP</span><ul><li><p>Of all the SOLID principles, the Single Responsibility Principle (SRP) might be the least well understood. That’s likely because it has a particularly inappropriate name. It is too easy for programmers to hear the name and then assume that it means that every module should do just one thing. Make no mistake, there is a principle like that. A function should do one, and only one, thing. We use that principle when we are refactoring large functions into smaller functions; we use it at the lowest levels. But it is not one of the SOLID principles—it is not the SRP. Martin 2017</p></li></ul></li></ul></li><li><span>Example SRP Violation:</span></li><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40210166/40253112.png?height=250" data-image-src="attachments/40210166/40253112.png" data-unresolved-comment-count="0" data-linked-resource-id="40253112" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-8-17_10-30-56.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210166" data-linked-resource-container-version="9" data-media-id="cd53e66e-8260-46e3-9d0e-5f52357d7bbc" data-media-type="file"></span></span><ul><li><span>The calculatePay() method is specified by the accounting department, which reports to the CFO.</span></li><li><span>The reportHours() method is specified and used by the human resources department, which reports to the COO.</span></li><li><span>The save() method is specified by the database administrators (DBAs), who report to the CTO.</span></li><li><span>One possible solution:</span></li><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40210166/40253021.png?height=250" data-image-src="attachments/40210166/40253021.png" data-unresolved-comment-count="0" data-linked-resource-id="40253021" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-8-17_10-43-16.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210166" data-linked-resource-container-version="9" data-media-id="b8bc93b7-04a6-4ea3-b065-c4905df2caa3" data-media-type="file"></span></span></li><li><span>Another possible solution uses the Facade Pattern:</span></li><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40210166/40253015.png?height=250" data-image-src="attachments/40210166/40253015.png" data-unresolved-comment-count="0" data-linked-resource-id="40253015" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-8-17_10-44-4.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210166" data-linked-resource-container-version="9" data-media-id="eeeb50e8-8419-4d25-a8d0-717e8b8a9bb9" data-media-type="file"></span></span><ul><li><span>Facade Pattern: Provide a unified interface to a set of interfaces in a subsystem. (GOF 185)</span></li></ul></li></ul></li><li><span>Relates to the ISP</span><ul><li><span>There are two ways to violate the Single Responsibility Principle. It can be violated at the interface level and at the implementation level. SRP is violated at the interface level when a class presents an interface that makes it appear that it is responsible for a very large number of things. (Feathers 262)</span></li><li><span>When violating the SRP at the interface level this is also violating the ISP.</span></li></ul></li></ul></li></ul><p><span>see <a href="Cohesion_40212666.html" data-linked-resource-id="40212666" data-linked-resource-version="7" data-linked-resource-type="page">Cohesion</a></span></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210166/40253112.png">image2020-8-17_10-30-56.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210166/40253021.png">image2020-8-17_10-43-16.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210166/40253015.png">image2020-8-17_10-44-4.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210166/40253112.png">image2020-8-17_10-30-56.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210166/40253021.png">image2020-8-17_10-43-16.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210166/40253015.png">image2020-8-17_10-44-4.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

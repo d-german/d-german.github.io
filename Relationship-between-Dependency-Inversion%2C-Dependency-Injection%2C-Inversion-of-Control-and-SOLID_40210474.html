@@ -1,78 +1,193 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Relationship between Dependency Inversion, Dependency Injection, Inversion of Control and SOLID</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Relationship between Dependency Inversion, Dependency Injection, Inversion of
+        Control and SOLID</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Relationship between Dependency Inversion, Dependency Injection, Inversion of Control and SOLID
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Sep 12, 2022
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p><br/><code>Example1</code> class contains (<a data-linked-resource-id="292979549"
+                                                                 data-linked-resource-type="page"
+                                                                 data-linked-resource-version="3"
+                                                                 href="Composition_292979549.html">composition</a>) a
+                    stable and a <a href="#" rel="nofollow">volatile dependency</a>. </p><span
+                    class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-center" data-base-url="https://hyland.atlassian.net/wiki" data-height="649"
+                    data-image-src="attachments/40210474/40258700.png" data-linked-resource-container-id="40210474"
+                    data-linked-resource-container-version="23" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2022-4-9_15-9-58.png"
+                    data-linked-resource-id="40258700" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="1b01a24a-7a99-45be-861f-709dce0cbc7c"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="1419" loading="lazy"
+                    src="attachments/40210474/40258700.png?width=680" width="680"></span>
+                <p>This class violates at least three <a data-linked-resource-id="40209224"
+                                                         data-linked-resource-type="page"
+                                                         data-linked-resource-version="6"
+                                                         href="SOLID-Design-Principles_40209224.html">SOLID </a>principles, namely
+                    the <a data-linked-resource-id="40210166" data-linked-resource-type="page" data-linked-resource-version="9"
+                           href="40210166.html">SRP</a>, <a data-linked-resource-id="40210080"
+                                                                        data-linked-resource-type="page"
+                                                                        data-linked-resource-version="15"
+                                                                        href="40210080.html">DIP</a> and the
+                    <a data-linked-resource-id="40210191" data-linked-resource-type="page" data-linked-resource-version="6"
+                       href="40210191.html">OCP</a>. The DIP violation should be obvious since we are
+                    depending on a volatile concrete implementation (<code>VolatileDependency</code>) instead of an
+                    interface or abstract class. Since the other class (<code>StableDependency</code>) is stable, <span
+                            style="color: rgb(23,43,77);">it is not as worrisome to depend on it. See </span><a
+                            data-linked-resource-id="40209049" data-linked-resource-type="page"
+                            data-linked-resource-version="19" href="Using-the-new-keyword_40209049.html"><span
+                            style="color: rgb(23,43,77);">Using the new keyword</span></a><span
+                            style="color: rgb(23,43,77);">. </span></p>
+                <p><code>Example1 </code>also violates the SRP when it instantiates (news up) the <code>VolatileDependency</code>.
+                    <code>Example1</code> Should not take responsibility for instantiating volatile dependencies itself.
+                    We should move the responsibility of instantiating volatile dependencies out of
+                    <code>Example1</code> and into the <a data-linked-resource-id="40211362"
+                                                          data-linked-resource-type="page"
+                                                          data-linked-resource-version="2"
+                                                          href="Composition-Root_40211362.html">composition root</a>. This is
+                    an application of <a href="#" rel="nofollow">IoC (inversion of control)</a></p>
+                <p><code>Example1</code> violates the OCP whenever <code>VolatileDependency</code> is updated with a new
+                    parameter added to its constructor. Adding a string parameter to the constructor <code>public
+                        VolatileDependency(string foo)</code> would instantly break or cause compile errors in <code>Example1</code>
+                    class.</p>
+                <p>Instead of <code>Example2</code> creating <code>VolatileDependency</code>, we inject it into the
+                    constructor. We know this as <em>Dependency Injection</em>:</p><span
+                    class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-center" data-base-url="https://hyland.atlassian.net/wiki" data-height="326"
+                    data-image-src="attachments/40210474/291024081.png"
+                    data-linked-resource-container-id="40210474" data-linked-resource-container-version="23" data-linked-resource-content-type="image/png"
+                    data-linked-resource-default-alias="image-20220502-204714.png" data-linked-resource-id="291024081"
+                    data-linked-resource-type="attachment" data-linked-resource-version="1"
+                    data-media-id="aff9ba13-6bd5-404a-8d6e-9bdce5404c4c"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="959" loading="lazy"
+                    src="attachments/40210474/291024081.png?width=680" width="680"></span>
+                <p/>
+                <p>Note that this is <em>Dependency Injection,</em> but it is not <em>Dependency Inversion.</em> <code>Example2,</code>
+                    like <code>Example1,</code> violates the <a data-linked-resource-id="40210080" data-linked-resource-type="page"
+                                                                data-linked-resource-version="15"
+                                                                href="40210080.html">DIP</a>, but it does
+                    not violate the <a data-linked-resource-id="40210166" data-linked-resource-type="page"
+                                       data-linked-resource-version="9" href="40210166.html">SRP </a>because
+                    it uses <a data-linked-resource-id="40211370" data-linked-resource-type="page" data-linked-resource-version="14"
+                               href="40211370.html">IoC (inversion of control)</a> for its volatile
+                    dependency management.</p>
+                <p>The <code>Test1</code> method creates the dependencies and injects them into <code>Example2</code>.
+                </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-center" data-base-url="https://hyland.atlassian.net/wiki" data-height="118"
+                    data-image-src="attachments/40210474/291117423.png"
+                    data-linked-resource-container-id="40210474" data-linked-resource-container-version="23" data-linked-resource-content-type="image/png"
+                    data-linked-resource-default-alias="image-20220502-213037.png" data-linked-resource-id="291117423"
+                    data-linked-resource-type="attachment" data-linked-resource-version="1"
+                    data-media-id="5cf9a9bd-3654-4375-9828-6ab74fda4ce5"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="510" loading="lazy"
+                    src="attachments/40210474/291117423.png?width=680" width="680"></span>
+                <p/>
+                <p>Finally, <code>Example3</code> does not violate any of the <a
+                        data-linked-resource-id="40209224" data-linked-resource-type="page"
+                        data-linked-resource-version="6" href="SOLID-Design-Principles_40209224.html">SOLID </a>principles:</p><span
+                    class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-center" data-base-url="https://hyland.atlassian.net/wiki" data-height="321"
+                    data-image-src="attachments/40210474/291408667.png"
+                    data-linked-resource-container-id="40210474" data-linked-resource-container-version="23" data-linked-resource-content-type="image/png"
+                    data-linked-resource-default-alias="image-20220502-214428.png" data-linked-resource-id="291408667"
+                    data-linked-resource-type="attachment" data-linked-resource-version="1"
+                    data-media-id="a623caa2-2134-4bc0-8347-52cc712f1c55"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="978" loading="lazy"
+                    src="attachments/40210474/291408667.png?width=680" width="680"></span>
+                <p><br/>Note that it no longer depends on the concrete class <code>VolatileDependency</code> but now
+                    depends on the <code>IVolatileDependency</code> interface.</p>
+                <p>In summary, <em>Dependency Inversion</em>, <em>Dependency Injection</em> and <em>Inversion of
+                    Control</em> are distinct, but related concepts, and we can explain them in terms of the SOLID
+                    design principles.</p>
+                <p/>
+                <p/>
+                <p>See <a data-linked-resource-id="40212174" data-linked-resource-type="page"
+                          data-linked-resource-version="9" href="Stable-vs-Volatile-Dependences_40212174.html">Stable vs Volatile
+                    Dependences</a>, <a data-linked-resource-id="40209224" data-linked-resource-type="page"
+                                        data-linked-resource-version="6" href="SOLID-Design-Principles_40209224.html">SOLID</a>, <a
+                        data-linked-resource-id="40209049" data-linked-resource-type="page"
+                        data-linked-resource-version="19" href="Using-the-new-keyword_40209049.html"><span
+                        style="color: rgb(23,43,77);">Using the new keyword</span></a><span
+                        style="color: rgb(23,43,77);">, </span><a data-linked-resource-id="40211362"
+                                                                  data-linked-resource-type="page"
+                                                                  data-linked-resource-version="2"
+                                                                  href="Composition-Root_40211362.html"><span
+                        style="color: rgb(23,43,77);">Composition Root</span></a><span
+                        style="color: rgb(23,43,77);">, </span><a data-linked-resource-id="292979549"
+                                                                  data-linked-resource-type="page"
+                                                                  data-linked-resource-version="3"
+                                                                  href="Composition_292979549.html">Composition</a>, <a
+                        data-linked-resource-id="40211370" data-linked-resource-type="page" data-linked-resource-version="14"
+                        href="40211370.html">Inversion of Contro</a>l</p>
+                <p/>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Sep 12, 2022
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><br/><code>Example1</code> class contains (<a href="Composition_292979549.html" data-linked-resource-id="292979549" data-linked-resource-version="3" data-linked-resource-type="page">composition</a>) a stable and a <a href="#" rel="nofollow">volatile dependency</a>. </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/40210474/40258700.png?width=680" data-image-src="attachments/40210474/40258700.png" data-height="649" data-width="1419" data-unresolved-comment-count="0" data-linked-resource-id="40258700" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-4-9_15-9-58.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210474" data-linked-resource-container-version="23" data-media-id="1b01a24a-7a99-45be-861f-709dce0cbc7c" data-media-type="file"></span><p>This class violates at least three <a href="SOLID-Design-Principles_40209224.html" data-linked-resource-id="40209224" data-linked-resource-version="6" data-linked-resource-type="page">SOLID </a>principles, namely the <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">SRP</a>, <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">DIP</a> and the <a href="40210191.html" data-linked-resource-id="40210191" data-linked-resource-version="6" data-linked-resource-type="page">OCP</a>. The DIP violation should be obvious since we are depending on a volatile concrete implementation (<code>VolatileDependency</code>) instead of an interface or abstract class. Since the other class (<code>StableDependency</code>) is stable, <span style="color: rgb(23,43,77);">it is not as worrisome to depend on it. See </span><a href="Using-the-new-keyword_40209049.html" data-linked-resource-id="40209049" data-linked-resource-version="19" data-linked-resource-type="page"><span style="color: rgb(23,43,77);">Using the new keyword</span></a><span style="color: rgb(23,43,77);">. </span></p><p><code>Example1 </code>also violates the SRP when it instantiates (news up) the <code>VolatileDependency</code>. <code>Example1</code> Should not take responsibility for instantiating volatile dependencies itself. We should move the responsibility of instantiating volatile dependencies out of <code>Example1</code> and into the <a href="Composition-Root_40211362.html" data-linked-resource-id="40211362" data-linked-resource-version="2" data-linked-resource-type="page">composition root</a>. This is an application of <a href="#" rel="nofollow">IoC (inversion of control)</a> </p><p><code>Example1</code> violates the OCP whenever <code>VolatileDependency</code> is updated with a new parameter added to its constructor. Adding a string parameter to the constructor <code>public VolatileDependency(string foo)</code> would instantly break or cause compile errors in <code>Example1</code> class.</p><p>Instead of <code>Example2</code> creating <code>VolatileDependency</code>, we inject it into the constructor. We know this as <em>Dependency Injection</em>:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/40210474/291024081.png?width=680" data-image-src="attachments/40210474/291024081.png" data-height="326" data-width="959" data-unresolved-comment-count="0" data-linked-resource-id="291024081" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20220502-204714.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210474" data-linked-resource-container-version="23" data-media-id="aff9ba13-6bd5-404a-8d6e-9bdce5404c4c" data-media-type="file"></span><p /><p>Note that this is <em>Dependency Injection,</em> but it is not <em>Dependency Inversion.</em> <code>Example2,</code> like <code>Example1,</code> violates the <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">DIP</a>, but it does not violate the <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">SRP </a>because it uses <a href="40211370.html" data-linked-resource-id="40211370" data-linked-resource-version="14" data-linked-resource-type="page">IoC (inversion of control)</a> for its volatile dependency management.</p><p>The <code>Test1</code> method creates the dependencies and injects them into <code>Example2</code>.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/40210474/291117423.png?width=680" data-image-src="attachments/40210474/291117423.png" data-height="118" data-width="510" data-unresolved-comment-count="0" data-linked-resource-id="291117423" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20220502-213037.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210474" data-linked-resource-container-version="23" data-media-id="5cf9a9bd-3654-4375-9828-6ab74fda4ce5" data-media-type="file"></span><p /><p>Finally, <code>Example3</code>  does not violate any of the <a href="SOLID-Design-Principles_40209224.html" data-linked-resource-id="40209224" data-linked-resource-version="6" data-linked-resource-type="page">SOLID </a>principles:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/40210474/291408667.png?width=680" data-image-src="attachments/40210474/291408667.png" data-height="321" data-width="978" data-unresolved-comment-count="0" data-linked-resource-id="291408667" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20220502-214428.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210474" data-linked-resource-container-version="23" data-media-id="a623caa2-2134-4bc0-8347-52cc712f1c55" data-media-type="file"></span><p><br/>Note that it no longer depends on the concrete class <code>VolatileDependency</code> but now depends on the <code>IVolatileDependency</code> interface.</p><p>In summary, <em>Dependency Inversion</em>, <em>Dependency Injection</em> and <em>Inversion of Control</em> are distinct, but related concepts, and we can explain them in terms of the SOLID design principles.</p><p /><p /><p>See <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">Stable vs Volatile Dependences</a>, <a href="SOLID-Design-Principles_40209224.html" data-linked-resource-id="40209224" data-linked-resource-version="6" data-linked-resource-type="page">SOLID</a>, <a href="Using-the-new-keyword_40209049.html" data-linked-resource-id="40209049" data-linked-resource-version="19" data-linked-resource-type="page"><span style="color: rgb(23,43,77);">Using the new keyword</span></a><span style="color: rgb(23,43,77);">, </span><a href="Composition-Root_40211362.html" data-linked-resource-id="40211362" data-linked-resource-version="2" data-linked-resource-type="page"><span style="color: rgb(23,43,77);">Composition Root</span></a><span style="color: rgb(23,43,77);">, </span><a href="Composition_292979549.html" data-linked-resource-id="292979549" data-linked-resource-version="3" data-linked-resource-type="page">Composition</a>, <a href="40211370.html" data-linked-resource-id="40211370" data-linked-resource-version="14" data-linked-resource-type="page">Inversion of Contro</a>l</p><p />
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210474/40258700.png">image2022-4-9_15-9-58.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210474/291024081.png">image-20220502-204714.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210474/291117423.png">image-20220502-213037.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210474/291408667.png">image-20220502-214428.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210474/40258700.png">image2022-4-9_15-9-58.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210474/291024081.png">image-20220502-204714.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210474/291117423.png">image-20220502-213037.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210474/291408667.png">image-20220502-214428.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

@@ -1,87 +1,193 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Liskov Substitution Principle (LSP)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Liskov Substitution Principle (LSP)</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                    </li>
+                    <li>
+                        <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Liskov Substitution Principle (LSP)
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Sep 04, 2021
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <ul>
+                    <li><span><span>The LSP Guides our use of inheritance</span></span></li>
+                    <li><span>SubTypes must be substitutable for their base types. *</span></li>
+                    <li><span>“Methods that consume Abstractions must be able to use any class derived from that Abstraction without noticing the difference.” We must be able to substitute the Abstraction for an arbitrary implementation without changing the correctness of the system. Failing to adhere to the Liskov  Substitution Principle makes applications fragile, because it disallows replacing Dependencies, and doing so might cause a consumer to break. <span
+                            style="color: rgb(23,43,77);">(Seemann 241)</span></span></li>
+                    <li><span>The LSP is one of the prime enablers of the Open Closed Principle <a data-linked-resource-id="40210191"
+                                                                                                   data-linked-resource-type="page"
+                                                                                                   data-linked-resource-version="6"
+                                                                                                   href="40210191.html">OCP</a>. (2002 Martin 125)</span>
+                    </li>
+                    <li><span style="letter-spacing: 0.0px;">Inheritance with polymorphism and dynamic binding offers a powerful mechanism for developing reusable and extendable software. however, an overriding method can change or even redefine the oveidden method's semantics and affect the superclasses's existing clients. It can be dangerous if an overriding method in a subclass breaks the superclasses's underlying assumptions or constraints. (Dianxiang Xu 121)</span>
+                    </li>
+                </ul>
+                <p><br/></p>
+                <p><strong>Violations of the LSP</strong></p>
+                <ul>
+                    <li style="list-style-type: none;">
+                        <ul>
+                            <li><span>One of the symptoms of violating the LSP is needing to<a data-linked-resource-id="40210350"
+                                                                                               data-linked-resource-type="page"
+                                                                                               data-linked-resource-version="3"
+                                                                                               href="40210350.html"> perform explicit case analysis</a>.</span>
+                            </li>
+                            <li>
+                                <a class="external-link"
+                                   href="https://stackoverflow.com/questions/1030521/is-deriving-square-from-rectangle-a-violation-of-liskovs-substitution-principle/1030573" rel="nofollow"><span>The Square/Rectangle Problem</span></a>
+                                <ul>
+                                    <li><span><span
+                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40210175/40270394.png"
+                                            data-linked-resource-container-id="40210175"
+                                            data-linked-resource-container-version="9"
+                                            data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-5-28_8-59-5.png"
+                                            data-linked-resource-id="40270394" data-linked-resource-type="attachment"
+                                            data-linked-resource-version="1"
+                                            data-media-id="227d3633-319d-4351-ada1-06c0ec6bde7e"
+                                            data-media-type="file"
+                                            data-unresolved-comment-count="0"
+                                            height="250"
+                                            loading="lazy" src="attachments/40210175/40270394.png?height=250"></span></span>
+                                    </li>
+                                    <li><span><code>Square </code>is not a proper subtype of <code>Rectangle </code>because the height and width of the <code>Rectangle </code>are independently mutable; in contrast, the height and width of the <code>Square </code>must change together. Since the user believes it is communicating with a <code>Rectangle</code>, it could easily get confusing.</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span>Overriding Methods Precondition and Postconditions;</span>
+                                <ul>
+                                    <li><span>The rule of equal or weaker new precondition and equal or stronger new postcondition is sufficient for not violating the LSP.</span>
+                                        <ul>
+                                            <li><span>An overriding method with a weaker precondition causes no harm to a client call that satisfies the original precondition before the call.</span>
+                                            </li>
+                                            <li><span>An overriding method with a stronger postcondition causes no harm to a client call that relies on the original postcondition being satisfied after the call.</span>
+                                            </li>
+                                            <li><span><a
+                                                    class="external-link"
+                                                    href="https://cs.anu.edu.au/courses/comp2600/Lectures/17HoareII.pdf" rel="nofollow">17HoareII.pdf (anu.edu.au)</a></span>
+                                                <ul>
+                                                    <li><span><span
+                                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                            data-image-src="attachments/40210175/40259213.png"
+                                                            data-linked-resource-container-id="40210175"
+                                                            data-linked-resource-container-version="9"
+                                                            data-linked-resource-content-type="image/png"
+                                                            data-linked-resource-default-alias="image2021-9-4_13-43-51.png"
+                                                            data-linked-resource-id="40259213"
+                                                            data-linked-resource-type="attachment"
+                                                            data-linked-resource-version="1"
+                                                            data-media-id="76779c45-c70c-4389-8bbe-1fbc7189c410"
+                                                            data-media-type="file"
+                                                            data-unresolved-comment-count="0"
+                                                            height="400"
+                                                            loading="lazy"
+                                                            src="attachments/40210175/40259213.png?height=400"></span></span></li>
+                                                    <li><span><span
+                                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                            data-image-src="attachments/40210175/40259130.png"
+                                                            data-linked-resource-container-id="40210175"
+                                                            data-linked-resource-container-version="9"
+                                                            data-linked-resource-content-type="image/png"
+                                                            data-linked-resource-default-alias="image2021-9-4_14-47-16.png"
+                                                            data-linked-resource-id="40259130"
+                                                            data-linked-resource-type="attachment"
+                                                            data-linked-resource-version="1"
+                                                            data-media-id="c893bfea-527e-4440-9e6a-4af4d9643084"
+                                                            data-media-type="file"
+                                                            data-unresolved-comment-count="0"
+                                                            loading="lazy"
+                                                            src="attachments/40210175/40259130.png?width=1024"
+                                                            width="1024"></span></span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span><a data-linked-resource-id="40218236" data-linked-resource-type="page"
+                                         data-linked-resource-version="8" href="40218236.html">Creating a Stack from inheriting from a List</a></span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p><span>* “What is wanted here is something like the following substitution property: If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.” (Liskov)</span>
+                </p>
+                <p><br/></p>
+                <p><span>See <a data-linked-resource-id="40210191" data-linked-resource-type="page" data-linked-resource-version="6"
+                                href="40210191.html">Open Closed Principle (OCP)</a>, <a
+                        data-linked-resource-id="40210350" data-linked-resource-type="page" data-linked-resource-version="3"
+                        href="40210350.html"> perform explicit case analysis</a></span></p>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Sep 04, 2021
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <ul><li><span><span>The LSP Guides our use of inheritance</span></span></li><li><span>SubTypes must be substitutable for their base types. *</span></li><li><span>“Methods that consume Abstractions must be able to use any class derived from that Abstraction without noticing the difference.” We must be able to substitute the Abstraction for an arbitrary implementation without changing the correctness of the system. Failing to adhere to the Liskov  Substitution Principle makes applications fragile, because it disallows replacing Dependencies, and doing so might cause a consumer to break. <span style="color: rgb(23,43,77);">(Seemann 241)</span></span></li><li><span>The LSP is one of the prime enablers of the Open Closed Principle <a href="40210191.html" data-linked-resource-id="40210191" data-linked-resource-version="6" data-linked-resource-type="page">OCP</a>. (2002 Martin 125)</span></li><li><span style="letter-spacing: 0.0px;">Inheritance with polymorphism and dynamic binding offers a powerful mechanism for developing reusable and extendable software. however, an overriding method can change or even redefine the oveidden method's semantics and affect the superclasses's existing clients. It can be dangerous if an overriding method in a subclass breaks the superclasses's underlying assumptions or constraints. (Dianxiang Xu 121)</span></li></ul><p><br/></p><p><strong>Violations of the LSP</strong></p><ul><li style="list-style-type: none;"><ul><li><span>One of the symptoms of violating the LSP is needing to<a href="40210350.html" data-linked-resource-id="40210350" data-linked-resource-version="3" data-linked-resource-type="page"> perform explicit case analysis</a>.</span></li><li><a href="https://stackoverflow.com/questions/1030521/is-deriving-square-from-rectangle-a-violation-of-liskovs-substitution-principle/1030573" class="external-link" rel="nofollow"><span>The Square/Rectangle Problem</span></a><ul><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40210175/40270394.png?height=250" data-image-src="attachments/40210175/40270394.png" data-unresolved-comment-count="0" data-linked-resource-id="40270394" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-5-28_8-59-5.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210175" data-linked-resource-container-version="9" data-media-id="227d3633-319d-4351-ada1-06c0ec6bde7e" data-media-type="file"></span></span></li><li><span><code>Square </code>is not a proper subtype of <code>Rectangle </code>because the height and width of the <code>Rectangle </code>are independently mutable; in contrast, the height and width of the <code>Square </code>must change together. Since the user believes it is communicating with a <code>Rectangle</code>, it could easily get confusing.</span></li></ul></li><li><span>Overriding Methods Precondition and Postconditions;</span><ul><li><span>The rule of equal or weaker new precondition and equal or stronger new postcondition is sufficient for not violating the LSP.</span><ul><li><span>An overriding method with a weaker precondition causes no harm to a client call that satisfies the original precondition before the call.</span></li><li><span>An overriding method with a stronger postcondition causes no harm to a client call that relies on the original postcondition being satisfied after the call.</span></li><li><span><a href="https://cs.anu.edu.au/courses/comp2600/Lectures/17HoareII.pdf" class="external-link" rel="nofollow">17HoareII.pdf (anu.edu.au)</a></span><ul><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40210175/40259213.png?height=400" data-image-src="attachments/40210175/40259213.png" data-unresolved-comment-count="0" data-linked-resource-id="40259213" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-9-4_13-43-51.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210175" data-linked-resource-container-version="9" data-media-id="76779c45-c70c-4389-8bbe-1fbc7189c410" data-media-type="file"></span></span></li><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="1024" loading="lazy" src="attachments/40210175/40259130.png?width=1024" data-image-src="attachments/40210175/40259130.png" data-unresolved-comment-count="0" data-linked-resource-id="40259130" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-9-4_14-47-16.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210175" data-linked-resource-container-version="9" data-media-id="c893bfea-527e-4440-9e6a-4af4d9643084" data-media-type="file"></span></span></li></ul></li></ul></li></ul></li><li><span><a href="40218236.html" data-linked-resource-id="40218236" data-linked-resource-version="8" data-linked-resource-type="page">Creating a Stack from inheriting from a List</a></span></li></ul></li></ul><p><span>* “What is wanted here is something like the following substitution property: If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.” (Liskov)</span></p><p><br/></p><p><span>See <a href="40210191.html" data-linked-resource-id="40210191" data-linked-resource-version="6" data-linked-resource-type="page">Open Closed Principle (OCP)</a>, <a href="40210350.html" data-linked-resource-id="40210350" data-linked-resource-version="3" data-linked-resource-type="page"> perform explicit case analysis</a></span></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210175/40270456.png">image2021-5-28_8-54-22.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210175/40270447.png">image2021-5-28_8-57-48.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210175/40270394.png">image2021-5-28_8-59-5.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210175/40259213.png">image2021-9-4_13-43-51.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210175/40259117.png">image2021-9-4_14-44-20.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210175/40259130.png">image2021-9-4_14-47-16.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210175/40270456.png">image2021-5-28_8-54-22.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210175/40270447.png">image2021-5-28_8-57-48.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210175/40270394.png">image2021-5-28_8-59-5.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210175/40259213.png">image2021-9-4_13-43-51.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210175/40259117.png">image2021-9-4_14-44-20.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210175/40259130.png">image2021-9-4_14-47-16.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

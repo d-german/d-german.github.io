@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : The using statement / declaration</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : The using statement / declaration</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Miscellaneous_40208948.html">Miscellaneous</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Miscellaneous_40208948.html">Miscellaneous</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : The using statement / declaration
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Feb 13, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <div class="contentLayout2">
-<div class="columnLayout fixed-width" data-layout="fixed-width">
-<div class="cell normal" data-type="normal">
-<div class="innerCell">
-<p>The following statement</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">FileStream stream = null;
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Feb 13, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <div class="contentLayout2">
+                    <div class="columnLayout fixed-width" data-layout="fixed-width">
+                        <div class="cell normal" data-type="normal">
+                            <div class="innerCell">
+                                <p>The following statement</p>
+                                <div class="code panel pdl" style="border-width: 1px;">
+                                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">FileStream stream = null;
 try
 {
     stream = new FileStream(&quot;file.txt&quot;, FileMode.Open);
@@ -57,22 +55,57 @@ finally
 {
     stream?. Dispose();
 }</pre>
-</div></div><p>is equivalent to:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">using (var stream = new FileStream(&quot;file.txt&quot;, FileMode.Open))
+                                    </div>
+                                </div>
+                                <p>is equivalent to:</p>
+                                <div class="code panel pdl" style="border-width: 1px;">
+                                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">using (var stream = new FileStream(&quot;file.txt&quot;, FileMode.Open))
 {
 // code to read or write to the stream
 }</pre>
-</div></div><h4 id="Theusingstatement/declaration-usingdeclarations(C#8)">using declarations (C# 8)</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">using var stream = new FileStream(&quot;file.txt&quot;, FileMode.Open);
+                                    </div>
+                                </div>
+                                <h4 id="Theusingstatement/declaration-usingdeclarations(C#8)">using declarations (C#
+                                    8)</h4>
+                                <div class="code panel pdl" style="border-width: 1px;">
+                                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">using var stream = new FileStream(&quot;file.txt&quot;, FileMode.Open);
 // code to read or write to the stream</pre>
-</div></div><p>If you omit the brackets and statement block following a <code>using </code>statement, it becomes a <code>using </code>declaration. </p><p>In general, the <code>using</code> statement is more commonly used in larger blocks of code, while the <code>using</code> declaration is more commonly used in small methods or in situations where the resource is only used within a small scope.</p><p /><p>The <code>using</code> statement and <code>using </code>declaration in C# are similar in that they both allow for the use of a resource, such as a file or database connection, within a specific scope in the code. However, there are some key differences between the two.</p><p>The using statement is used to create a block of code in which a specific resource is used, and then automatically disposed of when the block of code is finished executing. This ensures that the resource is properly closed and any resources it was using are released. For example, a using statement can be used to open a file, read its contents, and then automatically close the file when the block of code is finished executing.</p><p>The <code>using </code>declaration, on the other hand, is used to create a variable that is automatically disposed of when it goes out of scope. This is like the <code>using </code>statement, but it allows for the resource to be used outside of a specific block of code. </p><p /></div>
-</div>
-</div>
-<div class="columnLayout two-equal" data-layout="two-equal">
-<div class="cell normal" data-type="normal">
-<div class="innerCell">
-<h3 id="Theusingstatement/declaration-ExampleC#7">Example C# 7 </h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">private FullTextPageData buildFullTextPageData(
+                                    </div>
+                                </div>
+                                <p>If you omit the brackets and statement block following a <code>using </code>statement,
+                                    it becomes a <code>using </code>declaration. </p>
+                                <p>In general, the <code>using</code> statement is more commonly used in larger blocks
+                                    of code, while the <code>using</code> declaration is more commonly used in small
+                                    methods or in situations where the resource is only used within a small scope.</p>
+                                <p/>
+                                <p>The <code>using</code> statement and <code>using </code>declaration in C# are similar
+                                    in that they both allow for the use of a resource, such as a file or database
+                                    connection, within a specific scope in the code. However, there are some key
+                                    differences between the two.</p>
+                                <p>The using statement is used to create a block of code in which a specific resource is
+                                    used, and then automatically disposed of when the block of code is finished
+                                    executing. This ensures that the resource is properly closed and any resources it
+                                    was using are released. For example, a using statement can be used to open a file,
+                                    read its contents, and then automatically close the file when the block of code is
+                                    finished executing.</p>
+                                <p>The <code>using </code>declaration, on the other hand, is used to create a variable
+                                    that is automatically disposed of when it goes out of scope. This is like the <code>using </code>statement,
+                                    but it allows for the resource to be used outside of a specific block of code. </p>
+                                <p/></div>
+                        </div>
+                    </div>
+                    <div class="columnLayout two-equal" data-layout="two-equal">
+                        <div class="cell normal" data-type="normal">
+                            <div class="innerCell">
+                                <h3 id="Theusingstatement/declaration-ExampleC#7">Example C# 7 </h3>
+                                <div class="code panel pdl" style="border-width: 1px;">
+                                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">private FullTextPageData buildFullTextPageData(
 	ContentIndexIdentifier indexId,
 	int pageNumber,
 	ImmutableArray&lt;IFullTextHitHighlightCoordinates&gt; highlightCoordinates)
@@ -99,12 +132,17 @@ finally
 
 	return fullTextPageData;
 }</pre>
-</div></div></div>
-</div>
-<div class="cell normal" data-type="normal">
-<div class="innerCell">
-<h3 id="Theusingstatement/declaration-ExampleC#8">Example C# 8</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">private FullTextPageData buildFullTextPageData(
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell normal" data-type="normal">
+                            <div class="innerCell">
+                                <h3 id="Theusingstatement/declaration-ExampleC#8">Example C# 8</h3>
+                                <div class="code panel pdl" style="border-width: 1px;">
+                                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">private FullTextPageData buildFullTextPageData(
 	ContentIndexIdentifier indexId,
 	int pageNumber,
 	ImmutableArray&lt;IFullTextHitHighlightCoordinates&gt; highlightCoordinates)
@@ -122,43 +160,49 @@ finally
 		verticalDpi = pageData.ImageProperties.VerticalDPI
 	};
 }</pre>
-</div></div></div>
-</div>
-</div>
-<div class="columnLayout fixed-width" data-layout="fixed-width">
-<div class="cell normal" data-type="normal">
-<div class="innerCell">
-<p /><p>To me the code on the right is more succent and easier to read.</p><p /></div>
-</div>
-</div>
-</div>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209469/40221624.png">image2021-3-18_14-27-44.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209469/40221618.png">image2021-3-18_14-28-20.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40209469/40221597.png">image2021-3-18_14-30-19.png</a> (image/png)
-                                <br/>
-                                                    </div>
                     </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                    <div class="columnLayout fixed-width" data-layout="fixed-width">
+                        <div class="cell normal" data-type="normal">
+                            <div class="innerCell">
+                                <p/>
+                                <p>To me the code on the right is more succent and easier to read.</p>
+                                <p/></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>     </body>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
+                </div>
+
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209469/40221624.png">image2021-3-18_14-27-44.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209469/40221618.png">image2021-3-18_14-28-20.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40209469/40221597.png">image2021-3-18_14-30-19.png</a> (image/png)
+                    <br/>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

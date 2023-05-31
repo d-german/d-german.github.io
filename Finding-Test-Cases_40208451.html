@@ -1,210 +1,473 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Finding Test Cases</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Finding Test Cases</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Testing-Considerations_677938309.html">Testing Considerations</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Test-Coverage_40213370.html">Test Coverage</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Testing-Considerations_677938309.html">Testing Considerations</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Test-Coverage_40213370.html">Test Coverage</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Finding Test Cases
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Sep 04, 2022
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p>The following is the process and tools I used to create test cases. It might seem excessive, but I
+                    assure you, I do this every time. This is because I lack confidence in my abilities without
+                    following a process. </p>
+                <p>For simple methods, I sketch a truth table of the inputs, then analyze each row and write the
+                    expected result. I cross out any rows that are impossible or I don't care about. Finally, I create a
+                    test case for each relevant row on the table.</p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208451/40263056.png"
+                                                                       data-linked-resource-container-id="40208451"
+                                                                       data-linked-resource-container-version="39"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="image2021-8-17_13-19-34.png"
+                                                                       data-linked-resource-id="40263056"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="bdef0a2b-28f9-49d2-9322-85e29e826ab6"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208451/40263056.png"></span></p>
+                <p>When things are more complicated beyond a couple of boolean values, I use a free <a
+                        class="external-link" href="https://www.freeplane.org/wiki/index.php/Home" rel="nofollow">mind
+                    mapping tool </a>to help model the test cases and keep track of testing progress.</p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208451/409645316.png"
+                                                                       data-linked-resource-container-id="40208451"
+                                                                       data-linked-resource-container-version="39"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="image2022-9-4_10-44-25.png"
+                                                                       data-linked-resource-id="409645316"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="61db3dd4-3f5a-4197-88b4-95ca82b4f4fa"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208451/409645316.png"></span></p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208451/409417642.png"
+                                                                       data-linked-resource-container-id="40208451"
+                                                                       data-linked-resource-container-version="39"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="image2022-9-4_10-44-8.png"
+                                                                       data-linked-resource-id="409417642"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="cb2b6b0c-3d2d-4fa9-bc43-68183933d627"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208451/409417642.png"></span></p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208451/411009910.png"
+                                                                       data-linked-resource-container-id="40208451"
+                                                                       data-linked-resource-container-version="39"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="image2022-9-4_10-43-48.png"
+                                                                       data-linked-resource-id="411009910"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="adb523aa-0fbf-4942-8bac-a917bd10781f"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208451/411009910.png"></span></p>
+                <p><br/></p>
+                <p><br/></p><h4 id="FindingTestCases-EquivalencePartitioning"><a
+                    class="external-link" href="https://en.wikipedia.org/wiki/Equivalence_partitioning" rel="nofollow">Equivalence
+                Partitioning</a></h4>
+                <p>Equivalence partitioning divides the input domain of a variable into groups, called equivalent
+                    classes, that represent interesting conditions. We expect two values of a variable belonging to the
+                    same equivalent class to produce the same test results (pass or fail).</p>
+                <p>An input variable has certain ranges of valid and invalid values. For example, an <code>int</code>
+                    variable for month ranges from 1 to 12 so any value less than 1 or greater than 12 is invalid.</p>
+                <p>For another example, say we want to compare two lists. There might only be 3 classes to consider:
+                    that <strong>All</strong> items in one list matches the items in the other list,
+                    <strong>Some</strong> items match or <strong>None</strong> of the items match. </p>
+                <p>Equivalence partition can be subjective and application dependent. Given an input variable, different
+                    people may produce distinct sets of valid and invalid classes for different applications. (Dianxiang
+                    350)</p>
+                <p>When generating <strong>Testing Considerations</strong>, you don't need to include every possible
+                    value that an input variable can take. Use equivalence partitioning to generate a manageable subset
+                    of interesting values and be sure to include values for the happy path and the error path.</p><h4
+                    id="FindingTestCases-Example">Example </h4>
+                <p><code>MySqrt()</code> has an infinite <strong>∞</strong> number of input values but only about 3
+                    interesting ones. </p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208451/40263050.png"
+                        data-linked-resource-container-id="40208451"
+                        data-linked-resource-container-version="39" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-8-17_13-20-27.png" data-linked-resource-id="40263050"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="a53e01dc-9d35-4d5b-b4be-b673f7bce6d4" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40208451/40263050.png?height=400"></span></p>
+                <p class="auto-cursor-target"><span class="confluence-embedded-file-wrapper"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208451/409645323.png"
+                        data-linked-resource-container-id="40208451" data-linked-resource-container-version="39"
+                        data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2022-9-4_10-45-39.png"
+                        data-linked-resource-id="409645323"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1" data-media-id="5b5a1dc1-cdf8-41ce-b399-82b6eec52c0e"
+                        data-media-type="file" data-unresolved-comment-count="0"
+                        loading="lazy" src="attachments/40208451/409645323.png"></span></p>
+                <p><br/></p>
+                <p><br/></p><h4 id="FindingTestCases-RealWorldExamples">Real World Examples</h4>
+                <p>Here is a recent example.</p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208451/40243073.png"
+                                                                       data-linked-resource-container-id="40208451"
+                                                                       data-linked-resource-container-version="39"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="hc-126526.png"
+                                                                       data-linked-resource-id="40243073"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="2"
+                                                                       data-media-id="e50dd41f-9472-4b9f-8c70-9355f2ad6d7a"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208451/40243073.png"></span></p>
+                <p><br/></p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208451/40224193.png"
+                                                                       data-linked-resource-container-id="40208451"
+                                                                       data-linked-resource-container-version="39"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="image2021-3-20_13-4-36.png"
+                                                                       data-linked-resource-id="40224193"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="8f01ea4d-0ea5-41fc-8ce3-75084e81b8b9"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208451/40224193.png"></span></p>
+                <p><br/></p>
+                <p>I use the mind mapping tool for other things beyond testing:</p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208451/40224171.png"
+                                                                       data-linked-resource-container-id="40208451"
+                                                                       data-linked-resource-container-version="39"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="HCM viewer URL.png"
+                                                                       data-linked-resource-id="40224171"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="a0c16540-58ea-4b30-add9-df1bd5e6d1a1"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208451/40224171.png"></span><span
+                        class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                      data-image-src="attachments/40208451/40224157.png"
+                                                                      data-linked-resource-container-id="40208451"
+                                                                      data-linked-resource-container-version="39"
+                                                                      data-linked-resource-content-type="image/png"
+                                                                      data-linked-resource-default-alias="INAML server calls to retrieve annotations.png"
+                                                                      data-linked-resource-id="40224157"
+                                                                      data-linked-resource-type="attachment"
+                                                                      data-linked-resource-version="1"
+                                                                      data-media-id="efcf0a44-55c1-4f65-9bdf-a353c8f40165"
+                                                                      data-media-type="file"
+                                                                      data-unresolved-comment-count="0"
+                                                                      loading="lazy"
+                                                                      src="attachments/40208451/40224157.png"></span></p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40208451/40224183.png"
+                                                                       data-linked-resource-container-id="40208451"
+                                                                       data-linked-resource-container-version="39"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="export records and categories.png"
+                                                                       data-linked-resource-id="40224183"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="2"
+                                                                       data-media-id="a7df4700-cc9a-477e-9fc5-f7bd9d543025"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40208451/40224183.png"></span></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p>Some material from years ago at Garmin</p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208451/40224143.png"
+                        data-linked-resource-container-id="40208451"
+                        data-linked-resource-container-version="39" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-20_13-55-33.png" data-linked-resource-id="40224143"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="3f491b8e-fe22-47ba-83c3-bf1e51da5f8a" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40208451/40224143.png?height=400"></span><span
+                        class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208451/40224211.png"
+                        data-linked-resource-container-id="40208451"
+                        data-linked-resource-container-version="39" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-20_12-57-44.png" data-linked-resource-id="40224211"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="e72e87b8-fb1b-4f95-885b-592e5e1caffa" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40208451/40224211.png?height=400"></span><span
+                        class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208451/40224205.png"
+                        data-linked-resource-container-id="40208451"
+                        data-linked-resource-container-version="39" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-20_12-59-3.png" data-linked-resource-id="40224205"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="33421c2b-d64c-43b1-afc4-f6738cc03dd8" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40208451/40224205.png?height=400"></span><span
+                        class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208451/40224199.png"
+                        data-linked-resource-container-id="40208451"
+                        data-linked-resource-container-version="39" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-20_13-0-36.png" data-linked-resource-id="40224199"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="e6688501-57f2-468d-a393-1f60f46b3262" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40208451/40224199.png?height=400"></span></p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40208451/40224229.png"
+                        data-linked-resource-container-id="40208451"
+                        data-linked-resource-container-version="39" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2021-3-20_12-56-32.png" data-linked-resource-id="40224229"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="e21b6b75-1d2f-473a-a736-415ac292edb0" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40208451/40224229.png?height=400"></span></p>
+                <p><br/></p>
+                <p>see <a data-linked-resource-id="40213370" data-linked-resource-type="page"
+                          data-linked-resource-version="8" href="Test-Coverage_40213370.html">Test Coverage</a></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+                <p><br/></p>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Sep 04, 2022
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>The following is the process and tools I used to create test cases. It might seem excessive, but I assure you, I do this every time. This is because I lack confidence in my abilities without following a process. </p><p>For simple methods, I sketch a truth table of the inputs, then analyze each row and write the expected result. I cross out any rows that are impossible or I don't care about. Finally, I create a test case for each relevant row on the table.</p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/40263056.png" data-image-src="attachments/40208451/40263056.png" data-unresolved-comment-count="0" data-linked-resource-id="40263056" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-19-34.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="bdef0a2b-28f9-49d2-9322-85e29e826ab6" data-media-type="file"></span></p><p>When things are more complicated beyond a couple of boolean values, I use a free <a href="https://www.freeplane.org/wiki/index.php/Home" class="external-link" rel="nofollow">mind mapping tool </a>to help model the test cases and keep track of testing progress.</p><p><br/></p><p><br/></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/409645316.png" data-image-src="attachments/40208451/409645316.png" data-unresolved-comment-count="0" data-linked-resource-id="409645316" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-9-4_10-44-25.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="61db3dd4-3f5a-4197-88b4-95ca82b4f4fa" data-media-type="file"></span></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/409417642.png" data-image-src="attachments/40208451/409417642.png" data-unresolved-comment-count="0" data-linked-resource-id="409417642" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-9-4_10-44-8.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="cb2b6b0c-3d2d-4fa9-bc43-68183933d627" data-media-type="file"></span></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/411009910.png" data-image-src="attachments/40208451/411009910.png" data-unresolved-comment-count="0" data-linked-resource-id="411009910" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-9-4_10-43-48.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="adb523aa-0fbf-4942-8bac-a917bd10781f" data-media-type="file"></span></p><p><br/></p><p><br/></p><h4 id="FindingTestCases-EquivalencePartitioning"><a href="https://en.wikipedia.org/wiki/Equivalence_partitioning" class="external-link" rel="nofollow">Equivalence Partitioning</a></h4><p>Equivalence partitioning divides the input domain of a variable into groups, called equivalent classes, that represent interesting conditions. We expect two values of a variable belonging to the same equivalent class to produce the same test results (pass or fail).</p><p>An input variable has certain ranges of valid and invalid values. For example, an <code>int</code> variable for month ranges from 1 to 12 so any value less than 1 or greater than 12 is invalid.</p><p>For another example, say we want to compare two lists. There might only be 3 classes to consider: that <strong>All</strong> items in one list matches the items in the other list, <strong>Some</strong> items match or <strong>None</strong> of the items match. </p><p>Equivalence partition can be subjective and application dependent. Given an input variable, different people may produce distinct sets of valid and invalid classes for different applications. (Dianxiang 350)</p><p>When generating <strong>Testing Considerations</strong>, you don't need to include every possible value that an input variable can take. Use equivalence partitioning to generate a manageable subset of interesting values and be sure to include values for the happy path and the error path.</p><h4 id="FindingTestCases-Example">Example </h4><p><code>MySqrt()</code> has an infinite <strong>∞</strong> number of input values but only about 3 interesting ones. </p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40208451/40263050.png?height=400" data-image-src="attachments/40208451/40263050.png" data-unresolved-comment-count="0" data-linked-resource-id="40263050" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-20-27.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="a53e01dc-9d35-4d5b-b4be-b673f7bce6d4" data-media-type="file"></span></p><p class="auto-cursor-target"><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/409645323.png" data-image-src="attachments/40208451/409645323.png" data-unresolved-comment-count="0" data-linked-resource-id="409645323" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-9-4_10-45-39.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="5b5a1dc1-cdf8-41ce-b399-82b6eec52c0e" data-media-type="file"></span></p><p><br/></p><p><br/></p><h4 id="FindingTestCases-RealWorldExamples">Real World Examples</h4><p>Here is a recent example.</p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/40243073.png" data-image-src="attachments/40208451/40243073.png" data-unresolved-comment-count="0" data-linked-resource-id="40243073" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="hc-126526.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="e50dd41f-9472-4b9f-8c70-9355f2ad6d7a" data-media-type="file"></span></p><p><br/></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/40224193.png" data-image-src="attachments/40208451/40224193.png" data-unresolved-comment-count="0" data-linked-resource-id="40224193" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-20_13-4-36.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="8f01ea4d-0ea5-41fc-8ce3-75084e81b8b9" data-media-type="file"></span></p><p><br/></p><p>I use the mind mapping tool for other things beyond testing:</p><p><br/></p><p><br/></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/40224171.png" data-image-src="attachments/40208451/40224171.png" data-unresolved-comment-count="0" data-linked-resource-id="40224171" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="HCM viewer URL.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="a0c16540-58ea-4b30-add9-df1bd5e6d1a1" data-media-type="file"></span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/40224157.png" data-image-src="attachments/40208451/40224157.png" data-unresolved-comment-count="0" data-linked-resource-id="40224157" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="INAML server calls to retrieve annotations.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="efcf0a44-55c1-4f65-9bdf-a353c8f40165" data-media-type="file"></span></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40208451/40224183.png" data-image-src="attachments/40208451/40224183.png" data-unresolved-comment-count="0" data-linked-resource-id="40224183" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="export records and categories.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="a7df4700-cc9a-477e-9fc5-f7bd9d543025" data-media-type="file"></span></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p>Some material from years ago at Garmin</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40208451/40224143.png?height=400" data-image-src="attachments/40208451/40224143.png" data-unresolved-comment-count="0" data-linked-resource-id="40224143" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-20_13-55-33.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="3f491b8e-fe22-47ba-83c3-bf1e51da5f8a" data-media-type="file"></span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40208451/40224211.png?height=400" data-image-src="attachments/40208451/40224211.png" data-unresolved-comment-count="0" data-linked-resource-id="40224211" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-20_12-57-44.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="e72e87b8-fb1b-4f95-885b-592e5e1caffa" data-media-type="file"></span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40208451/40224205.png?height=400" data-image-src="attachments/40208451/40224205.png" data-unresolved-comment-count="0" data-linked-resource-id="40224205" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-20_12-59-3.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="33421c2b-d64c-43b1-afc4-f6738cc03dd8" data-media-type="file"></span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40208451/40224199.png?height=400" data-image-src="attachments/40208451/40224199.png" data-unresolved-comment-count="0" data-linked-resource-id="40224199" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-20_13-0-36.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="e6688501-57f2-468d-a393-1f60f46b3262" data-media-type="file"></span></p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40208451/40224229.png?height=400" data-image-src="attachments/40208451/40224229.png" data-unresolved-comment-count="0" data-linked-resource-id="40224229" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-20_12-56-32.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40208451" data-linked-resource-container-version="39" data-media-id="e21b6b75-1d2f-473a-a736-415ac292edb0" data-media-type="file"></span></p><p><br/></p><p>see <a href="Test-Coverage_40213370.html" data-linked-resource-id="40213370" data-linked-resource-version="8" data-linked-resource-type="page">Test Coverage</a></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40244629.png">image2021-3-12_15-29-52.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40242942.png">image2021-3-12_15-58-5.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40242936.png">image2021-3-12_16-0-12.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40242885.png">image2021-3-12_16-29-1.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40242875.png">image2021-3-12_16-31-10.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40242861.png">image2021-3-12_16-50-14.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243079.jpg">truthtable.jpg</a> (image/jpeg)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224235.png">hc-126526.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243058.png">image2021-3-12_17-23-39.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243091.png">image2021-3-14_11-0-56.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243085.png">image2021-3-14_15-29-8.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243208.png">image2021-3-14_15-44-33.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243202.png">image2021-3-14_15-45-18.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243196.png">image2021-3-14_15-49-27.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243513.png">image2021-3-15_7-45-17.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40242010.png">image2021-3-15_9-12-26.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40241922.png">image2021-3-15_9-35-39.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40241507.png">image2021-3-15_14-53-56.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40241470.png">image2021-3-15_14-59-20.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40241464.png">image2021-3-15_15-0-59.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40225355.png">image2021-3-19_13-40-58.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40225488.png">image2021-3-19_14-30-3.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224289.png">image2021-3-20_11-16-57.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224273.png">image2021-3-20_11-20-39.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224259.png">image2021-3-20_11-44-35.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224253.png">image2021-3-20_11-53-31.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224247.png">image2021-3-20_11-56-56.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224241.png">image2021-3-20_12-0-7.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40243073.png">hc-126526.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224229.png">image2021-3-20_12-56-32.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224211.png">image2021-3-20_12-57-44.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224205.png">image2021-3-20_12-59-3.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224199.png">image2021-3-20_13-0-36.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224193.png">image2021-3-20_13-4-36.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224177.png">export records and categories.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224183.png">export records and categories.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224171.png">HCM viewer URL.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224157.png">INAML server calls to retrieve annotations.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40224143.png">image2021-3-20_13-55-33.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40263108.png">image2021-8-17_13-11-40.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40263085.png">image2021-8-17_13-13-53.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40263056.png">image2021-8-17_13-19-34.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/40263050.png">image2021-8-17_13-20-27.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/411009910.png">image2022-9-4_10-43-48.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/409417642.png">image2022-9-4_10-44-8.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/409645316.png">image2022-9-4_10-44-25.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40208451/409645323.png">image2022-9-4_10-45-39.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40244629.png">image2021-3-12_15-29-52.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40242942.png">image2021-3-12_15-58-5.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40242936.png">image2021-3-12_16-0-12.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40242885.png">image2021-3-12_16-29-1.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40242875.png">image2021-3-12_16-31-10.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40242861.png">image2021-3-12_16-50-14.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243079.jpg">truthtable.jpg</a> (image/jpeg)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224235.png">hc-126526.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243058.png">image2021-3-12_17-23-39.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243091.png">image2021-3-14_11-0-56.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243085.png">image2021-3-14_15-29-8.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243208.png">image2021-3-14_15-44-33.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243202.png">image2021-3-14_15-45-18.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243196.png">image2021-3-14_15-49-27.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243513.png">image2021-3-15_7-45-17.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40242010.png">image2021-3-15_9-12-26.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40241922.png">image2021-3-15_9-35-39.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40241507.png">image2021-3-15_14-53-56.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40241470.png">image2021-3-15_14-59-20.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40241464.png">image2021-3-15_15-0-59.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40225355.png">image2021-3-19_13-40-58.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40225488.png">image2021-3-19_14-30-3.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224289.png">image2021-3-20_11-16-57.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224273.png">image2021-3-20_11-20-39.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224259.png">image2021-3-20_11-44-35.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224253.png">image2021-3-20_11-53-31.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224247.png">image2021-3-20_11-56-56.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224241.png">image2021-3-20_12-0-7.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40243073.png">hc-126526.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224229.png">image2021-3-20_12-56-32.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224211.png">image2021-3-20_12-57-44.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224205.png">image2021-3-20_12-59-3.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224199.png">image2021-3-20_13-0-36.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224193.png">image2021-3-20_13-4-36.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224177.png">export records and categories.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224183.png">export records and categories.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224171.png">HCM viewer URL.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224157.png">INAML server calls to retrieve annotations.png</a>
+                    (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40224143.png">image2021-3-20_13-55-33.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40263108.png">image2021-8-17_13-11-40.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40263085.png">image2021-8-17_13-13-53.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40263056.png">image2021-8-17_13-19-34.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/40263050.png">image2021-8-17_13-20-27.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/411009910.png">image2022-9-4_10-43-48.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/409417642.png">image2022-9-4_10-44-8.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/409645316.png">image2022-9-4_10-44-25.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40208451/409645323.png">image2022-9-4_10-45-39.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

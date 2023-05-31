@@ -1,114 +1,159 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Interface Segregation Principle (ISP)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Interface Segregation Principle (ISP)</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                    </li>
+                    <li>
+                        <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Interface Segregation Principle (ISP)
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Aug 17, 2021
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p><br/></p>
+                <ul>
+                    <li><span>This principle advises software designers to avoid depending on things that they don’t use.</span>
+                    </li>
+                    <li><span>We should not force clients to depend upon methods that they do not use.</span></li>
+                    <li><span>AKA Interface Pollution or Fat Interface</span></li>
+                    <li><span>When a class is large, rarely do all of its clients use all of its methods. Often we can see different groupings of methods that particular clients use. If we create an interface for each of these groupings and have the large class implement those interfaces, each client can see the big class through that particular interface. This helps us hide information and also decreases dependency on the system. (Feathers 263)</span>
+                    </li>
+                    <li><span>Since we typically use interfaces for unrelated classes, they tend to have a leaner set of members. Remember, each member of an interface must be implemented in derived classes, but we should not force clients to implement methods they do not use. This “interface pollution” or “fat interface” tends to violate the Interface Segregation Principle (ISP).</span>
+                    </li>
+                </ul>
+                <h3 id="InterfaceSegregationPrinciple(ISP)-ExamplePoorDesign"><strong>Example Poor Design</strong></h3>
+                <p><br/></p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40210122/40257276.png"
+                                                                       data-linked-resource-container-id="40210122"
+                                                                       data-linked-resource-container-version="8"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="image2021-8-17_12-37-48.png"
+                                                                       data-linked-resource-id="40257276"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="0e17432d-d7b8-4be1-b1ec-3dab86bf0c3c"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40210122/40257276.png"></span></p>
+                <p><br/></p>
+                <h3 id="InterfaceSegregationPrinciple(ISP)-ExampleBetterDesign:"><span>Example Better Design:</span>
+                </h3>
+                <p><br/></p>
+                <p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                                       data-image-src="attachments/40210122/40257298.png"
+                                                                       data-linked-resource-container-id="40210122"
+                                                                       data-linked-resource-container-version="8"
+                                                                       data-linked-resource-content-type="image/png"
+                                                                       data-linked-resource-default-alias="image2021-8-17_12-40-24.png"
+                                                                       data-linked-resource-id="40257298"
+                                                                       data-linked-resource-type="attachment"
+                                                                       data-linked-resource-version="1"
+                                                                       data-media-id="76fc278d-a262-4ec6-886a-561440a49fc9"
+                                                                       data-media-type="file"
+                                                                       data-unresolved-comment-count="0"
+                                                                       loading="lazy"
+                                                                       src="attachments/40210122/40257298.png"></span></p>
+                <p><br/></p>
+                <p><span>See <a data-linked-resource-id="40210535" data-linked-resource-type="page"
+                                data-linked-resource-version="41" href="Abstract-Classes-vs-Interfaces_40210535.html">Abstract Classes vs Interfaces</a></span>
+                </p>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Aug 17, 2021
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><br/></p><ul><li><span>This principle advises software designers to avoid depending on things that they don’t use.</span></li><li><span>We should not force clients to depend upon methods that they do not use.</span></li><li><span>AKA Interface Pollution or Fat Interface</span></li><li><span>When a class is large, rarely do all of its clients use all of its methods. Often we can see different groupings of methods that particular clients use. If we create an interface for each of these groupings and have the large class implement those interfaces, each client can see the big class through that particular interface. This helps us hide information and also decreases dependency on the system. (Feathers 263)</span></li><li><span>Since we typically use interfaces for unrelated classes, they tend to have a leaner set of members. Remember, each member of an interface must be implemented in derived classes, but we should not force clients to implement methods they do not use. This “interface pollution” or “fat interface” tends to violate the Interface Segregation Principle (ISP).</span></li></ul><h3 id="InterfaceSegregationPrinciple(ISP)-ExamplePoorDesign"><strong>Example Poor Design</strong></h3><p><br/></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40210122/40257276.png" data-image-src="attachments/40210122/40257276.png" data-unresolved-comment-count="0" data-linked-resource-id="40257276" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_12-37-48.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210122" data-linked-resource-container-version="8" data-media-id="0e17432d-d7b8-4be1-b1ec-3dab86bf0c3c" data-media-type="file"></span></p><p><br/></p><h3 id="InterfaceSegregationPrinciple(ISP)-ExampleBetterDesign:"><span>Example Better Design:</span></h3><p><br/></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40210122/40257298.png" data-image-src="attachments/40210122/40257298.png" data-unresolved-comment-count="0" data-linked-resource-id="40257298" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_12-40-24.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210122" data-linked-resource-container-version="8" data-media-id="76fc278d-a262-4ec6-886a-561440a49fc9" data-media-type="file"></span></p><p><br/></p><p><span>See <a href="Abstract-Classes-vs-Interfaces_40210535.html" data-linked-resource-id="40210535" data-linked-resource-version="41" data-linked-resource-type="page">Abstract Classes vs Interfaces</a></span></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40257676.png">image2021-5-22_12-27-40.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40268949.png">image2021-5-29_12-9-54.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40268879.png">image2021-5-29_12-10-25.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40268885.png">image2021-5-29_12-12-8.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40268891.png">image2021-5-29_12-13-0.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40268906.png">image2021-5-29_12-19-17.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40269084.png">image2021-5-29_12-30-24.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40269093.png">image2021-5-29_12-30-59.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40269099.png">image2021-5-29_12-31-44.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40269105.png">image2021-5-29_12-32-11.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40269111.png">image2021-5-29_12-34-56.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40269117.png">image2021-5-29_12-40-30.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40257282.png">image2021-8-17_12-37-0.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40257276.png">image2021-8-17_12-37-48.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40210122/40257298.png">image2021-8-17_12-40-24.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40257676.png">image2021-5-22_12-27-40.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40268949.png">image2021-5-29_12-9-54.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40268879.png">image2021-5-29_12-10-25.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40268885.png">image2021-5-29_12-12-8.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40268891.png">image2021-5-29_12-13-0.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40268906.png">image2021-5-29_12-19-17.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40269084.png">image2021-5-29_12-30-24.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40269093.png">image2021-5-29_12-30-59.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40269099.png">image2021-5-29_12-31-44.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40269105.png">image2021-5-29_12-32-11.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40269111.png">image2021-5-29_12-34-56.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40269117.png">image2021-5-29_12-40-30.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40257282.png">image2021-8-17_12-37-0.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40257276.png">image2021-8-17_12-37-48.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40210122/40257298.png">image2021-8-17_12-40-24.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

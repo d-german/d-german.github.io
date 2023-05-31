@@ -1,52 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Avoiding Liskov Substitution Principal Violations in Type Hierarchies</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Avoiding Liskov Substitution Principal Violations in Type Hierarchies</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                    </li>
+                    <li>
+                        <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Avoiding Liskov Substitution Principal Violations in Type Hierarchies
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Jan 31, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>Consider the following type hierarchy:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public interface IHealthcareDocument
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Jan 31, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p>Consider the following type hierarchy:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public interface IHealthcareDocument
 {
     long ID { get; }
     DateTime? ClinicallyRelevantDate { get; }
@@ -71,8 +69,17 @@ public class HealthcareDocument : IHealthcareDocument
     public string Description { get; set; }
     public bool IsRestricted { get; set; }
 }</pre>
-</div></div><p>Note that <code>IHealthcareDocument</code> is immutable but <code>HealthcareDocument</code> is mutable which means the derived type has different semantics than that of its base type. <strong>This could cause problems if you try to use these types polymorphically.</strong> Consider the following <code>ToggleIsRestricted</code> method that toggles the <code>IsRestricted</code> property.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">[Test]
+                    </div>
+                </div>
+                <p>Note that <code>IHealthcareDocument</code> is immutable but <code>HealthcareDocument</code> is
+                    mutable which means the derived type has different semantics than that of its base type. <strong>This
+                        could cause problems if you try to use these types polymorphically.</strong> Consider the
+                    following <code>ToggleIsRestricted</code> method that toggles the <code>IsRestricted</code>
+                    property.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">[Test]
 public void LspOcpViolation()
 {
     IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
@@ -90,8 +97,41 @@ public void LspOcpViolation()
 
     Assert.That(unrestrictedHealthcareDocument.IsRestricted, Is.False);
 }</pre>
-</div></div><p>We must first cast the input parameter before we can update the <code>IsRestricted</code> property because <code>IHealthcareDocument</code> is immutable. A good design should feel good. One of many definitions of software design is:<em> Using one’s aesthetic sense to guide programming choices to improve the ease of coding, testing, and maintaining software. (Normand 2021)</em> The <code>ToggleIsRestricted</code> method should be signaling you that something is wrong. The simplest way to express the design flaw is to say that it violates the <a href="40210191.html" data-linked-resource-id="40210191" data-linked-resource-version="6" data-linked-resource-type="page">Open Closed Principle (OCP)</a>. If a new type implementing <code>IHealthcareDocument</code> enters the system, the <code>ToggleIsRestricted</code> method would need to accommodate it. </p><p>Why did we need to violate the OCP in the first place? It’s because we’re using polymorphism with a type hierarchy that violates the <a href="40210175.html" data-linked-resource-id="40210175" data-linked-resource-version="9" data-linked-resource-type="page">Liskov Substitution principle (LSP)</a>.<strong> LSP is one of the prime enablers of the OCP (Martin 2002) so violations of the LSP usually result in violations in the OCP. </strong>Given that the LSP asserts that derived types must be fully substitutable for their base types, how does <code>HealthcareDocument</code> violate the LSP? It’s because <code>HealthcareDocument</code> is not completely substitutable for <code>IHealthcareDocument</code>. A derived type can violate the Liskov Substitution Principle (LSP) by either breaking the base class's constraints or altering its underlying assumptions and semantics. This can lead to unexpected behavior and make the system harder to understand and maintain.</p><p>Regarding constraints there are three things to consider. The derived type must not break any base type invariants, overriding method preconditions should be equal or weaker than that of the base type, and overriding method postconditions should be equal or stronger than that of the base type. Since interfaces or pure abstract classes lack implementation, derived types cannot violate the LSP in this sense (TBD find a reference for this). This means that <code>HealthcareDocument</code> is violating the LSP in the other sense, namely by failing to comply with the <code>IHealthcareDocument</code> semantics.</p><p>For example, consider the following contrived hierarchy.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public interface IAdder
+                    </div>
+                </div>
+                <p>We must first cast the input parameter before we can update the <code>IsRestricted</code> property
+                    because <code>IHealthcareDocument</code> is immutable. A good design should feel good. One of many
+                    definitions of software design is:<em> Using one’s aesthetic sense to guide programming choices to
+                        improve the ease of coding, testing, and maintaining software. (Normand 2021)</em> The <code>ToggleIsRestricted</code>
+                    method should be signaling you that something is wrong. The simplest way to express the design flaw
+                    is to say that it violates the <a data-linked-resource-id="40210191" data-linked-resource-type="page"
+                                                      data-linked-resource-version="6" href="40210191.html">Open
+                        Closed Principle (OCP)</a>. If a new type implementing <code>IHealthcareDocument</code> enters
+                    the system, the <code>ToggleIsRestricted</code> method would need to accommodate it. </p>
+                <p>Why did we need to violate the OCP in the first place? It’s because we’re using polymorphism with a
+                    type hierarchy that violates the <a data-linked-resource-id="40210175" data-linked-resource-type="page"
+                                                        data-linked-resource-version="9"
+                                                        href="40210175.html">Liskov Substitution principle
+                        (LSP)</a>.<strong> LSP is one of the prime enablers of the OCP (Martin 2002) so violations of
+                        the LSP usually result in violations in the OCP. </strong>Given that the LSP asserts that
+                    derived types must be fully substitutable for their base types, how does
+                    <code>HealthcareDocument</code> violate the LSP? It’s because <code>HealthcareDocument</code> is not
+                    completely substitutable for <code>IHealthcareDocument</code>. A derived type can violate the Liskov
+                    Substitution Principle (LSP) by either breaking the base class's constraints or altering its
+                    underlying assumptions and semantics. This can lead to unexpected behavior and make the system
+                    harder to understand and maintain.</p>
+                <p>Regarding constraints there are three things to consider. The derived type must not break any base
+                    type invariants, overriding method preconditions should be equal or weaker than that of the base
+                    type, and overriding method postconditions should be equal or stronger than that of the base type.
+                    Since interfaces or pure abstract classes lack implementation, derived types cannot violate the LSP
+                    in this sense (TBD find a reference for this). This means that <code>HealthcareDocument</code> is
+                    violating the LSP in the other sense, namely by failing to comply with the
+                    <code>IHealthcareDocument</code> semantics.</p>
+                <p>For example, consider the following contrived hierarchy.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public interface IAdder
 {
     int Add(int a, int b);
 }
@@ -103,8 +143,22 @@ class Adder : IAdder
         return a - b; // LSP violation of base type semantics
     }
 }</pre>
-</div></div><p>The straightforward meaning of the interface method <code>int Add(int a, int b);</code> is to return the sum of two integers, but the <code>Adder</code> implementation is returning the difference, clearly the opposite semantics of <code>IAdder</code>. </p><p>In a comparable way, <code>HealthcareDocument</code> has contrary semantics than <code>IHealthcareDocument</code> when it comes to mutability. Because of this LSP violation, the <code>ToggleIsRestricted</code> method needs to violate the OCP. So now that we know what the problem is, how do we improve the design? Since LSP violations are only an issue when using polymorphism, the solution is to either fix the LSP violation or remove polymorphism or remove the LSP violation.</p><p>We can remove the LSP violation by either making both types mutable or by making both types immutable thus giving them the same semantics. First let's make <code>IHealthcareDocument</code> mutable.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public interface IHealthcareDocument
+                    </div>
+                </div>
+                <p>The straightforward meaning of the interface method <code>int Add(int a, int b);</code> is to return
+                    the sum of two integers, but the <code>Adder</code> implementation is returning the difference,
+                    clearly the opposite semantics of <code>IAdder</code>. </p>
+                <p>In a comparable way, <code>HealthcareDocument</code> has contrary semantics than <code>IHealthcareDocument</code>
+                    when it comes to mutability. Because of this LSP violation, the <code>ToggleIsRestricted</code>
+                    method needs to violate the OCP. So now that we know what the problem is, how do we improve the
+                    design? Since LSP violations are only an issue when using polymorphism, the solution is to either
+                    fix the LSP violation or remove polymorphism or remove the LSP violation.</p>
+                <p>We can remove the LSP violation by either making both types mutable or by making both types immutable
+                    thus giving them the same semantics. First let's make <code>IHealthcareDocument</code> mutable.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public interface IHealthcareDocument
 {
     long ID { get; set; }
     DateTime? ClinicallyRelevantDate { get; set; }
@@ -116,15 +170,33 @@ class Adder : IAdder
     string Description { get; set; }
     bool IsRestricted { get; set; }
 }</pre>
-</div></div><p>This allows us to update the <code>ToggleIsRestricted</code> method without breaking any tests.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
+                    </div>
+                </div>
+                <p>This allows us to update the <code>ToggleIsRestricted</code> method without breaking any tests.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
 {
    healthcareDocument.IsRestricted = !healthcareDocument.IsRestricted;
 
    return healthcareDocument;
 }</pre>
-</div></div><p>The <code>ToggleIsRestricted</code> method is now a beautiful example of the OCP (and the <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">DIP</a>). The design is now “improved” but at the cost of making <code>IHealthcareDocument</code> mutable. <a href="Functional-in-the-Small%2C-Object-Oriented-in-the-Large_470647891.html" data-linked-resource-id="470647891" data-linked-resource-version="103" data-linked-resource-type="page">Immutability is desirable for a whole</a> host of reasons that I will not cover here so let's try again to improve our design by making both types immutable. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public interface IHealthcareDocument
+                    </div>
+                </div>
+                <p>The <code>ToggleIsRestricted</code> method is now a beautiful example of the OCP (and the <a
+                        data-linked-resource-id="40210080" data-linked-resource-type="page" data-linked-resource-version="15"
+                        href="40210080.html">DIP</a>). The design is now “improved” but at the cost of
+                    making <code>IHealthcareDocument</code> mutable. <a
+                            data-linked-resource-id="470647891"
+                            data-linked-resource-type="page" data-linked-resource-version="103"
+                            href="Functional-in-the-Small%2C-Object-Oriented-in-the-Large_470647891.html">Immutability is desirable for a whole</a> host of reasons
+                    that I will not cover here so let's try again to improve our design by making both types immutable.
+                </p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public interface IHealthcareDocument
 {
     long ID { get; }
     DateTime? ClinicallyRelevantDate { get; }
@@ -148,8 +220,14 @@ public class HealthcareDocument : IHealthcareDocument
     public string Description { get; init; }
     public bool IsRestricted { get; init; }
 }</pre>
-</div></div><p>Now that <code>HealthcareDocument</code> is immutable and no longer violates the LSP the <code>ToggleIsRestricted</code> needs to be updated.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
+                    </div>
+                </div>
+                <p>Now that <code>HealthcareDocument</code> is immutable and no longer violates the LSP the <code>ToggleIsRestricted</code>
+                    needs to be updated.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
 {
     return new HealthcareDocument
     {
@@ -166,8 +244,17 @@ public class HealthcareDocument : IHealthcareDocument
         IsRestricted = !healthcareDocument.IsRestricted,
     };
 }</pre>
-</div></div><p>Not only does the <code>ToggleIsRestricted</code> method still violate the OCP but now we need to make a copy of each property of the <code>HealthcareDocument</code> just to update that one <code>IsRestricted</code> property! This is a worse design than the original, although I do like the immutability aspect of it. A way to get rid of that boiler plate copy code is to make <code>HealthcareDocument</code> a record (introduced in C# 9) instead of a class. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public record HealthcareDocument : IHealthcareDocument
+                    </div>
+                </div>
+                <p>Not only does the <code>ToggleIsRestricted</code> method still violate the OCP but now we need to
+                    make a copy of each property of the <code>HealthcareDocument</code> just to update that one <code>IsRestricted</code>
+                    property! This is a worse design than the original, although I do like the immutability aspect of
+                    it. A way to get rid of that boiler plate copy code is to make <code>HealthcareDocument</code> a
+                    record (introduced in C# 9) instead of a class. </p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public record HealthcareDocument : IHealthcareDocument
 {
     public long ID { get; init; }
     public DateTime? ClinicallyRelevantDate { get; init; }
@@ -179,8 +266,13 @@ public class HealthcareDocument : IHealthcareDocument
     public string Description { get; init; }
     public bool IsRestricted { get; init; }
 }</pre>
-</div></div><p>And the corresponding change is now.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
+                    </div>
+                </div>
+                <p>And the corresponding change is now.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
 {
     if (healthcareDocument is HealthcareDocument document)
     {
@@ -189,20 +281,69 @@ public class HealthcareDocument : IHealthcareDocument
 
     return healthcareDocument;
 }</pre>
-</div></div><p>This design no longer violates the LSP, but it still violates the OCP. A naive attempt to fix this is shown in the next code snippet but it doesn't compile.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
+                    </div>
+                </div>
+                <p>This design no longer violates the LSP, but it still violates the OCP. A naive attempt to fix this is
+                    shown in the next code snippet but it doesn't compile.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">IHealthcareDocument ToggleIsRestricted(IHealthcareDocument healthcareDocument)
 {
     return healthcareDocument with { IsRestricted = !healthcareDocument.IsRestricted }; // compile error
 }</pre>
-</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">[CS8858] The receiver type &#39;IHealthcareDocument&#39; is not a valid record type and is not a struct type.</pre>
-</div></div><p>The problem is that <code>IHealthcareDocument</code> is an interface, and the compiler can't be sure that the underlying runtime type is going to be a record. The <code>with</code>keyword only works with records. So, this means that we need to either abandon immutability or abandon polymorphism. I prefer keeping immutability so let's explore abandoning polymorphism by just deleting the <code>IHealthcareDocument</code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">HealthcareDocument ToggleIsRestricted(HealthcareDocument healthcareDocument)
+                    </div>
+                </div>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+                        <pre class="syntaxhighlighter-pre"
+                             data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence"
+                             data-theme="Confluence">[CS8858] The receiver type &#39;IHealthcareDocument&#39; is not a valid record type and is not a struct type.</pre>
+                    </div>
+                </div>
+                <p>The problem is that <code>IHealthcareDocument</code> is an interface, and the compiler can't be sure
+                    that the underlying runtime type is going to be a record. The <code>with</code>keyword only works
+                    with records. So, this means that we need to either abandon immutability or abandon polymorphism. I
+                    prefer keeping immutability so let's explore abandoning polymorphism by just deleting the <code>IHealthcareDocument</code>.
+                </p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">HealthcareDocument ToggleIsRestricted(HealthcareDocument healthcareDocument)
 {
     return healthcareDocument with { IsRestricted = !healthcareDocument.IsRestricted };
 }</pre>
-</div></div><p>This, in my opinion, is the best design even though it still violates the <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">Dependency Inversion Principle</a> (<a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">DIP</a>). Afterall, aren't we supposed to “<em>Program to an interface not an implementation</em>” (GOF 18)? I believe that the motivation behind  <code>HealthcareDocument</code> in the first place is that it be used as a <a href="DTO---Data-Transfer-Object_40209511.html" data-linked-resource-id="40209511" data-linked-resource-version="10" data-linked-resource-type="page">Data Transfer Object</a> (<a href="DTO---Data-Transfer-Object_40209511.html" data-linked-resource-id="40209511" data-linked-resource-version="10" data-linked-resource-type="page">DTO</a>). Since DTOs only contain data and not behavior they should not be considered <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">volatile </a>and are every bit as stable as interfaces. In other words, the benefits that we get from using interfaces or pure abstract classes we can also get from simple DTOs.</p><p>One of my favorite quotes is “<em>Never shoot for the best design, but rather the least worst design</em>.“(Richards and Ford) As long as <code>HealthcareDocument</code> remains a DTO then we do have the least worst design and were almost finished. What happens if we begin adding nontrivial behavior to the <code>HealthcareDocument</code> class? Consider again the <code>ToggleIsRestricted</code> method. Traditional Object-Oriented reasoning advocates encapsulating related data and behavior, which means we should move the <code>ToggleIsRestricted</code> method into the <code>HealthcareDocument</code> class.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public record HealthcareDocument
+                    </div>
+                </div>
+                <p>This, in my opinion, is the best design even though it still violates the <a data-linked-resource-id="40210080"
+                                                                                                data-linked-resource-type="page"
+                                                                                                data-linked-resource-version="15"
+                                                                                                href="40210080.html">Dependency
+                    Inversion Principle</a> (<a data-linked-resource-id="40210080" data-linked-resource-type="page"
+                                                data-linked-resource-version="15"
+                                                href="40210080.html">DIP</a>). Afterall, aren't we supposed
+                    to “<em>Program to an interface not an implementation</em>” (GOF 18)? I believe that the motivation
+                    behind <code>HealthcareDocument</code> in the first place is that it be used as a <a
+                            data-linked-resource-id="40209511" data-linked-resource-type="page"
+                            data-linked-resource-version="10" href="DTO---Data-Transfer-Object_40209511.html">Data Transfer Object</a>
+                    (<a data-linked-resource-id="40209511" data-linked-resource-type="page"
+                        data-linked-resource-version="10" href="DTO---Data-Transfer-Object_40209511.html">DTO</a>). Since DTOs only
+                    contain data and not behavior they should not be considered <a
+                            data-linked-resource-id="40212174" data-linked-resource-type="page"
+                            data-linked-resource-version="9" href="Stable-vs-Volatile-Dependences_40212174.html">volatile </a>and are every
+                    bit as stable as interfaces. In other words, the benefits that we get from using interfaces or pure
+                    abstract classes we can also get from simple DTOs.</p>
+                <p>One of my favorite quotes is “<em>Never shoot for the best design, but rather the least worst
+                    design</em>.“(Richards and Ford) As long as <code>HealthcareDocument</code> remains a DTO then we do
+                    have the least worst design and were almost finished. What happens if we begin adding nontrivial
+                    behavior to the <code>HealthcareDocument</code> class? Consider again the
+                    <code>ToggleIsRestricted</code> method. Traditional Object-Oriented reasoning advocates
+                    encapsulating related data and behavior, which means we should move the
+                    <code>ToggleIsRestricted</code> method into the <code>HealthcareDocument</code> class.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public record HealthcareDocument
 {
     public long ID { get; init; }
     public DateTime? ClinicallyRelevantDate { get; init; }
@@ -216,13 +357,28 @@ public class HealthcareDocument : IHealthcareDocument
 
     public HealthcareDocument ToggleIsRestricted() =&gt; this with { IsRestricted = !IsRestricted };
 }</pre>
-</div></div><p>And we can use it like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var restrictedHealthcareDocument = new HealthcareDocument { IsRestricted = true };
+                    </div>
+                </div>
+                <p>And we can use it like this:</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">var restrictedHealthcareDocument = new HealthcareDocument { IsRestricted = true };
 var healthcareDocument = restrictedHealthcareDocument.ToggleIsRestricted();
 
 Assert.That(healthcareDocument.IsRestricted, Is.False);</pre>
-</div></div><p>Adding behavior like this to <code>HealthcareDocument</code> makes it become a traditional class instead of being a plain DTO, and we would once again need to consider the DIP. Keeping <code>HealthcareDocument</code> a DTO means keeping behavior like <code>ToggleIsRestricted</code> or any other type of nontrivial logic (validation, business logic etc.) out of <code>HealthcareDocument</code>. For this simple example there is an easy solution. Let's move the <code>ToggleIsRestricted</code> method out of <code>HealthcareDocument</code> and into an extension method.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public record HealthcareDocument
+                    </div>
+                </div>
+                <p>Adding behavior like this to <code>HealthcareDocument</code> makes it become a traditional class
+                    instead of being a plain DTO, and we would once again need to consider the DIP. Keeping <code>HealthcareDocument</code>
+                    a DTO means keeping behavior like <code>ToggleIsRestricted</code> or any other type of nontrivial
+                    logic (validation, business logic etc.) out of <code>HealthcareDocument</code>. For this simple
+                    example there is an easy solution. Let's move the <code>ToggleIsRestricted</code> method out of
+                    <code>HealthcareDocument</code> and into an extension method.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">public record HealthcareDocument
 {
     public long ID { get; init; }
     public DateTime? ClinicallyRelevantDate { get; init; }
@@ -242,63 +398,81 @@ public static class HealthcareDocumentExtensions
         return healthcareDocument with { IsRestricted = !healthcareDocument.IsRestricted };
     }
 }</pre>
-</div></div><p>Then our test code is the same.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var restrictedHealthcareDocument = new HealthcareDocument { IsRestricted = true };
+                    </div>
+                </div>
+                <p>Then our test code is the same.</p>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">var restrictedHealthcareDocument = new HealthcareDocument { IsRestricted = true };
 var healthcareDocument = restrictedHealthcareDocument.ToggleIsRestricted();
 
 Assert.That(healthcareDocument.IsRestricted, Is.False);</pre>
-</div></div><p>In conclusion, the <code>HealthcareDocument</code> class violates the Liskov Substitution Principle (LSP) because it is not fully substitutable for the <code>IHealthcareDocument </code>interface. The LSP states that derived types must be fully substitutable for their base types, and in this case, <code>HealthcareDocument</code> is not because it is mutable while <code>IHealthcareDocument </code>is immutable. This means that the <code>ToggleIsRestricted </code>method, which expects an <code>IHealthcareDocument </code>object, would not work correctly if passed a <code>HealthcareDocument </code>object because it would not be able to change the value of the <code>IsRestricted </code>property. This violation of the LSP leads to a violation of the Open Closed Principle (OCP) because the <code>ToggleIsRestricted </code>method would need to be modified to accommodate new types that implement the <code>IHealthcareDocument </code>interface.</p>
                     </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/429293856.png">image-20220922-183309.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430735766.png">image-20220923-194352.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430801442.png">image-20220923-194430.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430735787.png">image-20220923-194748.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430081069.png">image-20220923-203648.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430768900.png">image-20220923-203729.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430375937.png">image-20220923-203833.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430506813.png">image-20220923-204246.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430801597.png">image-20220923-204308.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430048105.png">image-20220923-205413.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/428671215/430801615.png">image-20220923-205457.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                </div>
+                <p>In conclusion, the <code>HealthcareDocument</code> class violates the Liskov Substitution Principle
+                    (LSP) because it is not fully substitutable for the <code>IHealthcareDocument </code>interface. The
+                    LSP states that derived types must be fully substitutable for their base types, and in this case,
+                    <code>HealthcareDocument</code> is not because it is mutable while <code>IHealthcareDocument </code>is
+                    immutable. This means that the <code>ToggleIsRestricted </code>method, which expects an <code>IHealthcareDocument </code>object,
+                    would not work correctly if passed a <code>HealthcareDocument </code>object because it would not be
+                    able to change the value of the <code>IsRestricted </code>property. This violation of the LSP leads
+                    to a violation of the Open Closed Principle (OCP) because the <code>ToggleIsRestricted </code>method
+                    would need to be modified to accommodate new types that implement the
+                    <code>IHealthcareDocument </code>interface.</p>
             </div>
-        </div>     </body>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
+                </div>
+
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/429293856.png">image-20220922-183309.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430735766.png">image-20220923-194352.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430801442.png">image-20220923-194430.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430735787.png">image-20220923-194748.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430081069.png">image-20220923-203648.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430768900.png">image-20220923-203729.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430375937.png">image-20220923-203833.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430506813.png">image-20220923-204246.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430801597.png">image-20220923-204308.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430048105.png">image-20220923-205413.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/428671215/430801615.png">image-20220923-205457.png</a> (image/png)
+                    <br/>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

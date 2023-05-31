@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : DTO - Data Transfer Object</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : DTO - Data Transfer Object</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Glossary_40212597.html">Glossary</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Glossary_40212597.html">Glossary</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : DTO - Data Transfer Object
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Dec 08, 2022
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p>A Data Transfer Object (DTO) is an object that carries data within an application or between processes.</p><p><span style="color: rgb(9,30,66);">Programming to an interface doesn’t mean that all classes should implement an interface. Short-lived objects, such as </span><a href="POCO---Plain-Old-CLR-Objects_40209505.html" data-linked-resource-id="40209505" data-linked-resource-version="2" data-linked-resource-type="page">POCOs</a><span style="color: rgb(9,30,66);">, </span><a href="DTO---Data-Transfer-Object_40209511.html">DTOs</a><span style="color: rgb(9,30,66);"> and VMs (View Model TBD), typically contain no behavior that requires mocking, interception, decoration, or replacement. They are mere data objects. This makes them safe to </span><a href="Using-the-new-keyword_40209049.html" data-linked-resource-id="40209049" data-linked-resource-version="19" data-linked-resource-type="page">create </a><span style="color: rgb(9,30,66);">in your code, so there’s no risk in tightly coupling your code to these data objects. These objects contain the application’s runtime data that flows through the system after classes like controllers and services have long been created. (Seemann 58)</span></p><p>TBD</p><p>Starting in C# 9, we should implement DTOs as read-only record types.</p><h3 id="DTO-DataTransferObject-OriginalmutableclassDTO">Original mutable class DTO</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">/// &lt;summary&gt;
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Dec 08, 2022
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p>A Data Transfer Object (DTO) is an object that carries data within an application or between
+                    processes.</p>
+                <p><span style="color: rgb(9,30,66);">Programming to an interface doesn’t mean that all classes should implement an interface. Short-lived objects, such as </span><a
+                        data-linked-resource-id="40209505" data-linked-resource-type="page"
+                        data-linked-resource-version="2" href="POCO---Plain-Old-CLR-Objects_40209505.html">POCOs</a><span
+                        style="color: rgb(9,30,66);">, </span><a
+                        href="DTO---Data-Transfer-Object_40209511.html">DTOs</a><span style="color: rgb(9,30,66);"> and VMs (View Model TBD), typically contain no behavior that requires mocking, interception, decoration, or replacement. They are mere data objects. This makes them safe to </span><a
+                        data-linked-resource-id="40209049" data-linked-resource-type="page"
+                        data-linked-resource-version="19" href="Using-the-new-keyword_40209049.html">create </a><span
+                        style="color: rgb(9,30,66);">in your code, so there’s no risk in tightly coupling your code to these data objects. These objects contain the application’s runtime data that flows through the system after classes like controllers and services have long been created. (Seemann 58)</span>
+                </p>
+                <p>TBD</p>
+                <p>Starting in C# 9, we should implement DTOs as read-only record types.</p>
+                <h3 id="DTO-DataTransferObject-OriginalmutableclassDTO">Original mutable class DTO</h3>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">/// &lt;summary&gt;
 /// Represents the information about a break the glass status
 /// &lt;/summary&gt;
 public class BreakTheGlassStatusResult
@@ -58,8 +69,13 @@ public class BreakTheGlassStatusResult
     /// &lt;/summary&gt;
     public DateTimeOffset? ExpiresAt { get; set; }
 }</pre>
-</div></div><h3 id="DTO-DataTransferObject-Read-onlyrecordDTO">Read-only record DTO</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">/// &lt;summary&gt;
+                    </div>
+                </div>
+                <h3 id="DTO-DataTransferObject-Read-onlyrecordDTO">Read-only record DTO</h3>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence"
+     data-theme="Confluence">/// &lt;summary&gt;
 /// Represents the information about a break the glass status
 /// &lt;/summary&gt;
 public record BreakTheGlassStatusResult
@@ -74,17 +90,25 @@ public record BreakTheGlassStatusResult
     /// &lt;/summary&gt;
     public DateTimeOffset? ExpiresAt { get; init; }
 }</pre>
-</div></div><p /><p>See <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">Stable vs Volatile Dependences</a>, <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record" class="external-link" rel="nofollow">Records - C# reference | Microsoft Learn</a></p>
                     </div>
-
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                </div>
+                <p/>
+                <p>See <a data-linked-resource-id="40212174" data-linked-resource-type="page"
+                          data-linked-resource-version="9" href="Stable-vs-Volatile-Dependences_40212174.html">Stable vs Volatile
+                    Dependences</a>, <a
+                        class="external-link"
+                        href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record" rel="nofollow">Records - C# reference | Microsoft Learn</a></p>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

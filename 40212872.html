@@ -1,84 +1,134 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Using SelectMany()</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Using SelectMany()</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Miscellaneous_40208948.html">Miscellaneous</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Miscellaneous_40208948.html">Miscellaneous</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Using SelectMany()
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Feb 23, 2022
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p><br/></p>
+                <p>Here we are combining several lists into a single list and returning it.<code> rule(config)</code>
+                    returns<code> IEnumerable&lt;ValidationError&gt;</code>.</p>
+                <p>This code is very imperative. We are creating and mutating state.</p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40212872/40258033.png"
+                        data-linked-resource-container-id="40212872"
+                        data-linked-resource-container-version="11" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2022-2-22_16-25-33.png" data-linked-resource-id="40258033"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="ea85c352-0264-4d7a-8dc3-1d17a884d839" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40212872/40258033.png?height=400"></span></p>
+                <p><br/></p>
+                <p>Whenever you're dealing with multiple lists that need to be flattened into a single list, consider
+                    using <code>SelectMany()</code>.</p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40212872/40258039.png"
+                        data-linked-resource-container-id="40212872"
+                        data-linked-resource-container-version="11" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2022-2-22_16-32-16.png" data-linked-resource-id="40258039"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="14c4e5fc-52e7-4e3d-96ef-37c18d158c97" data-media-type="file"
+                        data-unresolved-comment-count="0" height="150"
+                        loading="lazy" src="attachments/40212872/40258039.png?height=150"></span></p>
+                <p><br/></p>
+                <p>The <code>SelectMany()</code> method is used to &quot;flatten&quot; a sequence in which each element
+                    of the sequence is an underling sequence, like a two-dimensional array or a list of lists.</p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40212872/40258953.png"
+                        data-linked-resource-container-id="40212872"
+                        data-linked-resource-container-version="11" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2022-2-23_8-58-51.png" data-linked-resource-id="40258953"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="5fe01398-0846-431b-a8cf-11d695cc4c0e" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40212872/40258953.png?height=400"></span></p>
+                <p><br/></p>
+                <p>Of course, if you need to transform each element before flattening, you can use a normal <code>Select()</code>.
+                </p>
+                <p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                        class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40212872/40258055.png"
+                        data-linked-resource-container-id="40212872"
+                        data-linked-resource-container-version="11" data-linked-resource-content-type="image/png"
+                        data-linked-resource-default-alias="image2022-2-22_16-39-19.png" data-linked-resource-id="40258055"
+                        data-linked-resource-type="attachment"
+                        data-linked-resource-version="1"
+                        data-media-id="95eaaca3-032e-4c4b-8512-b165b2eecc4e" data-media-type="file"
+                        data-unresolved-comment-count="0" height="400"
+                        loading="lazy" src="attachments/40212872/40258055.png?height=400"></span></p>
+                <p><br/></p>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Feb 23, 2022
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><br/></p><p>Here we are combining several lists into a single list and returning it.<code> rule(config)</code> returns<code> IEnumerable&lt;ValidationError&gt;</code>.</p><p>This code is very imperative. We are creating and mutating state.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40212872/40258033.png?height=400" data-image-src="attachments/40212872/40258033.png" data-unresolved-comment-count="0" data-linked-resource-id="40258033" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-2-22_16-25-33.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40212872" data-linked-resource-container-version="11" data-media-id="ea85c352-0264-4d7a-8dc3-1d17a884d839" data-media-type="file"></span></p><p><br/></p><p>Whenever you're dealing with multiple lists that need to be flattened into a single list, consider using <code>SelectMany()</code>.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="150" loading="lazy" src="attachments/40212872/40258039.png?height=150" data-image-src="attachments/40212872/40258039.png" data-unresolved-comment-count="0" data-linked-resource-id="40258039" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-2-22_16-32-16.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40212872" data-linked-resource-container-version="11" data-media-id="14c4e5fc-52e7-4e3d-96ef-37c18d158c97" data-media-type="file"></span></p><p><br/></p><p>The <code>SelectMany()</code> method is used to &quot;flatten&quot; a sequence in which each element of the sequence is an underling sequence, like a two-dimensional array or a list of lists.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40212872/40258953.png?height=400" data-image-src="attachments/40212872/40258953.png" data-unresolved-comment-count="0" data-linked-resource-id="40258953" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-2-23_8-58-51.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40212872" data-linked-resource-container-version="11" data-media-id="5fe01398-0846-431b-a8cf-11d695cc4c0e" data-media-type="file"></span></p><p><br/></p><p>Of course, if you need to transform each element before flattening, you can use a normal <code>Select()</code>.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40212872/40258055.png?height=400" data-image-src="attachments/40212872/40258055.png" data-unresolved-comment-count="0" data-linked-resource-id="40258055" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-2-22_16-39-19.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40212872" data-linked-resource-container-version="11" data-media-id="95eaaca3-032e-4c4b-8512-b165b2eecc4e" data-media-type="file"></span></p><p><br/></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40212872/40258009.png">image2022-2-22_16-22-23.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40212872/40258015.png">image2022-2-22_16-22-44.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40212872/40258033.png">image2022-2-22_16-25-33.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40212872/40258039.png">image2022-2-22_16-32-16.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40212872/40258055.png">image2022-2-22_16-39-19.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40212872/40258953.png">image2022-2-23_8-58-51.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40212872/40258009.png">image2022-2-22_16-22-23.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40212872/40258015.png">image2022-2-22_16-22-44.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40212872/40258033.png">image2022-2-22_16-25-33.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40212872/40258039.png">image2022-2-22_16-32-16.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40212872/40258055.png">image2022-2-22_16-39-19.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40212872/40258953.png">image2022-2-23_8-58-51.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

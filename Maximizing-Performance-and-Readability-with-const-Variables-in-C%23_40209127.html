@@ -1,58 +1,94 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Maximizing Performance and Readability with const Variables in C#</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Maximizing Performance and Readability with const Variables in C#</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Miscellaneous_40208948.html">Miscellaneous</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Miscellaneous_40208948.html">Miscellaneous</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Maximizing Performance and Readability with const Variables in C#
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Feb 03, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <h4 id="MaximizingPerformanceandReadabilitywithconstVariablesinC#-InC#,itisconsideredgoodpracticetousetheconstkeywordwhenpossiblebecauseithasseveralbenefits,suchas:">In C#, it is considered good practice to use the <code>const</code> keyword when possible because it has several benefits, such as:</h4><ol><li><p>Improved performance: Since the value of a <code>const</code> variable is known at compile-time, the compiler can replace the variable with its value throughout the code, resulting in faster execution.</p></li><li><p>Enhanced readability: <code>const</code> variables make it clear that the value will not change and can help to make the code more self-documenting.</p></li><li>Memory optimization: <code>const</code> variables are stored in memory as part of the metadata and their values are directly used in the memory, which is more memory efficient than storing the values in heap memory.</li><li><p>Can be accessed directly from the class name: You don't need to create an object to access the <code>const</code> variables, which is convenient and neat.</p></li></ol><p>It's important to note that <code>const</code> variables can only be of a primitive type such as an integer, a string or a char and must be initialized when they are declared and cannot be reassigned.</p><p><em>In cases where the value can't be determined at compile-time, it's better to use <code>static readonly</code>.</em></p><h4 id="MaximizingPerformanceandReadabilitywithconstVariablesinC#-constvariablesarestoredinmemoryaspartofthemetadata"><code>const</code> variables are stored in memory as part of the metadata</h4><p>In C#, metadata refers to information about the types, members, and other elements in an assembly. This information is stored in the assembly's metadata table, which is a data structure that contains information about the types, methods, properties, and other elements that make up the assembly.</p><p>When a variable is declared as <code>const</code> its value is known at compile-time and it is embedded into the metadata table of the assembly. The compiler will replace the variable with its value throughout the code, so that the value is available at runtime without the need to look it up in memory.</p><p>This means that the value of a <code>const</code> variable is stored as part of the assembly's metadata, which is stored in memory, rather than in the heap memory. This is more memory-efficient than storing the value in heap memory. This also allows the constant to be accessed directly from the class name, without the need to create an object.</p><p>It's important to note that <code>const</code> variables are implicitly static and their values are shared among all instances of the class, and therefore only one copy is stored in memory.</p><p><br/></p><p>See <code><a href="Difference-between-const-and-static-readonly_553977433.html" data-linked-resource-id="553977433" data-linked-resource-version="18" data-linked-resource-type="page">Difference between const and static readonly</a></code></p>
-                    </div>
+        <div class="view" id="content">
+            <div class="page-metadata">
 
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+
+                Created by <span class='author'> Damon German</span>, last modified on Feb 03, 2023
             </div>
-        </div>     </body>
+            <div class="wiki-content group" id="main-content">
+                <h4 id="MaximizingPerformanceandReadabilitywithconstVariablesinC#-InC#,itisconsideredgoodpracticetousetheconstkeywordwhenpossiblebecauseithasseveralbenefits,suchas:">
+                    In C#, it is considered good practice to use the <code>const</code> keyword when possible because it
+                    has several benefits, such as:</h4>
+                <ol>
+                    <li><p>Improved performance: Since the value of a <code>const</code> variable is known at
+                        compile-time, the compiler can replace the variable with its value throughout the code,
+                        resulting in faster execution.</p></li>
+                    <li><p>Enhanced readability: <code>const</code> variables make it clear that the value will not
+                        change and can help to make the code more self-documenting.</p></li>
+                    <li>Memory optimization: <code>const</code> variables are stored in memory as part of the metadata
+                        and their values are directly used in the memory, which is more memory efficient than storing
+                        the values in heap memory.
+                    </li>
+                    <li><p>Can be accessed directly from the class name: You don't need to create an object to access
+                        the <code>const</code> variables, which is convenient and neat.</p></li>
+                </ol>
+                <p>It's important to note that <code>const</code> variables can only be of a primitive type such as an
+                    integer, a string or a char and must be initialized when they are declared and cannot be reassigned.
+                </p>
+                <p><em>In cases where the value can't be determined at compile-time, it's better to use <code>static
+                    readonly</code>.</em></p><h4
+                    id="MaximizingPerformanceandReadabilitywithconstVariablesinC#-constvariablesarestoredinmemoryaspartofthemetadata">
+                <code>const</code> variables are stored in memory as part of the metadata</h4>
+                <p>In C#, metadata refers to information about the types, members, and other elements in an assembly.
+                    This information is stored in the assembly's metadata table, which is a data structure that contains
+                    information about the types, methods, properties, and other elements that make up the assembly.</p>
+                <p>When a variable is declared as <code>const</code> its value is known at compile-time and it is
+                    embedded into the metadata table of the assembly. The compiler will replace the variable with its
+                    value throughout the code, so that the value is available at runtime without the need to look it up
+                    in memory.</p>
+                <p>This means that the value of a <code>const</code> variable is stored as part of the assembly's
+                    metadata, which is stored in memory, rather than in the heap memory. This is more memory-efficient
+                    than storing the value in heap memory. This also allows the constant to be accessed directly from
+                    the class name, without the need to create an object.</p>
+                <p>It's important to note that <code>const</code> variables are implicitly static and their values are
+                    shared among all instances of the class, and therefore only one copy is stored in memory.</p>
+                <p><br/></p>
+                <p>See <code><a data-linked-resource-id="553977433"
+                                data-linked-resource-type="page" data-linked-resource-version="18"
+                                href="Difference-between-const-and-static-readonly_553977433.html">Difference between const and static readonly</a></code>
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

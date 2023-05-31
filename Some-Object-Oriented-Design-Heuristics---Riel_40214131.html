@@ -1,84 +1,275 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Some Object-Oriented Design Heuristics - Riel</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Some Object-Oriented Design Heuristics - Riel</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Some Object-Oriented Design Heuristics - Riel
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Aug 17, 2021
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <ul>
+                    <li><span>Chapter 2. Classes and Objects: The Building Blocks of the Object-Oriented Paradigm</span>
+                        <ul>
+                            <li><span>Heuristic 2.1 All data should be hidden within its class.</span></li>
+                            <li><span>Heuristic 2.2 Users of a class must be dependent on its public interface, but a class should not be dependent on its users.</span>
+                            </li>
+                            <li><span>Heuristic 2.3 Minimize the number of messages in the protocol of a class.</span>
+                            </li>
+                            <li><span>Heuristic 2.4 Implement a minimal public interface that all classes understand [e.g., operations such as copy (deep versus shallow ), equality testing, pretty printing, parsing from an ASCII description, etc.].</span>
+                            </li>
+                            <li><span>Heuristic 2.5 Do not put implementation details such as common-code private functions into the public interface of a class.</span>
+                            </li>
+                            <li><span>Heuristic 2.6 Do not clutter the public interface of a class with things that users of that class are not able to use or are not interested in using.</span>
+                            </li>
+                            <li><span>Heuristic 2.8 A class should capture one and only one key abstraction.</span></li>
+                            <li><span>Heuristic 2.9 Keep related data and behavior in one place.</span></li>
+                            <li><span>Heuristic 2.10 Spin off non related information into another class (i.e., noncommunicating behavior).</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Chapter 3. Topologies of Action-Oriented (Procedural) Versus Object-Oriented Applications</span>
+                        <ul>
+                            <li><span>Heuristic 3.1 Distribute system intelligence horizontally as uniformly as possible, that is, the top-level classes in a design should share the work uniformly.</span>
+                            </li>
+                            <li><span>Heuristic 3.2 Do not create god classes/objects in your system. Be very suspicious of a class whose name contains Driver , Manager , System , or Subsystem.</span>
+                            </li>
+                            <li><span>Heuristic 3.3 Beware of classes that have many accessor methods defined in their public interface. Having many implies that related data and behavior are not being kept in one place.</span>
+                            </li>
+                            <li><span>Heuristic 3.4 Beware of classes that have too much noncommunicating behavior, that is, methods that operate on a proper subset of the data members of a class. God classes often exhibit a great deal of noncommunicating behavior.</span>
+                            </li>
+                            <li><span>Heuristic 3.5 In applications that consist of an object-oriented model interacting with a user interface, the model should never be dependent on the interface. The interface should be dependent on the model.</span>
+                            </li>
+                            <li><span>Heuristic 3.6 Model the real world whenever possible. (This heuristic is often violated for reasons of system intelligence distribution, avoidance of god classes, and the keeping of related data and behavior in one place.)</span>
+                            </li>
+                            <li><span>Heuristic 3.9 Do not turn an operation into a class. Be suspicious of any class whose name is a verb or is derived from a verb, especially those that have only one piece of meaningful behavior (i.e., do not count sets , gets , and prints ). Ask if that piece of meaningful behavior needs to be migrated to some existing or undiscovered class.</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span>Chapter 4. The Relationships Between Classes and Objects</span>
+                        <ul>
+                            <li><span>Heuristic 4.6 Most of the methods defined on a class should be using most of the data members most of the time.</span>
+                            </li>
+                            <li><span>Heuristic 4.7 Classes should not contain more objects than a developer can fit in his or her short- term memory. A favorite value for this number is six.</span>
+                            </li>
+                            <li><span>Heuristic 4.8 Distribute system intelligence vertically down narrow and deep containment hierarchies.</span>
+                            </li>
+                            <li><span>Heuristic 4.13 A class must know what it contains, but it should never know who contains it.</span>
+                            </li>
+                            <li><span>Heuristic 4.14 Objects that share lexical scope ”those contained in the same containing class ”should not have uses relationships between them.</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span>Chapter 5. The Inheritance Relationship</span>
+                        <ul>
+                            <li>
+                                <span>Heuristic 5.1 Inheritance should be used only to model a specialization hierarchy.</span>
+                            </li>
+                            <li><span>Heuristic 5.2 Derived classes must have knowledge of their base class by definition, but base classes should not know anything about their derived classes.</span>
+                            </li>
+                            <li><span>Heuristic 5.3 All data in a base class should be private; do not use protected data.</span>
+                            </li>
+                            <li><span>Heuristic 5.4 In theory, inheritance hierarchies should be deep ”the deeper, the better.</span>
+                            </li>
+                            <li><span>Heuristic 5.5 In practice, inheritance hierarchies should be no deeper than an average person can keep in his or her short- term memory. A popular value for this depth is six.</span>
+                            </li>
+                            <li><span>Heuristic 5.6 All abstract classes must be base classes.</span></li>
+                            <li><span>Heuristic 5.7 All base classes should be abstract classes.</span></li>
+                            <li><span>Heuristic 5.8 Factor the commonality of data, behavior, and/or interface as high as possible in the inheritance hierarchy.</span>
+                            </li>
+                            <li><span>Heuristic 5.9 If two or more classes share only common data (no common behavior), then that common data should be placed in a class that will be contained by each sharing class.</span>
+                            </li>
+                            <li><span>Heuristic 5.10 If two or more classes have common data and behavior (i.e., methods), then those classes should each inherit from a common base class that captures those data and methods.</span>
+                            </li>
+                            <li><span>Heuristic 5.11 If two or more classes share only a common interface (i.e., messages, not methods), then they should inherit from a common base class only if they will be used polymorphically.</span>
+                            </li>
+                            <li><span>Heuristic 5.12 Explicit case analysis on the type of an object is usually an error. The designer should use polymorphism in most of these cases.</span>
+                            </li>
+                            <li><span>Heuristic 5.13 Explicit case analysis on the value of an attribute is often an error. The class should be decomposed into an inheritance hierarchy, where each value of the attribute is transformed into a derived class.</span>
+                            </li>
+                            <li><span>Heuristic 5.15 Do not turn objects of a class into derived classes of the class. Be very suspicious of any derived class for which there is only one instance.</span>
+                                <ul>
+                                    <li><span><span
+                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40214131/40257623.png"
+                                            data-linked-resource-container-id="40214131"
+                                            data-linked-resource-container-version="2"
+                                            data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_11-10-26.png"
+                                            data-linked-resource-id="40257623" data-linked-resource-type="attachment"
+                                            data-linked-resource-version="1"
+                                            data-media-id="b4dc1035-af29-4123-9c99-a2c6b344ef88"
+                                            data-media-type="file"
+                                            data-unresolved-comment-count="0"
+                                            height="135"
+                                            loading="lazy" src="attachments/40214131/40257623.png?height=135"></span></span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span>Heuristic 5.16 If you think you need to create new classes at runtime, take a step back and realize that what you are trying to create are objects. Now generalize these objects into a class.</span>
+                            </li>
+                            <li><span>Heuristic 5.17 It should be illegal for a derived class to override a base class method with a NOP method, that is, a method that does nothing.</span>
+                            </li>
+                            <li><span>Heuristic 5.18 Do not confuse optional containment with the need for inheritance. Modeling optional containment with inheritance will lead to a proliferation of classes.</span>
+                                <ul>
+                                    <li><span><span
+                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40214131/40257570.png"
+                                            data-linked-resource-container-id="40214131"
+                                            data-linked-resource-container-version="2"
+                                            data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_11-11-39.png"
+                                            data-linked-resource-id="40257570" data-linked-resource-type="attachment"
+                                            data-linked-resource-version="1"
+                                            data-media-id="53911127-406d-41b4-8f1f-42f6ee1a421a"
+                                            data-media-type="file"
+                                            data-unresolved-comment-count="0"
+                                            height="400"
+                                            loading="lazy" src="attachments/40214131/40257570.png?height=400"></span></span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span>5.19 A Problem with No Optimal Solution</span>
+                                <ul>
+                                    <li><span>It is important to be sure that the problem actually exists before discussing the possible solutions. This problem often occurs due to naming problems of methods.</span>
+                                        <ul>
+                                            <li><span><span class="confluence-embedded-file-wrapper"><img
+                                                    class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                    data-image-src="attachments/40214131/40257561.png"
+                                                    data-linked-resource-container-id="40214131"
+                                                    data-linked-resource-container-version="2" data-linked-resource-content-type="image/png"
+                                                    data-linked-resource-default-alias="image2021-8-17_11-13-22.png"
+                                                    data-linked-resource-id="40257561"
+                                                    data-linked-resource-type="attachment"
+                                                    data-linked-resource-version="1"
+                                                    data-media-id="9f383d16-5b80-46c9-a550-ee71775e3792"
+                                                    data-media-type="file"
+                                                    data-unresolved-comment-count="0"
+                                                    loading="lazy"
+                                                    src="attachments/40214131/40257561.png"></span></span></li>
+                                        </ul>
+                                    </li>
+                                    <li><span>Assuming that the problem really exists, our options are limited.</span>
+                                        <ul>
+                                            <li><span>To many designers, the best solution is to define a core method on the fruit class which is defined as a NOP. This design choice is often called the &quot;fat interface&quot; solution.</span>
+                                            </li>
+                                            <li><span
+                                                    class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                                    class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki" data-image-src="attachments/40214131/40257555.png"
+                                                    data-linked-resource-container-id="40214131"
+                                                    data-linked-resource-container-version="2"
+                                                    data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_11-14-24.png"
+                                                    data-linked-resource-id="40257555"
+                                                    data-linked-resource-type="attachment"
+                                                    data-linked-resource-version="1"
+                                                    data-media-id="6b9ee9a9-e73c-4c1b-98ec-71cf8f537021"
+                                                    data-media-type="file"
+                                                    data-unresolved-comment-count="0"
+                                                    height="250"
+                                                    loading="lazy"
+                                                    src="attachments/40214131/40257555.png?height=250"></span></li>
+                                            <li><span>Another popular solution.</span>
+                                                <ul>
+                                                    <li><span><span
+                                                            class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img
+                                                            class="confluence-embedded-image" data-base-url="https://hyland.atlassian.net/wiki"
+                                                            data-image-src="attachments/40214131/40257576.png"
+                                                            data-linked-resource-container-id="40214131"
+                                                            data-linked-resource-container-version="2"
+                                                            data-linked-resource-content-type="image/png"
+                                                            data-linked-resource-default-alias="image2021-8-17_11-15-28.png"
+                                                            data-linked-resource-id="40257576"
+                                                            data-linked-resource-type="attachment"
+                                                            data-linked-resource-version="1"
+                                                            data-media-id="7fb5fb4b-4ac3-465a-99d6-aa5278657f6e"
+                                                            data-media-type="file"
+                                                            data-unresolved-comment-count="0"
+                                                            height="400"
+                                                            loading="lazy"
+                                                            src="attachments/40214131/40257576.png?height=400"></span></span></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span>Chapter 6. Multiple Inheritance</span>
+                        <ul>
+                            <li><span>Heuristic 6.1 If you have an example of multiple inheritance in your design, assume you have made a mistake and then prove otherwise.</span>
+                            </li>
+                            <li><span>Heuristic 6.3 Whenever you have found a multiple inheritance relationship in an object-oriented design, be sure that no base class is actually a derived class of another base class.</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Aug 17, 2021
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <ul><li><span>Chapter 2. Classes and Objects: The Building Blocks of the Object-Oriented Paradigm</span><ul><li><span>Heuristic 2.1 All data should be hidden within its class.</span></li><li><span>Heuristic 2.2 Users of a class must be dependent on its public interface, but a class should not be dependent on its users.</span></li><li><span>Heuristic 2.3 Minimize the number of messages in the protocol of a class.</span></li><li><span>Heuristic 2.4 Implement a minimal public interface that all classes understand [e.g., operations such as copy (deep versus shallow ), equality testing, pretty printing, parsing from an ASCII description, etc.].</span></li><li><span>Heuristic 2.5 Do not put implementation details such as common-code private functions into the public interface of a class.</span></li><li><span>Heuristic 2.6 Do not clutter the public interface of a class with things that users of that class are not able to use or are not interested in using.</span></li><li><span>Heuristic 2.8 A class should capture one and only one key abstraction.</span></li><li><span>Heuristic 2.9 Keep related data and behavior in one place.</span></li><li><span>Heuristic 2.10 Spin off non related information into another class (i.e., noncommunicating behavior).</span></li></ul></li><li><span>Chapter 3. Topologies of Action-Oriented (Procedural) Versus Object-Oriented Applications</span><ul><li><span>Heuristic 3.1 Distribute system intelligence horizontally as uniformly as possible, that is, the top-level classes in a design should share the work uniformly.</span></li><li><span>Heuristic 3.2 Do not create god classes/objects in your system. Be very suspicious of a class whose name contains Driver , Manager , System , or Subsystem.</span></li><li><span>Heuristic 3.3 Beware of classes that have many accessor methods defined in their public interface. Having many implies that related data and behavior are not being kept in one place.</span></li><li><span>Heuristic 3.4 Beware of classes that have too much noncommunicating behavior, that is, methods that operate on a proper subset of the data members of a class. God classes often exhibit a great deal of noncommunicating behavior.</span></li><li><span>Heuristic 3.5 In applications that consist of an object-oriented model interacting with a user interface, the model should never be dependent on the interface. The interface should be dependent on the model.</span></li><li><span>Heuristic 3.6 Model the real world whenever possible. (This heuristic is often violated for reasons of system intelligence distribution, avoidance of god classes, and the keeping of related data and behavior in one place.)</span></li><li><span>Heuristic 3.9 Do not turn an operation into a class. Be suspicious of any class whose name is a verb or is derived from a verb, especially those that have only one piece of meaningful behavior (i.e., do not count sets , gets , and prints ). Ask if that piece of meaningful behavior needs to be migrated to some existing or undiscovered class.</span></li></ul></li><li><span>Chapter 4. The Relationships Between Classes and Objects</span><ul><li><span>Heuristic 4.6 Most of the methods defined on a class should be using most of the data members most of the time.</span></li><li><span>Heuristic 4.7 Classes should not contain more objects than a developer can fit in his or her short- term memory. A favorite value for this number is six.</span></li><li><span>Heuristic 4.8 Distribute system intelligence vertically down narrow and deep containment hierarchies.</span></li><li><span>Heuristic 4.13 A class must know what it contains, but it should never know who contains it.</span></li><li><span>Heuristic 4.14 Objects that share lexical scope ”those contained in the same containing class ”should not have uses relationships between them.</span></li></ul></li><li><span>Chapter 5. The Inheritance Relationship</span><ul><li><span>Heuristic 5.1 Inheritance should be used only to model a specialization hierarchy.</span></li><li><span>Heuristic 5.2 Derived classes must have knowledge of their base class by definition, but base classes should not know anything about their derived classes.</span></li><li><span>Heuristic 5.3 All data in a base class should be private; do not use protected data.</span></li><li><span>Heuristic 5.4 In theory, inheritance hierarchies should be deep ”the deeper, the better.</span></li><li><span>Heuristic 5.5 In practice, inheritance hierarchies should be no deeper than an average person can keep in his or her short- term memory. A popular value for this depth is six.</span></li><li><span>Heuristic 5.6 All abstract classes must be base classes.</span></li><li><span>Heuristic 5.7 All base classes should be abstract classes.</span></li><li><span>Heuristic 5.8 Factor the commonality of data, behavior, and/or interface as high as possible in the inheritance hierarchy.</span></li><li><span>Heuristic 5.9 If two or more classes share only common data (no common behavior), then that common data should be placed in a class that will be contained by each sharing class.</span></li><li><span>Heuristic 5.10 If two or more classes have common data and behavior (i.e., methods), then those classes should each inherit from a common base class that captures those data and methods.</span></li><li><span>Heuristic 5.11 If two or more classes share only a common interface (i.e., messages, not methods), then they should inherit from a common base class only if they will be used polymorphically.</span></li><li><span>Heuristic 5.12 Explicit case analysis on the type of an object is usually an error. The designer should use polymorphism in most of these cases.</span></li><li><span>Heuristic 5.13 Explicit case analysis on the value of an attribute is often an error. The class should be decomposed into an inheritance hierarchy, where each value of the attribute is transformed into a derived class.</span></li><li><span>Heuristic 5.15 Do not turn objects of a class into derived classes of the class. Be very suspicious of any derived class for which there is only one instance.</span><ul><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="135" loading="lazy" src="attachments/40214131/40257623.png?height=135" data-image-src="attachments/40214131/40257623.png" data-unresolved-comment-count="0" data-linked-resource-id="40257623" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_11-10-26.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40214131" data-linked-resource-container-version="2" data-media-id="b4dc1035-af29-4123-9c99-a2c6b344ef88" data-media-type="file"></span></span></li></ul></li><li><span>Heuristic 5.16 If you think you need to create new classes at runtime, take a step back and realize that what you are trying to create are objects. Now generalize these objects into a class.</span></li><li><span>Heuristic 5.17 It should be illegal for a derived class to override a base class method with a NOP method, that is, a method that does nothing.</span></li><li><span>Heuristic 5.18 Do not confuse optional containment with the need for inheritance. Modeling optional containment with inheritance will lead to a proliferation of classes.</span><ul><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40214131/40257570.png?height=400" data-image-src="attachments/40214131/40257570.png" data-unresolved-comment-count="0" data-linked-resource-id="40257570" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_11-11-39.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40214131" data-linked-resource-container-version="2" data-media-id="53911127-406d-41b4-8f1f-42f6ee1a421a" data-media-type="file"></span></span></li></ul></li><li><span>5.19 A Problem with No Optimal Solution</span><ul><li><span>It is important to be sure that the problem actually exists before discussing the possible solutions. This problem often occurs due to naming problems of methods.</span><ul><li><span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40214131/40257561.png" data-image-src="attachments/40214131/40257561.png" data-unresolved-comment-count="0" data-linked-resource-id="40257561" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_11-13-22.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40214131" data-linked-resource-container-version="2" data-media-id="9f383d16-5b80-46c9-a550-ee71775e3792" data-media-type="file"></span></span></li></ul></li><li><span>Assuming that the problem really exists, our options are limited.</span><ul><li><span>To many designers, the best solution is to define a core method on the fruit class which is defined as a NOP. This design choice is often called the &quot;fat interface&quot; solution.</span></li><li><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40214131/40257555.png?height=250" data-image-src="attachments/40214131/40257555.png" data-unresolved-comment-count="0" data-linked-resource-id="40257555" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_11-14-24.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40214131" data-linked-resource-container-version="2" data-media-id="6b9ee9a9-e73c-4c1b-98ec-71cf8f537021" data-media-type="file"></span></li><li><span>Another popular solution.</span><ul><li><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40214131/40257576.png?height=400" data-image-src="attachments/40214131/40257576.png" data-unresolved-comment-count="0" data-linked-resource-id="40257576" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_11-15-28.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40214131" data-linked-resource-container-version="2" data-media-id="7fb5fb4b-4ac3-465a-99d6-aa5278657f6e" data-media-type="file"></span></span></li></ul></li></ul></li></ul></li></ul></li><li><span>Chapter 6. Multiple Inheritance</span><ul><li><span>Heuristic 6.1 If you have an example of multiple inheritance in your design, assume you have made a mistake and then prove otherwise.</span></li><li><span>Heuristic 6.3 Whenever you have found a multiple inheritance relationship in an object-oriented design, be sure that no base class is actually a derived class of another base class.</span></li></ul></li></ul>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40214131/40257617.png">image2021-8-17_11-9-32.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40214131/40257623.png">image2021-8-17_11-10-26.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40214131/40257570.png">image2021-8-17_11-11-39.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40214131/40257561.png">image2021-8-17_11-13-22.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40214131/40257555.png">image2021-8-17_11-14-24.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40214131/40257576.png">image2021-8-17_11-15-28.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40214131/40257617.png">image2021-8-17_11-9-32.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40214131/40257623.png">image2021-8-17_11-10-26.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40214131/40257570.png">image2021-8-17_11-11-39.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40214131/40257561.png">image2021-8-17_11-13-22.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40214131/40257555.png">image2021-8-17_11-14-24.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40214131/40257576.png">image2021-8-17_11-15-28.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

@@ -1,144 +1,549 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Imperative vs Functional (Declarative, Expressive) Style of Programming</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Imperative vs Functional (Declarative, Expressive) Style of Programming</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Imperative vs Functional (Declarative, Expressive) Style of Programming
                         </span>
-                    </h1>
+            </h1>
+        </div>
+
+        <div class="view" id="content">
+            <div class="page-metadata">
+
+
+                Created by <span class='author'> Damon German</span>, last modified on Jan 03, 2023
+            </div>
+            <div class="wiki-content group" id="main-content">
+                <p><span
+                        style="color: rgb(51,51,51);">Say we want to sum the elements of an </span><code>int</code><span
+                        style="color: rgb(51,51,51);"> array named _</span><code>values</code><span
+                        style="color: rgb(51,51,51);"> (the </span><em>data source</em><span
+                        style="color: rgb(51,51,51);">). You might use the following code:</span></p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="184"
+                    data-image-src="attachments/40211000/40258851.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-11-14_10-27-30.png"
+                    data-linked-resource-id="40258851" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="d837c034-1995-476b-8616-944265ebf63c"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="707" loading="lazy"
+                    src="attachments/40211000/40258851.png?width=374" width="374"></span>
+                <p><br/></p>
+                <p>This loop specifies precisely how to add each array element’s value to the sum—with a for iteration
+                    statement that processes each element one at a time, adding its value to the sum. This technique is
+                    known as <strong>external iteration</strong>—because you specify how to iterate, not the library—and
+                    requires you to access the elements sequentially from beginning to end in a single thread of
+                    execution. To perform the preceding task, you also create two variables (<code>sum</code> and <code>counter</code>)
+                    that are mutated repeatedly—their values change as the iteration is performed. (Detiel 868)</p>
+                <p>The problem with external iteration is that even in this simple loop, there are many opportunities
+                    for error. You could, for example, (Detiel 868)</p>
+                <ul>
+                    <li><p>initialize variable <code>sum</code> incorrectly,</p></li>
+                    <li><p>initialize control variable <code>counter</code> incorrectly,</p></li>
+                    <li><p>use the wrong loop-continuation condition,</p></li>
+                    <li><p>increment control variable <code>counter</code> incorrectly or</p></li>
+                    <li><p>incorrectly add each value in the array to the <code>sum</code>.</p></li>
+                </ul>
+                <h3 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-Infunctional(Declarative,Expressive)programming,youspecifywhatyouwanttoaccomplishinatask,butnothowtoaccomplishit.(Detiel868)">
+                    <strong>In functional (Declarative, Expressive) programming, you
+                        specify </strong><em><strong>what </strong></em><strong>you want to accomplish in a task,
+                    but not </strong><em><strong>how </strong></em><strong>to accomplish it. (Detiel 868)</strong></h3>
+                <div class="table-wrap">
+                    <table class="confluenceTable" data-layout="default"
+                           data-local-id="330fd6e8-4778-4bd9-805f-292b66300572">
+                        <colgroup>
+                            <col style="width: 849.0px;"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th class="confluenceTh"><p>Using LINQ</p></th>
+                        </tr>
+                        <tr>
+                            <td class="confluenceTd"><span
+                                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="46"
+                                    data-image-src="attachments/40211000/40258909.png"
+                                    data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-linked-resource-content-type="image/png"
+                                    data-linked-resource-default-alias="image2020-11-14_10-44-2.png" data-linked-resource-id="40258909"
+                                    data-linked-resource-type="attachment" data-linked-resource-version="1"
+                                    data-media-id="d7d6e6bc-84cc-47c8-b508-185dd449e429"
+                                    data-media-type="file"
+                                    data-unresolved-comment-count="0"
+                                    data-width="780"
+                                    loading="lazy"
+                                    src="attachments/40211000/40258909.png?width=408" width="408"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="confluenceTd"><span
+                                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="37"
+                                    data-image-src="attachments/40211000/40258915.png"
+                                    data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-linked-resource-content-type="image/png"
+                                    data-linked-resource-default-alias="image2020-11-14_10-37-22.png" data-linked-resource-id="40258915"
+                                    data-linked-resource-type="attachment" data-linked-resource-version="1"
+                                    data-media-id="b77d1e38-47df-4b3a-97bb-6b8409006786"
+                                    data-media-type="file"
+                                    data-unresolved-comment-count="0"
+                                    data-width="305"
+                                    loading="lazy"
+                                    src="attachments/40211000/40258915.png?width=149" width="149"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span style="color: rgb(51,51,51);">Using LINQ allows you to say, “Here’s a data source, give me the sum of its elements.” You do </span><em>not</em><span
+                        style="color: rgb(51,51,51);"> need to specify </span><em>how</em><span
+                        style="color: rgb(51,51,51);"> to iterate through the elements or declare and use </span><em>any</em><span
+                        style="color: rgb(51,51,51);"> mutable (that is, modifiable) variables. This is known as</span><span
+                        style="color: rgb(0,51,102);"> </span><strong><span style="color: rgb(0,51,102);">internal iteration</span></strong><span
+                        style="color: rgb(0,51,102);">,</span><span
+                        style="color: rgb(51,51,51);"> because the </span><em>library</em><span
+                        style="color: rgb(51,51,51);"> code (LINQ behind the scenes) iterates through all the elements to perform the task. (Detiel 868)</span>
+                </p>
+                <p>A key aspect of functional programming is <strong>immutability</strong>—not modifying the data source
+                    being processed or any other program state, such as counter-control variables in loops. By using
+                    internal iteration, you eliminate from your programs common errors that are caused by modifying data
+                    incorrectly. This makes it easier to write correct code. (Detiel 868)</p>
+                <p><br/></p>
+                <p><span style="color: rgb(51,51,51);">Lets say you want to sort the _values array;</span></p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="46"
+                    data-image-src="attachments/40211000/40258903.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-11-14_10-56-17.png"
+                    data-linked-resource-id="40258903" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="61fd2b14-689a-4b33-b9fa-74944421a7d4"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="256" loading="lazy"
+                    src="attachments/40211000/40258903.png?width=136" width="136"></span>
+                <p><span style="color: rgb(33,37,41);">The _values array is sorted in place which means that the original _values array is modified. Thus, Sort() is “destructive” in nature. If you wanted to keep _values from changeing you would need to copy it first. (TBD)</span>
+                </p>
+                <p><br/></p>
+                <p><span style="color: rgb(33,37,41);">LINQ supports functional-programming techniques, such as internal iteration and immutability. </span>
+                </p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="49"
+                    data-image-src="attachments/40211000/40258685.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-11-14_11-8-37.png"
+                    data-linked-resource-id="40258685" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="e07c503a-67d7-4dbb-a231-1cf4d4887073"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="598" loading="lazy"
+                    src="attachments/40211000/40258685.png?width=306" width="306"></span>
+                <p><code>_values</code> is unchanged.</p>
+                <p><br/></p>
+                <h3 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-Threecommonfunctional-programmingoperationsoncollectionsofdataarefilter,mapandreduce:">
+                    <span style="color: rgb(51,51,51);">Three common functional-programming operations on collections of data are </span><em>filter</em><span
+                        style="color: rgb(51,51,51);">, </span><em>map </em><span
+                        style="color: rgb(51,51,51);">and </span><em>reduce</em><span
+                        style="color: rgb(51,51,51);">:</span><br/></h3><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="675"
+                    data-image-src="attachments/40211000/40263240.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_13-1-44.png"
+                    data-linked-resource-id="40263240" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="1459dd34-55ae-4d7f-a415-012a02bde291"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="2833" loading="lazy"
+                    src="attachments/40211000/40263240.png?width=680" width="680"></span>
+                <p><br/></p>
+                <p>Other examples:</p>
+                <p>Suppose we wanted to convert <code>validationErrors</code> to <code>errorDictionary</code>:</p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="875"
+                    data-image-src="attachments/40211000/40256873.png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32"
+                    data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-11-16_16-33-20.png"
+                    data-linked-resource-id="40256873" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="852101fd-7c82-4c8e-a23d-6da90cb00ae9" data-media-type="file"
+                    data-unresolved-comment-count="0" data-width="752"
+                    loading="lazy" src="attachments/40211000/40256873.png"></span>
+                <p><br/></p>
+                <p><br/></p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="1274"
+                    data-image-src="attachments/40211000/40263211.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_13-2-30.png"
+                    data-linked-resource-id="40263211" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="e10d4f20-c35d-466b-9221-c317befe75c8"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="3206" loading="lazy"
+                    src="attachments/40211000/40263211.png?width=453" width="453"></span>
+                <p><br/></p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="590"
+                    data-image-src="attachments/40211000/40263191.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_13-3-58.png"
+                    data-linked-resource-id="40263191" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="2d001e03-8ca6-400b-9e61-715e64e4a0ec"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="3244" loading="lazy"
+                    src="attachments/40211000/40263191.png?width=680" width="680"></span>
+                <p><br/></p>
+                <h3 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-DeclaritivestyleandCyclomaticComplexity(CC)">
+                    Declaritive style and<a class="external-link"
+                                            href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" rel="nofollow"> Cyclomatic Complexity</a> (CC)</h3>
+                <p><br/></p>
+                <p>This method has a CC of 1 since it has no branching. But it uses the Linq<code> Where()</code> method
+                    which has a CC value of 7. Notice that by using Linq or a declarative style we reduced the CC by
+                    85%.</p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="88"
+                    data-image-src="attachments/40211000/40264870.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-2-22_8-43-3.png"
+                    data-linked-resource-id="40264870" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="029d514c-6ad4-4b97-8f16-7bed7f7d25c6"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="736" loading="lazy"
+                    src="attachments/40211000/40264870.png?width=380" width="380"></span>
+                <p>Implmentation of the <code>Where()</code> method.</p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="658"
+                    data-image-src="attachments/40211000/40264934.png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32"
+                    data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-2-22_8-51-30.png"
+                    data-linked-resource-id="40264934" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="64b27a84-18c2-44e7-8a71-c12bae869571" data-media-type="file"
+                    data-unresolved-comment-count="0" data-width="1155"
+                    loading="lazy" src="attachments/40211000/40264934.png"></span>
+                <p>also see <a class="external-link"
+                               href="https://stackoverflow.com/questions/47102263/cyclomatic-complexity-of-c-sharp-linq" rel="nofollow">https://stackoverflow.com/questions/47102263/cyclomatic-complexity-of-c-sharp-linq</a>
+                </p><h4 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-StaticMethods">Static
+                Methods</h4>
+                <p><span style="color: rgb(23,43,77);">The reason I always make a big deal out of being static is that when a method does not change instance fields, that’s a big deal. When a method is static, we don’t have to worry about it causing side effects and it increases thread safety. So this explicitly declares we’re not mucking with the instance fields. Also, that leaves the possibility of moving the method out to a better location and/ or making it into an extension method.</span>
+                </p>
+                <p><span
+                        style="color: rgb(51,51,51);">Say we want to sum the elements of an </span><code>int</code><span
+                        style="color: rgb(51,51,51);"> array named _</span><code>values</code><span
+                        style="color: rgb(51,51,51);"> (the </span><em>data source</em><span
+                        style="color: rgb(51,51,51);">). You might use the following code:</span></p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="184"
+                    data-image-src="attachments/40211000/40258851.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-11-14_10-27-30.png"
+                    data-linked-resource-id="40258851" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="d837c034-1995-476b-8616-944265ebf63c"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="707" loading="lazy"
+                    src="attachments/40211000/40258851.png?width=374" width="374"></span>
+                <p><br/></p>
+                <p>This loop specifies precisely how to add each array element’s value to the sum—with a for iteration
+                    statement that processes each element one at a time, adding its value to the sum. This technique is
+                    known as <strong>external iteration</strong>—because you specify how to iterate, not the library—and
+                    requires you to access the elements sequentially from beginning to end in a single thread of
+                    execution. To perform the preceding task, you also create two variables (<code>sum</code> and <code>counter</code>)
+                    that are mutated repeatedly—their values change as the iteration is performed. (Detiel 868)</p>
+                <p>The problem with external iteration is that even in this simple loop, there are many opportunities
+                    for error. You could, for example, (Detiel 868)</p>
+                <ul>
+                    <li><p>initialize variable <code>sum</code> incorrectly,</p></li>
+                    <li><p>initialize control variable <code>counter</code> incorrectly,</p></li>
+                    <li><p>use the wrong loop-continuation condition,</p></li>
+                    <li><p>increment control variable <code>counter</code> incorrectly or</p></li>
+                    <li><p>incorrectly add each value in the array to the <code>sum</code>.</p></li>
+                </ul>
+                <p><strong>In functional (Declarative, Expressive) programming, you
+                    specify </strong><em><strong>what </strong></em><strong>you want to accomplish in a task,
+                    but not </strong><em><strong>how </strong></em><strong>to accomplish it. (Detiel 868)</strong></p>
+                <div class="table-wrap">
+                    <table class="confluenceTable" data-layout="default"
+                           data-local-id="5b04e7bc-e4ed-4444-a5a2-d18eaa627ab1">
+                        <colgroup>
+                            <col style="width: 849.0px;"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th class="confluenceTh"><p>Using LINQ</p></th>
+                        </tr>
+                        <tr>
+                            <td class="confluenceTd"><span
+                                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="46"
+                                    data-image-src="attachments/40211000/40258909.png"
+                                    data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-linked-resource-content-type="image/png"
+                                    data-linked-resource-default-alias="image2020-11-14_10-44-2.png" data-linked-resource-id="40258909"
+                                    data-linked-resource-type="attachment" data-linked-resource-version="1"
+                                    data-media-id="d7d6e6bc-84cc-47c8-b508-185dd449e429"
+                                    data-media-type="file"
+                                    data-unresolved-comment-count="0"
+                                    data-width="780"
+                                    loading="lazy"
+                                    src="attachments/40211000/40258909.png?width=408" width="408"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="confluenceTd"><span
+                                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="37"
+                                    data-image-src="attachments/40211000/40258915.png"
+                                    data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-linked-resource-content-type="image/png"
+                                    data-linked-resource-default-alias="image2020-11-14_10-37-22.png" data-linked-resource-id="40258915"
+                                    data-linked-resource-type="attachment" data-linked-resource-version="1"
+                                    data-media-id="b77d1e38-47df-4b3a-97bb-6b8409006786"
+                                    data-media-type="file"
+                                    data-unresolved-comment-count="0"
+                                    data-width="305"
+                                    loading="lazy"
+                                    src="attachments/40211000/40258915.png?width=149" width="149"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span style="color: rgb(51,51,51);">Using LINQ allows you to say, “Here’s a data source, give me the sum of its elements.” You do </span><em>not</em><span
+                        style="color: rgb(51,51,51);"> need to specify </span><em>how</em><span
+                        style="color: rgb(51,51,51);"> to iterate through the elements or declare and use </span><em>any</em><span
+                        style="color: rgb(51,51,51);"> mutable (that is, modifiable) variables. This is known as</span><span
+                        style="color: rgb(0,51,102);"> </span><strong><span style="color: rgb(0,51,102);">internal iteration</span></strong><span
+                        style="color: rgb(0,51,102);">,</span><span
+                        style="color: rgb(51,51,51);"> because the </span><em>library</em><span
+                        style="color: rgb(51,51,51);"> code ( LINQ behind the scenes) iterates through all the elements to perform the task. (Detiel 868)</span>
+                </p>
+                <p>A key aspect of functional programming is <strong>immutability</strong>—not modifying the data source
+                    being processed or any other program state, such as counter-control variables in loops. By using
+                    internal iteration, you eliminate from your programs common errors that are caused by modifying data
+                    incorrectly. This makes it easier to write correct code. (Detiel 868)</p>
+                <p><br/></p>
+                <p><span style="color: rgb(51,51,51);">Lets say you want to sort the _values array;</span></p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="46"
+                    data-image-src="attachments/40211000/40258903.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-11-14_10-56-17.png"
+                    data-linked-resource-id="40258903" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="61fd2b14-689a-4b33-b9fa-74944421a7d4"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="256" loading="lazy"
+                    src="attachments/40211000/40258903.png?width=136" width="136"></span>
+                <p><span style="color: rgb(33,37,41);">The _values array is sorted in place which means that the original _values array is modified. Thus, Sort() is “destructive” in nature. If you wanted to keep _values from changeing you would need to copy it first. (TBD)</span>
+                </p>
+                <p><br/></p>
+                <p><span style="color: rgb(33,37,41);">LINQ supports functional-programming techniques, such as internal iteration and immutability. </span>
+                </p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="49"
+                    data-image-src="attachments/40211000/40258685.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-11-14_11-8-37.png"
+                    data-linked-resource-id="40258685" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="e07c503a-67d7-4dbb-a231-1cf4d4887073"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="598" loading="lazy"
+                    src="attachments/40211000/40258685.png?width=306" width="306"></span>
+                <p><code>_values</code> is unchanged.</p>
+                <p><br/></p>
+                <p><span style="color: rgb(51,51,51);">Three common functional-programming operations on collections of data are </span><em>filter</em><span
+                        style="color: rgb(51,51,51);">, </span><em>map </em><span
+                        style="color: rgb(51,51,51);">and </span><em>reduce</em><span
+                        style="color: rgb(51,51,51);">:</span></p>
+                <p><br/></p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="675"
+                    data-image-src="attachments/40211000/40263240.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_13-1-44.png"
+                    data-linked-resource-id="40263240" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="1459dd34-55ae-4d7f-a415-012a02bde291"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="2833" loading="lazy"
+                    src="attachments/40211000/40263240.png?width=680" width="680"></span>
+                <p><br/></p>
+                <p>Other examples:</p>
+                <p>Suppose we wanted to convert <code>validationErrors</code> to <code>errorDictionary</code>:</p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="875"
+                    data-image-src="attachments/40211000/40256873.png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32"
+                    data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2020-11-16_16-33-20.png"
+                    data-linked-resource-id="40256873" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="852101fd-7c82-4c8e-a23d-6da90cb00ae9" data-media-type="file"
+                    data-unresolved-comment-count="0" data-width="752"
+                    loading="lazy" src="attachments/40211000/40256873.png"></span>
+                <p><br/></p>
+                <p><br/></p><span class="confluence-embedded-file-wrapper image-left-wrapper"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="1274"
+                    data-image-src="attachments/40211000/40263211.png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32"
+                    data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_13-2-30.png"
+                    data-linked-resource-id="40263211" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="e10d4f20-c35d-466b-9221-c317befe75c8" data-media-type="file"
+                    data-unresolved-comment-count="0" data-width="3206"
+                    loading="lazy" src="attachments/40211000/40263211.png"></span>
+                <p><br/></p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="590"
+                    data-image-src="attachments/40211000/40263191.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-8-17_13-3-58.png"
+                    data-linked-resource-id="40263191" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="2d001e03-8ca6-400b-9e61-715e64e4a0ec"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="3244" loading="lazy"
+                    src="attachments/40211000/40263191.png?width=680" width="680"></span>
+                <p><br/></p>
+                <h3 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-DeclaritivestyleandCyclomaticComplexity(CC).1">
+                    Declaritive style and<a class="external-link"
+                                            href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" rel="nofollow"> Cyclomatic Complexity</a> (CC)</h3>
+                <p><br/></p>
+                <p>This method has a CC of 1 since it has no branching. But it uses the Linq<code> Where()</code> method
+                    which has a CC value of 7. Notice that by using Linq or a declarative style we reduced the CC by
+                    85%.</p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="88"
+                    data-image-src="attachments/40211000/40264870.png" data-linked-resource-container-id="40211000"
+                    data-linked-resource-container-version="32" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-2-22_8-43-3.png"
+                    data-linked-resource-id="40264870" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="029d514c-6ad4-4b97-8f16-7bed7f7d25c6"
+                    data-media-type="file" data-unresolved-comment-count="0"
+                    data-width="736" loading="lazy"
+                    src="attachments/40211000/40264870.png?width=380" width="380"></span>
+                <p>Implmentation of the <code>Where()</code> method.</p><span
+                    class="confluence-embedded-file-wrapper image-left-wrapper"><img
+                    class="confluence-embedded-image image-left" data-base-url="https://hyland.atlassian.net/wiki" data-height="658"
+                    data-image-src="attachments/40211000/40264934.png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32"
+                    data-linked-resource-content-type="image/png" data-linked-resource-default-alias="image2021-2-22_8-51-30.png"
+                    data-linked-resource-id="40264934" data-linked-resource-type="attachment"
+                    data-linked-resource-version="1"
+                    data-media-id="64b27a84-18c2-44e7-8a71-c12bae869571" data-media-type="file"
+                    data-unresolved-comment-count="0" data-width="1155"
+                    loading="lazy" src="attachments/40211000/40264934.png"></span>
+                <p>also see <a class="external-link"
+                               href="https://stackoverflow.com/questions/47102263/cyclomatic-complexity-of-c-sharp-linq" rel="nofollow">https://stackoverflow.com/questions/47102263/cyclomatic-complexity-of-c-sharp-linq</a>
+                </p><h4 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-StaticMethods.1">Static
+                Methods</h4>
+                <p><span style="color: rgb(23,43,77);">The reason I always make a big deal out of being static is that when a method does not change instance fields, that’s a big deal. When a method is static, we don’t have to worry about it causing side effects and it increases thread safety. So this explicitly declares we’re not mucking with the instance fields. Also, that leaves the possibility of moving the method out to a better location and/ or making it into an extension method.</span>
+                </p>
+            </div>
+
+            <div class="pageSection group">
+                <div class="pageSectionHeader">
+                    <h2 class="pageSectionTitle" id="attachments">Attachments:</h2>
                 </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Jan 03, 2023
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><span style="color: rgb(51,51,51);">Say we want to sum the elements of an </span><code>int</code><span style="color: rgb(51,51,51);"> array named _</span><code>values</code><span style="color: rgb(51,51,51);"> (the </span><em>data source</em><span style="color: rgb(51,51,51);">). You might use the following code:</span></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="374" loading="lazy" src="attachments/40211000/40258851.png?width=374" data-image-src="attachments/40211000/40258851.png" data-height="184" data-width="707" data-unresolved-comment-count="0" data-linked-resource-id="40258851" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_10-27-30.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="d837c034-1995-476b-8616-944265ebf63c" data-media-type="file"></span><p><br/></p><p>This loop specifies precisely how to add each array element’s value to the sum—with a for iteration statement that processes each element one at a time, adding its value to the sum. This technique is known as <strong>external iteration</strong>—because you specify how to iterate, not the library—and requires you to access the elements sequentially from beginning to end in a single thread of execution. To perform the preceding task, you also create two variables (<code>sum</code> and <code>counter</code>) that are mutated repeatedly—their values change as the iteration is performed. (Detiel 868)</p><p>The problem with external iteration is that even in this simple loop, there are many opportunities for error. You could, for example, (Detiel 868)</p><ul><li><p>initialize variable <code>sum</code> incorrectly,</p></li><li><p>initialize control variable <code>counter</code> incorrectly,</p></li><li><p>use the wrong loop-continuation condition,</p></li><li><p>increment control variable <code>counter</code> incorrectly or</p></li><li><p>incorrectly add each value in the array to the <code>sum</code>.</p></li></ul><h3 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-Infunctional(Declarative,Expressive)programming,youspecifywhatyouwanttoaccomplishinatask,butnothowtoaccomplishit.(Detiel868)"><strong>In functional (Declarative, Expressive) programming, you specify </strong><em><strong>what </strong></em><strong>you want to accomplish in a task, but not </strong><em><strong>how </strong></em><strong>to accomplish it. (Detiel 868)</strong></h3><div class="table-wrap"><table data-layout="default" data-local-id="330fd6e8-4778-4bd9-805f-292b66300572" class="confluenceTable"><colgroup><col style="width: 849.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p>Using LINQ</p></th></tr><tr><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="408" loading="lazy" src="attachments/40211000/40258909.png?width=408" data-image-src="attachments/40211000/40258909.png" data-height="46" data-width="780" data-unresolved-comment-count="0" data-linked-resource-id="40258909" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_10-44-2.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="d7d6e6bc-84cc-47c8-b508-185dd449e429" data-media-type="file"></span></td></tr><tr><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="149" loading="lazy" src="attachments/40211000/40258915.png?width=149" data-image-src="attachments/40211000/40258915.png" data-height="37" data-width="305" data-unresolved-comment-count="0" data-linked-resource-id="40258915" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_10-37-22.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="b77d1e38-47df-4b3a-97bb-6b8409006786" data-media-type="file"></span></td></tr></tbody></table></div><p><span style="color: rgb(51,51,51);">Using LINQ allows you to say, “Here’s a data source, give me the sum of its elements.” You do </span><em>not</em><span style="color: rgb(51,51,51);"> need to specify </span><em>how</em><span style="color: rgb(51,51,51);"> to iterate through the elements or declare and use </span><em>any</em><span style="color: rgb(51,51,51);"> mutable (that is, modifiable) variables. This is known as</span><span style="color: rgb(0,51,102);"> </span><strong><span style="color: rgb(0,51,102);">internal iteration</span></strong><span style="color: rgb(0,51,102);">,</span><span style="color: rgb(51,51,51);"> because the </span><em>library</em><span style="color: rgb(51,51,51);"> code (LINQ behind the scenes) iterates through all the elements to perform the task. (Detiel 868)</span></p><p>A key aspect of functional programming is <strong>immutability</strong>—not modifying the data source being processed or any other program state, such as counter-control variables in loops. By using internal iteration, you eliminate from your programs common errors that are caused by modifying data incorrectly. This makes it easier to write correct code. (Detiel 868)</p><p><br/></p><p><span style="color: rgb(51,51,51);">Lets say you want to sort the _values array;</span></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="136" loading="lazy" src="attachments/40211000/40258903.png?width=136" data-image-src="attachments/40211000/40258903.png" data-height="46" data-width="256" data-unresolved-comment-count="0" data-linked-resource-id="40258903" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_10-56-17.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="61fd2b14-689a-4b33-b9fa-74944421a7d4" data-media-type="file"></span><p><span style="color: rgb(33,37,41);">The _values array is sorted in place which means that the original _values array is modified. Thus, Sort() is “destructive” in nature. If you wanted to keep _values from changeing you would need to copy it first. (TBD)</span></p><p><br/></p><p><span style="color: rgb(33,37,41);">LINQ supports functional-programming techniques, such as internal iteration and immutability. </span></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="306" loading="lazy" src="attachments/40211000/40258685.png?width=306" data-image-src="attachments/40211000/40258685.png" data-height="49" data-width="598" data-unresolved-comment-count="0" data-linked-resource-id="40258685" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_11-8-37.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="e07c503a-67d7-4dbb-a231-1cf4d4887073" data-media-type="file"></span><p><code>_values</code> is unchanged.</p><p><br/></p><h3 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-Threecommonfunctional-programmingoperationsoncollectionsofdataarefilter,mapandreduce:"><span style="color: rgb(51,51,51);">Three common functional-programming operations on collections of data are </span><em>filter</em><span style="color: rgb(51,51,51);">, </span><em>map </em><span style="color: rgb(51,51,51);">and </span><em>reduce</em><span style="color: rgb(51,51,51);">:</span><br/></h3><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="680" loading="lazy" src="attachments/40211000/40263240.png?width=680" data-image-src="attachments/40211000/40263240.png" data-height="675" data-width="2833" data-unresolved-comment-count="0" data-linked-resource-id="40263240" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-1-44.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="1459dd34-55ae-4d7f-a415-012a02bde291" data-media-type="file"></span><p><br/></p><p>Other examples:</p><p>Suppose we wanted to convert <code>validationErrors</code> to <code>errorDictionary</code>:</p><span class="confluence-embedded-file-wrapper image-left-wrapper"><img class="confluence-embedded-image image-left" loading="lazy" src="attachments/40211000/40256873.png" data-image-src="attachments/40211000/40256873.png" data-height="875" data-width="752" data-unresolved-comment-count="0" data-linked-resource-id="40256873" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-16_16-33-20.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="852101fd-7c82-4c8e-a23d-6da90cb00ae9" data-media-type="file"></span><p><br/></p><p><br/></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="453" loading="lazy" src="attachments/40211000/40263211.png?width=453" data-image-src="attachments/40211000/40263211.png" data-height="1274" data-width="3206" data-unresolved-comment-count="0" data-linked-resource-id="40263211" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-2-30.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="e10d4f20-c35d-466b-9221-c317befe75c8" data-media-type="file"></span><p><br/></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="680" loading="lazy" src="attachments/40211000/40263191.png?width=680" data-image-src="attachments/40211000/40263191.png" data-height="590" data-width="3244" data-unresolved-comment-count="0" data-linked-resource-id="40263191" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-3-58.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="2d001e03-8ca6-400b-9e61-715e64e4a0ec" data-media-type="file"></span><p><br/></p><h3 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-DeclaritivestyleandCyclomaticComplexity(CC)">Declaritive style and<a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" class="external-link" rel="nofollow"> Cyclomatic Complexity</a> (CC)</h3><p><br/></p><p>This method has a CC of 1 since it has no branching. But it uses the Linq<code> Where()</code> method which has a CC value of 7. Notice that by using Linq or a declarative style we reduced the CC by 85%.</p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="380" loading="lazy" src="attachments/40211000/40264870.png?width=380" data-image-src="attachments/40211000/40264870.png" data-height="88" data-width="736" data-unresolved-comment-count="0" data-linked-resource-id="40264870" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-22_8-43-3.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="029d514c-6ad4-4b97-8f16-7bed7f7d25c6" data-media-type="file"></span><p>Implmentation of the <code>Where()</code> method.</p><span class="confluence-embedded-file-wrapper image-left-wrapper"><img class="confluence-embedded-image image-left" loading="lazy" src="attachments/40211000/40264934.png" data-image-src="attachments/40211000/40264934.png" data-height="658" data-width="1155" data-unresolved-comment-count="0" data-linked-resource-id="40264934" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-22_8-51-30.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="64b27a84-18c2-44e7-8a71-c12bae869571" data-media-type="file"></span><p>also see <a href="https://stackoverflow.com/questions/47102263/cyclomatic-complexity-of-c-sharp-linq" class="external-link" rel="nofollow">https://stackoverflow.com/questions/47102263/cyclomatic-complexity-of-c-sharp-linq</a></p><h4 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-StaticMethods">Static Methods</h4><p><span style="color: rgb(23,43,77);">The reason I always make a big deal out of being static is that when a method does not change instance fields, that’s a big deal. When a method is static, we don’t have to worry about it causing side effects and it increases thread safety. So this explicitly declares we’re not mucking with the instance fields. Also, that leaves the possibility of moving the method out to a better location and/ or making it into an extension method.</span></p><p><span style="color: rgb(51,51,51);">Say we want to sum the elements of an </span><code>int</code><span style="color: rgb(51,51,51);"> array named _</span><code>values</code><span style="color: rgb(51,51,51);"> (the </span><em>data source</em><span style="color: rgb(51,51,51);">). You might use the following code:</span></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="374" loading="lazy" src="attachments/40211000/40258851.png?width=374" data-image-src="attachments/40211000/40258851.png" data-height="184" data-width="707" data-unresolved-comment-count="0" data-linked-resource-id="40258851" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_10-27-30.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="d837c034-1995-476b-8616-944265ebf63c" data-media-type="file"></span><p><br/></p><p>This loop specifies precisely how to add each array element’s value to the sum—with a for iteration statement that processes each element one at a time, adding its value to the sum. This technique is known as <strong>external iteration</strong>—because you specify how to iterate, not the library—and requires you to access the elements sequentially from beginning to end in a single thread of execution. To perform the preceding task, you also create two variables (<code>sum</code> and <code>counter</code>) that are mutated repeatedly—their values change as the iteration is performed. (Detiel 868)</p><p>The problem with external iteration is that even in this simple loop, there are many opportunities for error. You could, for example, (Detiel 868)</p><ul><li><p>initialize variable <code>sum</code> incorrectly,</p></li><li><p>initialize control variable <code>counter</code> incorrectly,</p></li><li><p>use the wrong loop-continuation condition,</p></li><li><p>increment control variable <code>counter</code> incorrectly or</p></li><li><p>incorrectly add each value in the array to the <code>sum</code>.</p></li></ul><p><strong>In functional (Declarative, Expressive) programming, you specify </strong><em><strong>what </strong></em><strong>you want to accomplish in a task, but not </strong><em><strong>how </strong></em><strong>to accomplish it. (Detiel 868)</strong></p><div class="table-wrap"><table data-layout="default" data-local-id="5b04e7bc-e4ed-4444-a5a2-d18eaa627ab1" class="confluenceTable"><colgroup><col style="width: 849.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p>Using LINQ</p></th></tr><tr><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="408" loading="lazy" src="attachments/40211000/40258909.png?width=408" data-image-src="attachments/40211000/40258909.png" data-height="46" data-width="780" data-unresolved-comment-count="0" data-linked-resource-id="40258909" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_10-44-2.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="d7d6e6bc-84cc-47c8-b508-185dd449e429" data-media-type="file"></span></td></tr><tr><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="149" loading="lazy" src="attachments/40211000/40258915.png?width=149" data-image-src="attachments/40211000/40258915.png" data-height="37" data-width="305" data-unresolved-comment-count="0" data-linked-resource-id="40258915" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_10-37-22.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="b77d1e38-47df-4b3a-97bb-6b8409006786" data-media-type="file"></span></td></tr></tbody></table></div><p><span style="color: rgb(51,51,51);">Using LINQ allows you to say, “Here’s a data source, give me the sum of its elements.” You do </span><em>not</em><span style="color: rgb(51,51,51);"> need to specify </span><em>how</em><span style="color: rgb(51,51,51);"> to iterate through the elements or declare and use </span><em>any</em><span style="color: rgb(51,51,51);"> mutable (that is, modifiable) variables. This is known as</span><span style="color: rgb(0,51,102);"> </span><strong><span style="color: rgb(0,51,102);">internal iteration</span></strong><span style="color: rgb(0,51,102);">,</span><span style="color: rgb(51,51,51);"> because the </span><em>library</em><span style="color: rgb(51,51,51);"> code ( LINQ behind the scenes) iterates through all the elements to perform the task. (Detiel 868)</span></p><p>A key aspect of functional programming is <strong>immutability</strong>—not modifying the data source being processed or any other program state, such as counter-control variables in loops. By using internal iteration, you eliminate from your programs common errors that are caused by modifying data incorrectly. This makes it easier to write correct code. (Detiel 868)</p><p><br/></p><p><span style="color: rgb(51,51,51);">Lets say you want to sort the _values array;</span></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="136" loading="lazy" src="attachments/40211000/40258903.png?width=136" data-image-src="attachments/40211000/40258903.png" data-height="46" data-width="256" data-unresolved-comment-count="0" data-linked-resource-id="40258903" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_10-56-17.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="61fd2b14-689a-4b33-b9fa-74944421a7d4" data-media-type="file"></span><p><span style="color: rgb(33,37,41);">The _values array is sorted in place which means that the original _values array is modified. Thus, Sort() is “destructive” in nature. If you wanted to keep _values from changeing you would need to copy it first. (TBD)</span></p><p><br/></p><p><span style="color: rgb(33,37,41);">LINQ supports functional-programming techniques, such as internal iteration and immutability. </span></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="306" loading="lazy" src="attachments/40211000/40258685.png?width=306" data-image-src="attachments/40211000/40258685.png" data-height="49" data-width="598" data-unresolved-comment-count="0" data-linked-resource-id="40258685" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-14_11-8-37.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="e07c503a-67d7-4dbb-a231-1cf4d4887073" data-media-type="file"></span><p><code>_values</code> is unchanged.</p><p><br/></p><p><span style="color: rgb(51,51,51);">Three common functional-programming operations on collections of data are </span><em>filter</em><span style="color: rgb(51,51,51);">, </span><em>map </em><span style="color: rgb(51,51,51);">and </span><em>reduce</em><span style="color: rgb(51,51,51);">:</span></p><p><br/></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="680" loading="lazy" src="attachments/40211000/40263240.png?width=680" data-image-src="attachments/40211000/40263240.png" data-height="675" data-width="2833" data-unresolved-comment-count="0" data-linked-resource-id="40263240" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-1-44.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="1459dd34-55ae-4d7f-a415-012a02bde291" data-media-type="file"></span><p><br/></p><p>Other examples:</p><p>Suppose we wanted to convert <code>validationErrors</code> to <code>errorDictionary</code>:</p><span class="confluence-embedded-file-wrapper image-left-wrapper"><img class="confluence-embedded-image image-left" loading="lazy" src="attachments/40211000/40256873.png" data-image-src="attachments/40211000/40256873.png" data-height="875" data-width="752" data-unresolved-comment-count="0" data-linked-resource-id="40256873" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-11-16_16-33-20.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="852101fd-7c82-4c8e-a23d-6da90cb00ae9" data-media-type="file"></span><p><br/></p><p><br/></p><span class="confluence-embedded-file-wrapper image-left-wrapper"><img class="confluence-embedded-image image-left" loading="lazy" src="attachments/40211000/40263211.png" data-image-src="attachments/40211000/40263211.png" data-height="1274" data-width="3206" data-unresolved-comment-count="0" data-linked-resource-id="40263211" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-2-30.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="e10d4f20-c35d-466b-9221-c317befe75c8" data-media-type="file"></span><p><br/></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="680" loading="lazy" src="attachments/40211000/40263191.png?width=680" data-image-src="attachments/40211000/40263191.png" data-height="590" data-width="3244" data-unresolved-comment-count="0" data-linked-resource-id="40263191" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-3-58.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="2d001e03-8ca6-400b-9e61-715e64e4a0ec" data-media-type="file"></span><p><br/></p><h3 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-DeclaritivestyleandCyclomaticComplexity(CC).1">Declaritive style and<a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" class="external-link" rel="nofollow"> Cyclomatic Complexity</a> (CC)</h3><p><br/></p><p>This method has a CC of 1 since it has no branching. But it uses the Linq<code> Where()</code> method which has a CC value of 7. Notice that by using Linq or a declarative style we reduced the CC by 85%.</p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="380" loading="lazy" src="attachments/40211000/40264870.png?width=380" data-image-src="attachments/40211000/40264870.png" data-height="88" data-width="736" data-unresolved-comment-count="0" data-linked-resource-id="40264870" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-22_8-43-3.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="029d514c-6ad4-4b97-8f16-7bed7f7d25c6" data-media-type="file"></span><p>Implmentation of the <code>Where()</code> method.</p><span class="confluence-embedded-file-wrapper image-left-wrapper"><img class="confluence-embedded-image image-left" loading="lazy" src="attachments/40211000/40264934.png" data-image-src="attachments/40211000/40264934.png" data-height="658" data-width="1155" data-unresolved-comment-count="0" data-linked-resource-id="40264934" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-22_8-51-30.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211000" data-linked-resource-container-version="32" data-media-id="64b27a84-18c2-44e7-8a71-c12bae869571" data-media-type="file"></span><p>also see <a href="https://stackoverflow.com/questions/47102263/cyclomatic-complexity-of-c-sharp-linq" class="external-link" rel="nofollow">https://stackoverflow.com/questions/47102263/cyclomatic-complexity-of-c-sharp-linq</a></p><h4 id="ImperativevsFunctional(Declarative,Expressive)StyleofProgramming-StaticMethods.1">Static Methods</h4><p><span style="color: rgb(23,43,77);">The reason I always make a big deal out of being static is that when a method does not change instance fields, that’s a big deal. When a method is static, we don’t have to worry about it causing side effects and it increases thread safety. So this explicitly declares we’re not mucking with the instance fields. Also, that leaves the possibility of moving the method out to a better location and/ or making it into an extension method.</span></p>
-                    </div>
-
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
-
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40265760.png">image2020-10-15_13-32-57.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40265754.png">image2020-10-15_13-38-43.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40248683.png">image2020-10-25_10-0-36.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40248778.png">image2020-10-25_10-2-22.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40248772.png">image2020-10-25_10-5-58.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40232163.png">image2020-10-29_8-1-2.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40232157.png">image2020-10-29_8-3-9.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40231870.png">image2020-10-29_10-35-1.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40231855.png">image2020-10-29_10-36-52.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40258851.png">image2020-11-14_10-27-30.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40258921.png">image2020-11-14_10-36-41.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40258915.png">image2020-11-14_10-37-22.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40258909.png">image2020-11-14_10-44-2.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40258903.png">image2020-11-14_10-56-17.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40258685.png">image2020-11-14_11-8-37.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40258675.png">image2020-11-14_11-51-0.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40258660.png">image2020-11-14_11-52-55.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40256891.png">image2020-11-16_16-19-51.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40256885.png">image2020-11-16_16-28-41.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40256873.png">image2020-11-16_16-33-20.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40264888.png">image2021-2-22_8-39-11.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40264870.png">image2021-2-22_8-43-3.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40264934.png">image2021-2-22_8-51-30.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40263240.png">image2021-8-17_13-1-44.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40263211.png">image2021-8-17_13-2-30.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/40211000/40263191.png">image2021-8-17_13-3-58.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+                <div align="left" class="greybox">
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40265760.png">image2020-10-15_13-32-57.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40265754.png">image2020-10-15_13-38-43.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40248683.png">image2020-10-25_10-0-36.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40248778.png">image2020-10-25_10-2-22.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40248772.png">image2020-10-25_10-5-58.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40232163.png">image2020-10-29_8-1-2.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40232157.png">image2020-10-29_8-3-9.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40231870.png">image2020-10-29_10-35-1.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40231855.png">image2020-10-29_10-36-52.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40258851.png">image2020-11-14_10-27-30.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40258921.png">image2020-11-14_10-36-41.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40258915.png">image2020-11-14_10-37-22.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40258909.png">image2020-11-14_10-44-2.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40258903.png">image2020-11-14_10-56-17.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40258685.png">image2020-11-14_11-8-37.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40258675.png">image2020-11-14_11-51-0.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40258660.png">image2020-11-14_11-52-55.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40256891.png">image2020-11-16_16-19-51.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40256885.png">image2020-11-16_16-28-41.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40256873.png">image2020-11-16_16-33-20.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40264888.png">image2021-2-22_8-39-11.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40264870.png">image2021-2-22_8-43-3.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40264934.png">image2021-2-22_8-51-30.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40263240.png">image2021-8-17_13-1-44.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40263211.png">image2021-8-17_13-2-30.png</a> (image/png)
+                    <br/>
+                    <img alt="" height="8" src="images/icons/bullet_blue.gif" width="8"/>
+                    <a href="attachments/40211000/40263191.png">image2021-8-17_13-3-58.png</a> (image/png)
+                    <br/>
+                </div>
             </div>
-        </div>     </body>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

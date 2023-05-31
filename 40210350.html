@@ -1,58 +1,253 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Explicit case analysis (switch/if-else statement)</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Explicit case analysis (switch/if-else statement)</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="40209042.html">Code Smells / Anti-Patterns</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                    </li>
+                    <li>
+                        <span><a href="40209042.html">Code Smells / Anti-Patterns</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Explicit case analysis (switch/if-else statement)
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Apr 18, 2021
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p class="c18 c24" style="text-align: left;"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">What’s wrong with switch statements? It depends.</span></p><p class="c12" style="text-align: left;"><br/></p><ol class="c1 lst-kix_qbb2bvkeycdn-0 start"><li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Explicit case analysis (switch/if-else statement)</span><ol><li class="c5"><span class="c0">Explicit case analysis on the</span><span class="c0"> type of an object</span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;"> is usually an error. (Riel 98)</span></li><li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Explicit case analysis on the value of an attribute is often an error. (Riel 105)</span></li><li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">The problem with switch statements is essentially that of duplication. Often you find the same switch statement scattered about a program in different places. (see tight coupling below) If you add a new clause to the switch, you have to find all these switch statements and change them. Most times you see a switch statement you should consider polymorphism. (Fowler 82)</span></li><li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Often a switch indicates the presence of misplaced responsibilities. Consider instead giving the responsibility to other objects. (Shalloway 195)</span></li><li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Examples:</span></li></ol></li></ol><p class="c4" style="text-align: left;"><span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image confluence-external-resource" src="https://docs.google.com/drawings/d/slWsnULuJ_xoXw-Dw07Rbdg/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=81&amp;h=497&amp;w=635&amp;ac=1" data-image-src="https://docs.google.com/drawings/d/slWsnULuJ_xoXw-Dw07Rbdg/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=81&amp;h=497&amp;w=635&amp;ac=1" loading="lazy"></span></span></p><p class="c4" style="text-align: left;"><span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image confluence-external-resource" src="https://docs.google.com/drawings/d/sw5u3hUDZZJWp8YacGYvHQw/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=95&amp;h=529&amp;w=625&amp;ac=1" data-image-src="https://docs.google.com/drawings/d/sw5u3hUDZZJWp8YacGYvHQw/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=95&amp;h=529&amp;w=625&amp;ac=1" loading="lazy"></span></span></p><p class="c14 c26" style="text-align: left;"><br/></p><ul><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">What's wrong with explicit case analysis?</span><ul><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">If you have a switch statement and wonder if you should use polymorphism instead, ask yourself three simple questions.</span><ul><li>Does it cause a lot of tight <a href="Coupling_40212681.html" data-linked-resource-id="40212681" data-linked-resource-version="7" data-linked-resource-type="page">coupling</a>?</li><li>Does it violate the <a href="40210191.html" data-linked-resource-id="40210191" data-linked-resource-version="6" data-linked-resource-type="page">Open-Closed Principle<span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;"> (OCP)</span></a><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">?</span></li><li>Does it violate the <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">Single Responsibility Principle</a> <span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">(SRP)?</span></li></ul></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">If you answer yes to any of these, then consider using polymorphism.</span></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Explanation:</span><ul><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Causes Tight coupling</span><ul><li><span class="c0">If I add another<span> </span></span><span class="c10">Shape</span><span class="c0">, I would have to change the code in multiple places that are<span> </span></span><span class="c21">otherwise not related</span><span class="c0">. For example,<span> </span></span><span class="c10">fill()</span><span class="c0"> is unrelated to<span> </span></span><span class="c10">rotate(),<span> </span></span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">but I would have to modify both places.</span></li></ul></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Violates the Open-Closed Principle (OCP)</span><ul><li><span class="c0">Any time I add another<span> </span></span><span class="c10">Shape,<span> </span></span><span class="c0">I will need to edit<span> </span></span><span class="c10">DisplayArea()</span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">.</span></li><li><span class="c0">In other words, anytime I<span> </span></span><span class="c0 c11">extend<span> </span></span><span class="c10">AbstractShape,</span><span class="c0"> I would have to<span> </span></span><span class="c0 c11">open<span> </span></span><span class="c10">DisplayArea()</span><span class="c0"> for<span> </span></span><span class="c0 c11">modification</span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">. This is the opposite of the OCP.</span></li></ul></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Violates the Single Responsibility Principle (SRP)</span><ul><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">This is true if operations for the switch statement involves adding a significant amount of misplaced responsibility. Note this question applies even if you only have one switch statement.</span></li></ul></li></ul></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">What about this switch statement?</span></li></ul></li><li class="c4" style="text-align: left;"><span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image confluence-external-resource" src="https://docs.google.com/drawings/d/smCoVTU3YZEOWD9OjOxg3HQ/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=8&amp;h=500&amp;w=625&amp;ac=1" data-image-src="https://docs.google.com/drawings/d/smCoVTU3YZEOWD9OjOxg3HQ/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=8&amp;h=500&amp;w=625&amp;ac=1" loading="lazy"></span></span></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Let's look at each question.</span><ul><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Does it cause a lot of tight coupling?</span><ul><li><span class="c0">For now, this is the only place I’m switching on the<span> </span></span><span class="c10">LogLevel,</span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;"> and I don't anticipate doing it anywhere else.</span></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">So this takes care of tight coupling.</span><ul><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">If I find that later I need to add other switches, then I should consider polymorphism.</span></li></ul></li></ul></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Does it violate the Open-Closed Principle?</span><ul><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">We don't expect the logging levels to change much since they are standard across the industry.</span></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">This makes violating the OCP irrelevant, and so there is no need to consider polymorphism.</span></li><li><span class="c0">To see why let’s discuss what would happen if we were to apply the refactoring -<span> </span></span><span class="c0 c11">Replace Conditional with Polymorphism</span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;"> (Fowler 255).</span><ul><li><span class="c0">If we do this, the resulting code becomes OCP compliant. The OCP is a textbook example of a more general design principle:<span> </span></span><span class="c0 c11"><a href="40218230.html" data-linked-resource-id="40218230" data-linked-resource-version="5" data-linked-resource-type="page">Program to an interface</a></span><span class="c0 c11">, not an implementation</span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">. (GOF 18). The relevant question then becomes: why is programming to an interface desirable?</span><ul><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">One reason is that interfaces are less volatile compared to concrete implementations. You can use them with less fear of breaking changes.</span></li></ul></li></ul></li><li><span class="c0">The bottom line is this: If polymorphism is not much more stable than using a switch statement, then polymorphism may be <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">overkill</a></span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">. (Fowler 82)</span><ul><li><span class="c0">For<span> </span></span><span class="c10">AbstractShape</span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">, the number of possible derivations is endless; in contrast, the number of logging levels is relatively few.</span></li></ul></li></ul></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Does it violate the Single Responsibility Principle?</span></li><li><span class="c0">No, because I followed Shalloway’s advice and gave the responsibility of performing the<span> </span></span><span class="c10">error<span> </span></span><span class="c0">action to the<span> </span></span><span class="c10">ErrorReportingService.</span><ul><li style="list-style-type: none;"><ul><li><span class="c0">The purpose of the switch statement is to<span> </span></span><span class="c21">perform different actions</span><span class="c0"> based on the<span> </span></span><span class="c21">possible values</span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;"> of the switch expression. (Deitel 205)</span></li><li><span class="c0">Notice that questions 1 and 2 relate to the “</span><span class="c0">possible values”<span> </span></span><span class="c0">and question 3 is related to the “</span><span class="c0">different actions”</span><span class="c0 c7" style="color: rgb(0,0,0);text-decoration: none;">.  </span></li><li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Obviously, the actions can range from simple to complex. Too many different complex actions may indicate too many different responsibilities for one class to have, which would violate the SRP.</span></li></ul></li></ul></li></ul></li><li><span class="c0">In conclusion, I said that the three questions were<span> </span></span><span class="c21">simple,<span> </span></span><span class="c0">but I never said the answers were</span><span class="c0">. Software design is<span> </span></span><span class="c21">sloppy<span> </span></span><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">because a good solution is often only subtly different from a poor one, and because it's hard to know when your design is &quot;good enough.&quot; (McConnell 75)</span></li><li class="c18" style="text-align: left;"><span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image confluence-external-resource" src="https://docs.google.com/drawings/d/s89QOzFhfpLF4w-o-_qBjcg/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=120&amp;h=576&amp;w=637&amp;ac=1" data-image-src="https://docs.google.com/drawings/d/s89QOzFhfpLF4w-o-_qBjcg/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=120&amp;h=576&amp;w=637&amp;ac=1" loading="lazy"></span></span></li></ul><p class="c19" style="text-align: left;"><br/></p>
-                    </div>
+        <div class="view" id="content">
+            <div class="page-metadata">
 
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+
+                Created by <span class='author'> Damon German</span>, last modified on Apr 18, 2021
             </div>
-        </div>     </body>
+            <div class="wiki-content group" id="main-content">
+                <p class="c18 c24" style="text-align: left;"><span class="c7 c0"
+                                                                   style="color: rgb(0,0,0);text-decoration: none;">What’s wrong with switch statements? It depends.</span>
+                </p>
+                <p class="c12" style="text-align: left;"><br/></p>
+                <ol class="c1 lst-kix_qbb2bvkeycdn-0 start">
+                    <li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Explicit case analysis (switch/if-else statement)</span>
+                        <ol>
+                            <li class="c5"><span class="c0">Explicit case analysis on the</span><span class="c0"> type of an object</span><span
+                                    class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;"> is usually an error. (Riel 98)</span>
+                            </li>
+                            <li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Explicit case analysis on the value of an attribute is often an error. (Riel 105)</span>
+                            </li>
+                            <li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">The problem with switch statements is essentially that of duplication. Often you find the same switch statement scattered about a program in different places. (see tight coupling below) If you add a new clause to the switch, you have to find all these switch statements and change them. Most times you see a switch statement you should consider polymorphism. (Fowler 82)</span>
+                            </li>
+                            <li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Often a switch indicates the presence of misplaced responsibilities. Consider instead giving the responsibility to other objects. (Shalloway 195)</span>
+                            </li>
+                            <li class="c5"><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Examples:</span>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+                <p class="c4" style="text-align: left;"><span><span class="confluence-embedded-file-wrapper"><img
+                        class="confluence-embedded-image confluence-external-resource"
+                        data-image-src="https://docs.google.com/drawings/d/slWsnULuJ_xoXw-Dw07Rbdg/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=81&amp;h=497&amp;w=635&amp;ac=1"
+                        loading="lazy"
+                        src="https://docs.google.com/drawings/d/slWsnULuJ_xoXw-Dw07Rbdg/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=81&amp;h=497&amp;w=635&amp;ac=1"></span></span></p>
+                <p class="c4" style="text-align: left;"><span><span class="confluence-embedded-file-wrapper"><img
+                        class="confluence-embedded-image confluence-external-resource"
+                        data-image-src="https://docs.google.com/drawings/d/sw5u3hUDZZJWp8YacGYvHQw/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=95&amp;h=529&amp;w=625&amp;ac=1"
+                        loading="lazy"
+                        src="https://docs.google.com/drawings/d/sw5u3hUDZZJWp8YacGYvHQw/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=95&amp;h=529&amp;w=625&amp;ac=1"></span></span></p>
+                <p class="c14 c26" style="text-align: left;"><br/></p>
+                <ul>
+                    <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">What's wrong with explicit case analysis?</span>
+                        <ul>
+                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">If you have a switch statement and wonder if you should use polymorphism instead, ask yourself three simple questions.</span>
+                                <ul>
+                                    <li>Does it cause a lot of tight <a data-linked-resource-id="40212681"
+                                                                        data-linked-resource-type="page"
+                                                                        data-linked-resource-version="7"
+                                                                        href="Coupling_40212681.html">coupling</a>?
+                                    </li>
+                                    <li>Does it violate the <a data-linked-resource-id="40210191" data-linked-resource-type="page"
+                                                               data-linked-resource-version="6"
+                                                               href="40210191.html">Open-Closed
+                                        Principle<span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;"> (OCP)</span></a><span
+                                            class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">?</span></li>
+                                    <li>Does it violate the <a data-linked-resource-id="40210166" data-linked-resource-type="page"
+                                                               data-linked-resource-version="9"
+                                                               href="40210166.html">Single Responsibility
+                                        Principle</a> <span class="c7 c0"
+                                                            style="color: rgb(0,0,0);text-decoration: none;">(SRP)?</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">If you answer yes to any of these, then consider using polymorphism.</span>
+                            </li>
+                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Explanation:</span>
+                                <ul>
+                                    <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Causes Tight coupling</span>
+                                        <ul>
+                                            <li><span class="c0">If I add another<span> </span></span><span class="c10">Shape</span><span
+                                                    class="c0">, I would have to change the code in multiple places that are<span> </span></span><span
+                                                    class="c21">otherwise not related</span><span class="c0">. For example,<span> </span></span><span
+                                                    class="c10">fill()</span><span
+                                                    class="c0"> is unrelated to<span> </span></span><span class="c10">rotate(),<span> </span></span><span
+                                                    class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">but I would have to modify both places.</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Violates the Open-Closed Principle (OCP)</span>
+                                        <ul>
+                                            <li><span class="c0">Any time I add another<span> </span></span><span
+                                                    class="c10">Shape,<span> </span></span><span class="c0">I will need to edit<span> </span></span><span
+                                                    class="c10">DisplayArea()</span><span class="c7 c0"
+                                                                                          style="color: rgb(0,0,0);text-decoration: none;">.</span>
+                                            </li>
+                                            <li><span class="c0">In other words, anytime I<span> </span></span><span
+                                                    class="c0 c11">extend<span> </span></span><span class="c10">AbstractShape,</span><span
+                                                    class="c0"> I would have to<span> </span></span><span
+                                                    class="c0 c11">open<span> </span></span><span class="c10">DisplayArea()</span><span
+                                                    class="c0"> for<span> </span></span><span class="c0 c11">modification</span><span
+                                                    class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">. This is the opposite of the OCP.</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Violates the Single Responsibility Principle (SRP)</span>
+                                        <ul>
+                                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">This is true if operations for the switch statement involves adding a significant amount of misplaced responsibility. Note this question applies even if you only have one switch statement.</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">What about this switch statement?</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="c4" style="text-align: left;"><span><span class="confluence-embedded-file-wrapper"><img
+                            class="confluence-embedded-image confluence-external-resource"
+                            data-image-src="https://docs.google.com/drawings/d/smCoVTU3YZEOWD9OjOxg3HQ/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=8&amp;h=500&amp;w=625&amp;ac=1"
+                            loading="lazy"
+                            src="https://docs.google.com/drawings/d/smCoVTU3YZEOWD9OjOxg3HQ/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=8&amp;h=500&amp;w=625&amp;ac=1"></span></span></li>
+                    <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Let's look at each question.</span>
+                        <ul>
+                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Does it cause a lot of tight coupling?</span>
+                                <ul>
+                                    <li><span
+                                            class="c0">For now, this is the only place I’m switching on the<span> </span></span><span
+                                            class="c10">LogLevel,</span><span class="c7 c0"
+                                                                              style="color: rgb(0,0,0);text-decoration: none;"> and I don't anticipate doing it anywhere else.</span>
+                                    </li>
+                                    <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">So this takes care of tight coupling.</span>
+                                        <ul>
+                                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">If I find that later I need to add other switches, then I should consider polymorphism.</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Does it violate the Open-Closed Principle?</span>
+                                <ul>
+                                    <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">We don't expect the logging levels to change much since they are standard across the industry.</span>
+                                    </li>
+                                    <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">This makes violating the OCP irrelevant, and so there is no need to consider polymorphism.</span>
+                                    </li>
+                                    <li><span class="c0">To see why let’s discuss what would happen if we were to apply the refactoring -<span> </span></span><span
+                                            class="c0 c11">Replace Conditional with Polymorphism</span><span
+                                            class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;"> (Fowler 255).</span>
+                                        <ul>
+                                            <li><span class="c0">If we do this, the resulting code becomes OCP compliant. The OCP is a textbook example of a more general design principle:<span> </span></span><span
+                                                    class="c0 c11"><a data-linked-resource-id="40218230"
+                                                                      data-linked-resource-type="page"
+                                                                      data-linked-resource-version="5"
+                                                                      href="40218230.html">Program to an interface</a></span><span
+                                                    class="c0 c11">, not an implementation</span><span class="c7 c0"
+                                                                                                       style="color: rgb(0,0,0);text-decoration: none;">. (GOF 18). The relevant question then becomes: why is programming to an interface desirable?</span>
+                                                <ul>
+                                                    <li><span class="c7 c0"
+                                                              style="color: rgb(0,0,0);text-decoration: none;">One reason is that interfaces are less volatile compared to concrete implementations. You can use them with less fear of breaking changes.</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><span class="c0">The bottom line is this: If polymorphism is not much more stable than using a switch statement, then polymorphism may be <a
+                                            data-linked-resource-id="40212174"
+                                            data-linked-resource-type="page" data-linked-resource-version="9"
+                                            href="Stable-vs-Volatile-Dependences_40212174.html">overkill</a></span><span class="c7 c0"
+                                                                                                      style="color: rgb(0,0,0);text-decoration: none;">. (Fowler 82)</span>
+                                        <ul>
+                                            <li><span class="c0">For<span> </span></span><span
+                                                    class="c10">AbstractShape</span><span class="c7 c0"
+                                                                                          style="color: rgb(0,0,0);text-decoration: none;">, the number of possible derivations is endless; in contrast, the number of logging levels is relatively few.</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Does it violate the Single Responsibility Principle?</span>
+                            </li>
+                            <li><span class="c0">No, because I followed Shalloway’s advice and gave the responsibility of performing the<span> </span></span><span
+                                    class="c10">error<span> </span></span><span
+                                    class="c0">action to the<span> </span></span><span class="c10">ErrorReportingService.</span>
+                                <ul>
+                                    <li style="list-style-type: none;">
+                                        <ul>
+                                            <li><span class="c0">The purpose of the switch statement is to<span> </span></span><span
+                                                    class="c21">perform different actions</span><span class="c0"> based on the<span> </span></span><span
+                                                    class="c21">possible values</span><span class="c7 c0"
+                                                                                            style="color: rgb(0,0,0);text-decoration: none;"> of the switch expression. (Deitel 205)</span>
+                                            </li>
+                                            <li><span
+                                                    class="c0">Notice that questions 1 and 2 relate to the “</span><span
+                                                    class="c0">possible values”<span> </span></span><span class="c0">and question 3 is related to the “</span><span
+                                                    class="c0">different actions”</span><span class="c0 c7"
+                                                                                              style="color: rgb(0,0,0);text-decoration: none;">.  </span>
+                                            </li>
+                                            <li><span class="c7 c0" style="color: rgb(0,0,0);text-decoration: none;">Obviously, the actions can range from simple to complex. Too many different complex actions may indicate too many different responsibilities for one class to have, which would violate the SRP.</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><span class="c0">In conclusion, I said that the three questions were<span> </span></span><span
+                            class="c21">simple,<span> </span></span><span
+                            class="c0">but I never said the answers were</span><span
+                            class="c0">. Software design is<span> </span></span><span
+                            class="c21">sloppy<span> </span></span><span class="c7 c0"
+                                                                         style="color: rgb(0,0,0);text-decoration: none;">because a good solution is often only subtly different from a poor one, and because it's hard to know when your design is &quot;good enough.&quot; (McConnell 75)</span>
+                    </li>
+                    <li class="c18" style="text-align: left;"><span><span class="confluence-embedded-file-wrapper"><img
+                            class="confluence-embedded-image confluence-external-resource"
+                            data-image-src="https://docs.google.com/drawings/d/s89QOzFhfpLF4w-o-_qBjcg/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=120&amp;h=576&amp;w=637&amp;ac=1"
+                            loading="lazy"
+                            src="https://docs.google.com/drawings/d/s89QOzFhfpLF4w-o-_qBjcg/image?parent=e/2PACX-1vR6QZ7mt32GiZM0ab4ZkjZMz5AOGjaGhUMRhqx4JPXuA3i3C6kbvQpFtQBbhw5OF6wLHswFOo0mHa76&amp;rev=120&amp;h=576&amp;w=637&amp;ac=1"></span></span></li>
+                </ul>
+                <p class="c19" style="text-align: left;"><br/></p>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:24</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>

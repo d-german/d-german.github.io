@@ -1,69 +1,379 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hyland Clinician Window : Code Quality/Design Articles</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+    <title>Hyland Clinician Window : Code Quality/Design Articles</title>
+    <link href="styles/site.css" rel="stylesheet" type="text/css"/>
+    <META content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">Hyland Clinician Window</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
+<body class="theme-default aui-theme-default">
+<div id="page">
+    <div class="aui-page-panel" id="main">
+        <div id="main-header">
+            <div id="breadcrumb-section">
+                <ol id="breadcrumbs">
+                    <li class="first">
+                        <span><a href="index.html">Hyland Clinician Window</a></span>
+                    </li>
+                </ol>
+            </div>
+            <h1 class="pagetitle" id="title-heading">
                                                 <span id="title-text">
                             Hyland Clinician Window : Code Quality/Design Articles
                         </span>
-                    </h1>
-                </div>
+            </h1>
+        </div>
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Damon German</span>, last modified on Aug 06, 2021
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211462/Motivation+for+Good+Design" data-linked-resource-id="40211462" data-linked-resource-version="3" data-linked-resource-type="page">Motivation for Good Design</a></h3>
-<h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214223/Object+Oriented+Programming" data-linked-resource-id="40214223" data-linked-resource-version="2" data-linked-resource-type="page">Object Oriented Programming</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214306" data-linked-resource-id="40214306" data-linked-resource-version="2" data-linked-resource-type="page">Pillars of OOP - Encapsulation/Abstraction</a><ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40208964/Minimize+accessibility+of+classes+and+members" data-linked-resource-id="40208964" data-linked-resource-version="2" data-linked-resource-type="page">Minimize accessibility of classes and members</a></li></ul></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209006/Pillars+of+OOP+-+Inheritance" data-linked-resource-id="40209006" data-linked-resource-version="5" data-linked-resource-type="page">Pillars of OOP - Inheritance</a><ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209587" data-linked-resource-id="40209587" data-linked-resource-version="2" data-linked-resource-type="page">Two main types of inheritance: Implementation and Interface.</a></li></ul></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209056/Pillars+of+OOP+-+Polymorphism" data-linked-resource-id="40209056" data-linked-resource-version="4" data-linked-resource-type="page">Pillars of OOP - Polymorphism</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/297799542/Pillars+of+OOP+-+Composition" data-linked-resource-id="297799542" data-linked-resource-version="2" data-linked-resource-type="page">Pillars of OOP - Composition</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210535/Abstract+Classes+vs+Interfaces" data-linked-resource-id="40210535" data-linked-resource-version="41" data-linked-resource-type="page">Abstract Classes vs Interfaces</a><ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/397248242" data-linked-resource-id="397248242" data-linked-resource-version="1" data-linked-resource-type="page">Why would you use an abstract class? Why would you use an interface?</a></li></ul></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210474/Relationship+between+Dependency+Inversion%2C+Dependency+Injection%2C+Inversion+of+Control+and+SOLID" data-linked-resource-id="40210474" data-linked-resource-version="23" data-linked-resource-type="page">Relationship between Dependency Inversion, Dependency Injection, Inversion of Control and SOLID</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211396" data-linked-resource-id="40211396" data-linked-resource-version="21" data-linked-resource-type="page">OOP/Design Quotes</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40218236" data-linked-resource-id="40218236" data-linked-resource-version="8" data-linked-resource-type="page">Prefer composition over class inheritance (GOF 20)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214131/Some+Object-Oriented+Design+Heuristics+-+Riel" data-linked-resource-id="40214131" data-linked-resource-version="2" data-linked-resource-type="page">Some Object-Oriented Design Heuristics - Riel</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40218230" data-linked-resource-id="40218230" data-linked-resource-version="5" data-linked-resource-type="page">Program to an interface; not an implementation (GOF 18)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212174/Stable+vs+Volatile+Dependences" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">Stable vs Volatile Dependences</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209224/SOLID+Design+Principles" data-linked-resource-id="40209224" data-linked-resource-version="6" data-linked-resource-type="page">SOLID Design Principles</a><ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210166" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">Single Responsibility Principle (SRP)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210191" data-linked-resource-id="40210191" data-linked-resource-version="6" data-linked-resource-type="page">Open Closed Principle (OCP)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210175" data-linked-resource-id="40210175" data-linked-resource-version="9" data-linked-resource-type="page">Liskov Substitution Principle (LSP)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210122" data-linked-resource-id="40210122" data-linked-resource-version="8" data-linked-resource-type="page">Interface Segregation Principle (ISP)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210080" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">Dependency Inversion Principle (DIP)</a><ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40217905/DIP+-+The+Dependency+Rule" data-linked-resource-id="40217905" data-linked-resource-version="13" data-linked-resource-type="page">DIP - The Dependency Rule</a></li></ul></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/428671215/Avoiding+Liskov+Substitution+Principal+Violations+in+Type+Hierarchies" data-linked-resource-id="428671215" data-linked-resource-version="43" data-linked-resource-type="page">Avoiding Liskov Substitution Principal Violations in Type Hierarchies</a></li></ul></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/701696411/Functional+Programming" data-linked-resource-id="701696411" data-linked-resource-version="1" data-linked-resource-type="page">Functional Programming</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/470647891/Functional+in+the+Small%2C+Object-Oriented+in+the+Large" data-linked-resource-id="470647891" data-linked-resource-version="103" data-linked-resource-type="page">Functional in the Small, Object-Oriented in the Large</a><ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/575048580/Higher+Order+Function+Examples" data-linked-resource-id="575048580" data-linked-resource-version="1" data-linked-resource-type="page">Higher Order Function Examples</a></li></ul></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211000/Imperative+vs+Functional+%28Declarative%2C+Expressive%29+Style+of+Programming" data-linked-resource-id="40211000" data-linked-resource-version="32" data-linked-resource-type="page">Imperative vs Functional (Declarative, Expressive) Style of Programming</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40208865/Function+composition+and+method+chaining" data-linked-resource-id="40208865" data-linked-resource-version="4" data-linked-resource-type="page">Function composition and method chaining</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/678134834" data-linked-resource-id="678134834" data-linked-resource-version="9" data-linked-resource-type="page">Transitioning from Classes to Records and Adopting IImmutableList in C#</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/668764072" data-linked-resource-id="668764072" data-linked-resource-version="15" data-linked-resource-type="page">You Gotta Have Faith in init &ndash; How We Embraced Immutability in .NET</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209731/GetContentView+Imperative+vs++Declarative" data-linked-resource-id="40209731" data-linked-resource-version="16" data-linked-resource-type="page">GetContentView Imperative vs  Declarative</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207098/Other+Imperative+vs+Functional+Examples" data-linked-resource-id="40207098" data-linked-resource-version="4" data-linked-resource-type="page">Other Imperative vs Functional Examples</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40215060/General+Design+Principles" data-linked-resource-id="40215060" data-linked-resource-version="3" data-linked-resource-type="page">General Design Principles</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40215302/DRY+Principle" data-linked-resource-id="40215302" data-linked-resource-version="6" data-linked-resource-type="page">DRY Principle</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214209/Easy+to+Change+%28ETC%29+principle" data-linked-resource-id="40214209" data-linked-resource-version="1" data-linked-resource-type="page">Easy to Change (ETC) principle</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40215026" data-linked-resource-id="40215026" data-linked-resource-version="18" data-linked-resource-type="page">Find What Is Varying and Encapsulate It (Shalloway 123)</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40208948/Miscellaneous" data-linked-resource-id="40208948" data-linked-resource-version="1" data-linked-resource-type="page">Miscellaneous</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209469" data-linked-resource-id="40209469" data-linked-resource-version="8" data-linked-resource-type="page">The using statement / declaration</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209308/Present+a+consistent+level+of+abstraction" data-linked-resource-id="40209308" data-linked-resource-version="2" data-linked-resource-type="page">Present a consistent level of abstraction</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209859/Using+ICloneable" data-linked-resource-id="40209859" data-linked-resource-version="2" data-linked-resource-type="page">Using ICloneable</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/410290219/Throwing+Exceptions" data-linked-resource-id="410290219" data-linked-resource-version="5" data-linked-resource-type="page">Throwing Exceptions</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/414614407/When+to+use+Target-typed+new+expressions" data-linked-resource-id="414614407" data-linked-resource-version="1" data-linked-resource-type="page">When to use Target-typed new expressions</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209127" data-linked-resource-id="40209127" data-linked-resource-version="12" data-linked-resource-type="page">Maximizing Performance and Readability with const Variables in C#</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210978/Static+Methods" data-linked-resource-id="40210978" data-linked-resource-version="2" data-linked-resource-type="page">Static Methods</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209485/Prefer+Dictionary+over+Switch+Statement" data-linked-resource-id="40209485" data-linked-resource-version="2" data-linked-resource-type="page">Prefer Dictionary over Switch Statement</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212872" data-linked-resource-id="40212872" data-linked-resource-version="11" data-linked-resource-type="page">Using SelectMany()</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209042" data-linked-resource-id="40209042" data-linked-resource-version="2" data-linked-resource-type="page">Code Smells / Anti-Patterns</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40213894/Big+Ball+of+Mud" data-linked-resource-id="40213894" data-linked-resource-version="2" data-linked-resource-type="page">Big Ball of Mud</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210350" data-linked-resource-id="40210350" data-linked-resource-version="3" data-linked-resource-type="page">Explicit case analysis (switch/if-else statement)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209049/Using+the+new+keyword" data-linked-resource-id="40209049" data-linked-resource-version="19" data-linked-resource-type="page">Using the new keyword</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40217152/Coding+Horror+Examples" data-linked-resource-id="40217152" data-linked-resource-version="2" data-linked-resource-type="page">Coding Horror Examples</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40217130/High+Complexity" data-linked-resource-id="40217130" data-linked-resource-version="3" data-linked-resource-type="page">High Complexity</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207031/Naming+Examples" data-linked-resource-id="40207031" data-linked-resource-version="1" data-linked-resource-type="page">Naming Examples</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207718/Design+Relationships" data-linked-resource-id="40207718" data-linked-resource-version="3" data-linked-resource-type="page">Design Relationships</a></h3>
-<h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207090/Coding+Conventions" data-linked-resource-id="40207090" data-linked-resource-version="1" data-linked-resource-type="page">Coding Conventions</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207062/var+keyword" data-linked-resource-id="40207062" data-linked-resource-version="5" data-linked-resource-type="page">var keyword</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/471925099/Low+level+or+IL+code" data-linked-resource-id="471925099" data-linked-resource-version="2" data-linked-resource-type="page">Low level or IL code</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/522912022/Lazy+Map%28%29+Extension+Method" data-linked-resource-id="522912022" data-linked-resource-version="3" data-linked-resource-type="page">Lazy Map() Extension Method</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/568559776/Comparing+Objects+for+Equality+in+C%23+Using+JSON+Serialization" data-linked-resource-id="568559776" data-linked-resource-version="13" data-linked-resource-type="page">Comparing Objects for Equality in C# Using JSON Serialization</a></h3>
-<h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/553977433/Difference+between+const+and+static+readonly" data-linked-resource-id="553977433" data-linked-resource-version="18" data-linked-resource-type="page">Difference between const and static readonly</a></h3>
-<h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/699662484/Handling+Eager+and+Lazy+Evaluation+in+LINQ+Queries%3A+A+Case+Study" data-linked-resource-id="699662484" data-linked-resource-version="7" data-linked-resource-type="page">Handling Eager and Lazy Evaluation in LINQ Queries: A Case Study</a></h3>
-<h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/677938309/Testing+Considerations" data-linked-resource-id="677938309" data-linked-resource-version="1" data-linked-resource-type="page">Testing Considerations</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40213370/Test+Coverage" data-linked-resource-id="40213370" data-linked-resource-version="8" data-linked-resource-type="page">Test Coverage</a><ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40208451/Finding+Test+Cases" data-linked-resource-id="40208451" data-linked-resource-version="39" data-linked-resource-type="page">Finding Test Cases</a></li></ul></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211186" data-linked-resource-id="40211186" data-linked-resource-version="5" data-linked-resource-type="page">How do we write a test for a private method?</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214289/Code+Review+Checklist" data-linked-resource-id="40214289" data-linked-resource-version="4" data-linked-resource-type="page">Code Review Checklist</a></h3>
-<h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212597/Glossary" data-linked-resource-id="40212597" data-linked-resource-version="4" data-linked-resource-type="page">Glossary</a></h3>
-<ul class='childpages-macro'><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/393643461/Cognitive+Complexity" data-linked-resource-id="393643461" data-linked-resource-version="3" data-linked-resource-type="page">Cognitive Complexity</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212666/Cohesion" data-linked-resource-id="40212666" data-linked-resource-version="7" data-linked-resource-type="page">Cohesion</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/292979549/Composition" data-linked-resource-id="292979549" data-linked-resource-version="3" data-linked-resource-type="page">Composition</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211362/Composition+Root" data-linked-resource-id="40211362" data-linked-resource-version="2" data-linked-resource-type="page">Composition Root</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212681/Coupling" data-linked-resource-id="40212681" data-linked-resource-version="7" data-linked-resource-type="page">Coupling</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/393773711/Cyclomatic+Complexity" data-linked-resource-id="393773711" data-linked-resource-version="2" data-linked-resource-type="page">Cyclomatic Complexity</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211374" data-linked-resource-id="40211374" data-linked-resource-version="2" data-linked-resource-type="page">Dependency Injection (DI)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209511/DTO+-+Data+Transfer+Object" data-linked-resource-id="40209511" data-linked-resource-version="10" data-linked-resource-type="page">DTO - Data Transfer Object</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212286/Inheritance" data-linked-resource-id="40212286" data-linked-resource-version="2" data-linked-resource-type="page">Inheritance</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209489/Interception" data-linked-resource-id="40209489" data-linked-resource-version="1" data-linked-resource-type="page">Interception</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211370" data-linked-resource-id="40211370" data-linked-resource-version="14" data-linked-resource-type="page">Inversion of Control (IoC)</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212639/Modularity%2C+Module" data-linked-resource-id="40212639" data-linked-resource-version="10" data-linked-resource-type="page">Modularity, Module</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209505/POCO+-+Plain+Old+CLR+Objects" data-linked-resource-id="40209505" data-linked-resource-version="2" data-linked-resource-type="page">POCO - Plain Old CLR Objects</a></li><li><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/564265808/Seam+Interface" data-linked-resource-id="564265808" data-linked-resource-version="3" data-linked-resource-type="page">Seam Interface</a></li></ul><h3><a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210256/Works+sighted" data-linked-resource-id="40210256" data-linked-resource-version="21" data-linked-resource-type="page">Works sighted</a></h3>
-</p><p><br/></p>
-                    </div>
+        <div class="view" id="content">
+            <div class="page-metadata">
 
-                    
-                 
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
+
+                Created by <span class='author'> Damon German</span>, last modified on Aug 06, 2021
             </div>
-        </div>     </body>
+            <div class="wiki-content group" id="main-content">
+                <p>
+                <h3><a data-linked-resource-id="40211462"
+                       data-linked-resource-type="page" data-linked-resource-version="3"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211462/Motivation+for+Good+Design">Motivation for Good Design</a></h3>
+                <h3><a data-linked-resource-id="40214223"
+                       data-linked-resource-type="page" data-linked-resource-version="2"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214223/Object+Oriented+Programming">Object Oriented Programming</a></h3>
+                <ul class='childpages-macro'>
+                    <li><a data-linked-resource-id="40214306"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214306">Pillars of OOP - Encapsulation/Abstraction</a>
+                        <ul class='childpages-macro'>
+                            <li>
+                                <a data-linked-resource-id="40208964"
+                                   data-linked-resource-type="page" data-linked-resource-version="2"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40208964/Minimize+accessibility+of+classes+and+members">Minimize accessibility of classes and members</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a data-linked-resource-id="40209006"
+                           data-linked-resource-type="page" data-linked-resource-version="5"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209006/Pillars+of+OOP+-+Inheritance">Pillars of OOP - Inheritance</a>
+                        <ul class='childpages-macro'>
+                            <li><a data-linked-resource-id="40209587"
+                                   data-linked-resource-type="page" data-linked-resource-version="2"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209587">Two main types of inheritance: Implementation and
+                                Interface.</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a data-linked-resource-id="40209056"
+                           data-linked-resource-type="page" data-linked-resource-version="4"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209056/Pillars+of+OOP+-+Polymorphism">Pillars of OOP - Polymorphism</a></li>
+                    <li>
+                        <a data-linked-resource-id="297799542"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/297799542/Pillars+of+OOP+-+Composition">Pillars of OOP - Composition</a></li>
+                    <li>
+                        <a data-linked-resource-id="40210535"
+                           data-linked-resource-type="page" data-linked-resource-version="41"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210535/Abstract+Classes+vs+Interfaces">Abstract Classes vs Interfaces</a>
+                        <ul class='childpages-macro'>
+                            <li><a data-linked-resource-id="397248242"
+                                   data-linked-resource-type="page" data-linked-resource-version="1"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/397248242">Why would you use an abstract class? Why would you
+                                use an interface?</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a data-linked-resource-id="40210474"
+                           data-linked-resource-type="page" data-linked-resource-version="23"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210474/Relationship+between+Dependency+Inversion%2C+Dependency+Injection%2C+Inversion+of+Control+and+SOLID">Relationship between Dependency Inversion, Dependency
+                            Injection, Inversion of Control and SOLID</a></li>
+                    <li><a data-linked-resource-id="40211396"
+                           data-linked-resource-type="page" data-linked-resource-version="21"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211396">OOP/Design Quotes</a></li>
+                    <li><a data-linked-resource-id="40218236"
+                           data-linked-resource-type="page" data-linked-resource-version="8"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40218236">Prefer composition over class inheritance (GOF 20)</a></li>
+                    <li>
+                        <a data-linked-resource-id="40214131"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214131/Some+Object-Oriented+Design+Heuristics+-+Riel">Some Object-Oriented Design Heuristics - Riel</a></li>
+                    <li><a data-linked-resource-id="40218230"
+                           data-linked-resource-type="page" data-linked-resource-version="5"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40218230">Program to an interface; not an implementation (GOF 18)</a>
+                    </li>
+                    <li>
+                        <a data-linked-resource-id="40212174"
+                           data-linked-resource-type="page" data-linked-resource-version="9"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212174/Stable+vs+Volatile+Dependences">Stable vs Volatile Dependences</a></li>
+                    <li><a data-linked-resource-id="40209224"
+                           data-linked-resource-type="page" data-linked-resource-version="6"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209224/SOLID+Design+Principles">SOLID Design Principles</a>
+                        <ul class='childpages-macro'>
+                            <li><a data-linked-resource-id="40210166"
+                                   data-linked-resource-type="page" data-linked-resource-version="9"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210166">Single Responsibility Principle (SRP)</a></li>
+                            <li><a data-linked-resource-id="40210191"
+                                   data-linked-resource-type="page" data-linked-resource-version="6"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210191">Open Closed Principle (OCP)</a></li>
+                            <li><a data-linked-resource-id="40210175"
+                                   data-linked-resource-type="page" data-linked-resource-version="9"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210175">Liskov Substitution Principle (LSP)</a></li>
+                            <li><a data-linked-resource-id="40210122"
+                                   data-linked-resource-type="page" data-linked-resource-version="8"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210122">Interface Segregation Principle (ISP)</a></li>
+                            <li><a data-linked-resource-id="40210080"
+                                   data-linked-resource-type="page" data-linked-resource-version="15"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210080">Dependency Inversion Principle (DIP)</a>
+                                <ul class='childpages-macro'>
+                                    <li>
+                                        <a data-linked-resource-id="40217905"
+                                           data-linked-resource-type="page" data-linked-resource-version="13"
+                                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40217905/DIP+-+The+Dependency+Rule">DIP - The Dependency Rule</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a data-linked-resource-id="428671215"
+                                   data-linked-resource-type="page" data-linked-resource-version="43"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/428671215/Avoiding+Liskov+Substitution+Principal+Violations+in+Type+Hierarchies">Avoiding Liskov Substitution Principal Violations in
+                                    Type Hierarchies</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3><a data-linked-resource-id="701696411"
+                       data-linked-resource-type="page" data-linked-resource-version="1"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/701696411/Functional+Programming">Functional Programming</a></h3>
+                <ul class='childpages-macro'>
+                    <li>
+                        <a data-linked-resource-id="470647891"
+                           data-linked-resource-type="page" data-linked-resource-version="103"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/470647891/Functional+in+the+Small%2C+Object-Oriented+in+the+Large">Functional in the Small, Object-Oriented in the Large</a>
+                        <ul class='childpages-macro'>
+                            <li>
+                                <a data-linked-resource-id="575048580"
+                                   data-linked-resource-type="page" data-linked-resource-version="1"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/575048580/Higher+Order+Function+Examples">Higher Order Function Examples</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a data-linked-resource-id="40211000"
+                           data-linked-resource-type="page" data-linked-resource-version="32"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211000/Imperative+vs+Functional+%28Declarative%2C+Expressive%29+Style+of+Programming">Imperative vs Functional (Declarative, Expressive) Style of
+                            Programming</a></li>
+                    <li>
+                        <a data-linked-resource-id="40208865"
+                           data-linked-resource-type="page" data-linked-resource-version="4"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40208865/Function+composition+and+method+chaining">Function composition and method chaining</a></li>
+                    <li><a data-linked-resource-id="678134834"
+                           data-linked-resource-type="page" data-linked-resource-version="9"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/678134834">Transitioning from Classes to Records and Adopting
+                        IImmutableList in C#</a></li>
+                    <li><a data-linked-resource-id="668764072"
+                           data-linked-resource-type="page" data-linked-resource-version="15"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/668764072">You Gotta Have Faith in init &ndash; How We Embraced
+                        Immutability in .NET</a></li>
+                    <li>
+                        <a data-linked-resource-id="40209731"
+                           data-linked-resource-type="page" data-linked-resource-version="16"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209731/GetContentView+Imperative+vs++Declarative">GetContentView Imperative vs Declarative</a></li>
+                    <li>
+                        <a data-linked-resource-id="40207098"
+                           data-linked-resource-type="page" data-linked-resource-version="4"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207098/Other+Imperative+vs+Functional+Examples">Other Imperative vs Functional Examples</a></li>
+                </ul>
+                <h3><a data-linked-resource-id="40215060"
+                       data-linked-resource-type="page" data-linked-resource-version="3"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40215060/General+Design+Principles">General Design Principles</a></h3>
+                <ul class='childpages-macro'>
+                    <li><a data-linked-resource-id="40215302"
+                           data-linked-resource-type="page" data-linked-resource-version="6"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40215302/DRY+Principle">DRY Principle</a></li>
+                    <li>
+                        <a data-linked-resource-id="40214209"
+                           data-linked-resource-type="page" data-linked-resource-version="1"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214209/Easy+to+Change+%28ETC%29+principle">Easy to Change (ETC) principle</a></li>
+                    <li><a data-linked-resource-id="40215026"
+                           data-linked-resource-type="page" data-linked-resource-version="18"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40215026">Find What Is Varying and Encapsulate It (Shalloway 123)</a>
+                    </li>
+                </ul>
+                <h3><a data-linked-resource-id="40208948"
+                       data-linked-resource-type="page" data-linked-resource-version="1"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40208948/Miscellaneous">Miscellaneous</a></h3>
+                <ul class='childpages-macro'>
+                    <li><a data-linked-resource-id="40209469"
+                           data-linked-resource-type="page" data-linked-resource-version="8"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209469">The using statement / declaration</a></li>
+                    <li>
+                        <a data-linked-resource-id="40209308"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209308/Present+a+consistent+level+of+abstraction">Present a consistent level of abstraction</a></li>
+                    <li><a data-linked-resource-id="40209859"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209859/Using+ICloneable">Using ICloneable</a></li>
+                    <li><a data-linked-resource-id="410290219"
+                           data-linked-resource-type="page" data-linked-resource-version="5"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/410290219/Throwing+Exceptions">Throwing Exceptions</a></li>
+                    <li>
+                        <a data-linked-resource-id="414614407"
+                           data-linked-resource-type="page" data-linked-resource-version="1"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/414614407/When+to+use+Target-typed+new+expressions">When to use Target-typed new expressions</a></li>
+                    <li><a data-linked-resource-id="40209127"
+                           data-linked-resource-type="page" data-linked-resource-version="12"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209127">Maximizing Performance and Readability with const Variables
+                        in C#</a></li>
+                    <li><a data-linked-resource-id="40210978"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210978/Static+Methods">Static Methods</a></li>
+                    <li>
+                        <a data-linked-resource-id="40209485"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209485/Prefer+Dictionary+over+Switch+Statement">Prefer Dictionary over Switch Statement</a></li>
+                    <li><a data-linked-resource-id="40212872"
+                           data-linked-resource-type="page" data-linked-resource-version="11"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212872">Using SelectMany()</a></li>
+                </ul>
+                <h3><a data-linked-resource-id="40209042"
+                       data-linked-resource-type="page" data-linked-resource-version="2"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209042">Code Smells / Anti-Patterns</a></h3>
+                <ul class='childpages-macro'>
+                    <li><a data-linked-resource-id="40213894"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40213894/Big+Ball+of+Mud">Big Ball of Mud</a></li>
+                    <li><a data-linked-resource-id="40210350"
+                           data-linked-resource-type="page" data-linked-resource-version="3"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210350">Explicit case analysis (switch/if-else statement)</a></li>
+                    <li><a data-linked-resource-id="40209049"
+                           data-linked-resource-type="page" data-linked-resource-version="19"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209049/Using+the+new+keyword">Using the new keyword</a></li>
+                </ul>
+                <h3><a data-linked-resource-id="40217152"
+                       data-linked-resource-type="page" data-linked-resource-version="2"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40217152/Coding+Horror+Examples">Coding Horror Examples</a></h3>
+                <ul class='childpages-macro'>
+                    <li><a data-linked-resource-id="40217130"
+                           data-linked-resource-type="page" data-linked-resource-version="3"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40217130/High+Complexity">High Complexity</a></li>
+                    <li><a data-linked-resource-id="40207031"
+                           data-linked-resource-type="page" data-linked-resource-version="1"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207031/Naming+Examples">Naming Examples</a></li>
+                </ul>
+                <h3><a data-linked-resource-id="40207718"
+                       data-linked-resource-type="page" data-linked-resource-version="3"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207718/Design+Relationships">Design Relationships</a></h3>
+                <h3><a data-linked-resource-id="40207090"
+                       data-linked-resource-type="page" data-linked-resource-version="1"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207090/Coding+Conventions">Coding Conventions</a></h3>
+                <ul class='childpages-macro'>
+                    <li><a data-linked-resource-id="40207062"
+                           data-linked-resource-type="page" data-linked-resource-version="5"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40207062/var+keyword">var keyword</a></li>
+                </ul>
+                <h3><a data-linked-resource-id="471925099"
+                       data-linked-resource-type="page" data-linked-resource-version="2"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/471925099/Low+level+or+IL+code">Low level or IL code</a></h3>
+                <ul class='childpages-macro'>
+                    <li>
+                        <a data-linked-resource-id="522912022"
+                           data-linked-resource-type="page" data-linked-resource-version="3"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/522912022/Lazy+Map%28%29+Extension+Method">Lazy Map() Extension Method</a></li>
+                </ul>
+                <h3>
+                    <a data-linked-resource-id="568559776"
+                       data-linked-resource-type="page" data-linked-resource-version="13"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/568559776/Comparing+Objects+for+Equality+in+C%23+Using+JSON+Serialization">Comparing Objects for Equality in C# Using JSON
+                        Serialization</a></h3>
+                <h3>
+                    <a data-linked-resource-id="553977433"
+                       data-linked-resource-type="page" data-linked-resource-version="18"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/553977433/Difference+between+const+and+static+readonly">Difference between const and static readonly</a></h3>
+                <h3>
+                    <a data-linked-resource-id="699662484"
+                       data-linked-resource-type="page" data-linked-resource-version="7"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/699662484/Handling+Eager+and+Lazy+Evaluation+in+LINQ+Queries%3A+A+Case+Study">Handling Eager and Lazy Evaluation in LINQ Queries: A Case
+                        Study</a></h3>
+                <h3><a data-linked-resource-id="677938309"
+                       data-linked-resource-type="page" data-linked-resource-version="1"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/677938309/Testing+Considerations">Testing Considerations</a></h3>
+                <ul class='childpages-macro'>
+                    <li><a data-linked-resource-id="40213370"
+                           data-linked-resource-type="page" data-linked-resource-version="8"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40213370/Test+Coverage">Test Coverage</a>
+                        <ul class='childpages-macro'>
+                            <li>
+                                <a data-linked-resource-id="40208451"
+                                   data-linked-resource-type="page" data-linked-resource-version="39"
+                                   href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40208451/Finding+Test+Cases">Finding Test Cases</a></li>
+                        </ul>
+                    </li>
+                    <li><a data-linked-resource-id="40211186"
+                           data-linked-resource-type="page" data-linked-resource-version="5"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211186">How do we write a test for a private method?</a></li>
+                </ul>
+                <h3><a data-linked-resource-id="40214289"
+                       data-linked-resource-type="page" data-linked-resource-version="4"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40214289/Code+Review+Checklist">Code Review Checklist</a></h3>
+                <h3><a data-linked-resource-id="40212597"
+                       data-linked-resource-type="page" data-linked-resource-version="4"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212597/Glossary">Glossary</a></h3>
+                <ul class='childpages-macro'>
+                    <li><a data-linked-resource-id="393643461"
+                           data-linked-resource-type="page" data-linked-resource-version="3"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/393643461/Cognitive+Complexity">Cognitive Complexity</a></li>
+                    <li><a data-linked-resource-id="40212666"
+                           data-linked-resource-type="page" data-linked-resource-version="7"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212666/Cohesion">Cohesion</a></li>
+                    <li><a data-linked-resource-id="292979549"
+                           data-linked-resource-type="page" data-linked-resource-version="3"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/292979549/Composition">Composition</a></li>
+                    <li><a data-linked-resource-id="40211362"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211362/Composition+Root">Composition Root</a></li>
+                    <li><a data-linked-resource-id="40212681"
+                           data-linked-resource-type="page" data-linked-resource-version="7"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212681/Coupling">Coupling</a></li>
+                    <li><a data-linked-resource-id="393773711"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/393773711/Cyclomatic+Complexity">Cyclomatic Complexity</a></li>
+                    <li><a data-linked-resource-id="40211374"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211374">Dependency Injection (DI)</a></li>
+                    <li>
+                        <a data-linked-resource-id="40209511"
+                           data-linked-resource-type="page" data-linked-resource-version="10"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209511/DTO+-+Data+Transfer+Object">DTO - Data Transfer Object</a></li>
+                    <li><a data-linked-resource-id="40212286"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212286/Inheritance">Inheritance</a></li>
+                    <li><a data-linked-resource-id="40209489"
+                           data-linked-resource-type="page" data-linked-resource-version="1"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209489/Interception">Interception</a></li>
+                    <li><a data-linked-resource-id="40211370"
+                           data-linked-resource-type="page" data-linked-resource-version="14"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211370">Inversion of Control (IoC)</a></li>
+                    <li><a data-linked-resource-id="40212639"
+                           data-linked-resource-type="page" data-linked-resource-version="10"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40212639/Modularity%2C+Module">Modularity, Module</a></li>
+                    <li>
+                        <a data-linked-resource-id="40209505"
+                           data-linked-resource-type="page" data-linked-resource-version="2"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40209505/POCO+-+Plain+Old+CLR+Objects">POCO - Plain Old CLR Objects</a></li>
+                    <li><a data-linked-resource-id="564265808"
+                           data-linked-resource-type="page" data-linked-resource-version="3"
+                           href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/564265808/Seam+Interface">Seam Interface</a></li>
+                </ul>
+                <h3><a data-linked-resource-id="40210256"
+                       data-linked-resource-type="page" data-linked-resource-version="21"
+                       href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210256/Works+sighted">Works sighted</a></h3>
+                </p><p><br/></p>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="footer" role="contentinfo">
+        <section class="footer-body">
+            <p>Document generated by Confluence on May 31, 2023 06:23</p>
+            <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+        </section>
+    </div>
+</div>
+</body>
 </html>
