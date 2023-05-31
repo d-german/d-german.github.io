@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Inheritance</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Glossary_40212597.html">Glossary</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Inheritance
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Feb 01, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><span style="color: rgb(40,38,37);">A feature of object-oriented programming languages by which classes may be specialized from more general superclass. Attributes and Method definitions from Superclasses are automatically acquired by the subclasses.</span></p><p><span>Entire class hierarchies can be made this way. From a base class, one or more classes can be derived. From each of these classes, zero or more classes can be derived, and so on.</span></p><p><span style="color: rgb(40,38,37);">Inheritance is the strongest, and most rigid, of all the source code relationships; consequently, it should be used with great care. (2017 Martin 88)</span></p><p><br/></p><p><br/></p><ul><li>Two main types of inheritance: <strong>Implementation</strong> and <strong>Interface</strong>.</li></ul><ul><ul><li><span>Easy to confuse if the programming language doesn't make the distinction.</span></li><li><span>The term inheritance is used both when a class derives from an non abstract (concrete) class to make a specialized version of it and when an abstract class is used as a starting point for different implementations. Would it be better if we had two different terms for these concepts instead of using the same term? (Shalloway 137)</span></li><li><span><strong>Implementation</strong>: Derived classes inherit data and behavior (implementation) of the base class.</span></li><ul><li><span>C++ approximates this using private inheritance</span></li><li><span>Implementation inheritance can degenerate into “like a” (Coplien 206) relationship when the derived class violates Liskov’s substitution principle.</span></li><ul><li><span>This is only a problem when trying to use the relationship polymorphically. (Coplien 237)</span></li></ul><li><span>When inheritance is used as “is a”, software reuse is an incidental (but important!) benefit. However, reuse is often used to justify degeneration into “like-a” relationships. This may have a short-term reuse benefit, but it may not encapsulate change in the long term. (Coplien 251)</span></li></ul><li><span>Summary:</span></li><ul><li><span> If your primary purpose of inheritance is reuse, then inheritance is being used, incidentally. This “incidental inheritance” could give you troubles if trying to use polymorphically. This is important because it is polymorphism that aids in your design to be adaptable, maintainable, extendable and testable.</span></li><li><span> If your main purpose of inheritance is proper subtyping (Liskov substitution) then reuse is an incidental benefit.</span></li></ul><li><span><strong>Interface</strong> inheritance: Derived classes inherit only the public interface of the base class and </span><strong>must </strong><span>provide its own implementation.</span></li><ul><li><span>Approximated in C++, by inheriting from pure abstract classes.</span></li><li><span>C# makes this clear by providing interfaces.</span></li></ul><li><span>Of course, you can have a mixture of both.</span></li><li><span>(GOF 16) Refers to this as Class vs Interface Inheritance.</span></li></ul><li><span>When a class is derived from a base class, I say that the derived class has an “is a” relationship with the base. However, when a class implements an interface, I say that the implementing class has a “can-do” relationship with the interface. (Jeffrey Richter)</span></li><li><span>If it is possible to use one of  A's descendants in all the places where class A  is used,  then  we say that the classes are behaviorally</span><strong> compatible</strong><span>. (Jacobson 64)</span></li><li><span>If the descendant is modified in such a way that it is no longer </span><strong>behaviorally compatible</strong><span> with its parent (that is, if the parent class can no longer be exchanged with the descendant), the class is said to be </span><strong>specialized</strong><span>. (Jacobson 64)</span></li></ul><p><br/></p>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

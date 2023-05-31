@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Using the new keyword</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40209042.html">Code Smells / Anti-Patterns</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Using the new keyword
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Sep 04, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <ul><ul><li>Any line of code that uses the <code>new</code> keyword violates the <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">DIP</a>. Sometimes, the violation of the <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page"> DIP</a> is mostly harmless. The more likely a concrete class is to change, the more likely depending on it will lead to trouble. But if the concrete class is not volatile, then depending on it is not worrisome. (2002 Martin 269)<ul><li>The String class, for example, is very stable. Changes to that class are exceedingly rare and tightly controlled. We do not have to worry about frequent and capricious changes to String.</li><li>Another example is our use of simple DTOs (Data Transfer Objects):</li><li>Because only concrete classes have constructors, constructors are an implementation detail. An interesting corollary to this is that, aside from a few exceptions, you can consider an appearance of the <code>new</code> keyword to be a code smell. (McLean Hall, 83)</li><li>This leads to a second point. Using the <code>new</code> key word could violate the <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">SRP</a>. (TBD find a reference for this.)</li></ul></li></ul></ul><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40209049/40263141.png?height=400" data-image-src="attachments/40209049/40263141.png" data-unresolved-comment-count="0" data-linked-resource-id="40263141" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-5-56.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209049" data-linked-resource-container-version="19" data-media-id="b409e344-ea4e-4612-ade8-168aac4de95e" data-media-type="file"></span></p><p>TBD Put this in a separate article. (DI) </p><ul><li>Creating objects can be complex. An object may depend on several other objects. Manually creating instances of everything and passing them to classes that aggregate their functionality, and repeating until you 're finished is a responsibility that we should delegate to a DI (dependency injection) or IoC (Inversion of Control) container. <ul><li>If we want to make chocolate from our chocolate factory, we need to manually create the components which can get confusing and out of hand quickly. <ul><li><p class="auto-cursor-target"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40209049/40248712.png?height=250" data-image-src="attachments/40209049/40248712.png" data-unresolved-comment-count="0" data-linked-resource-id="40248712" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-10-25_11-49-29.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209049" data-linked-resource-container-version="19" data-media-id="4dae8c46-5ca1-4ebc-b103-20f37184f7b0" data-media-type="file"></span></p></li></ul></li><li>It is better to let a dependency injection object worry about building objects and coordinating the dependencies.<ul><li><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40209049/40248718.png?height=250" data-image-src="attachments/40209049/40248718.png" data-unresolved-comment-count="0" data-linked-resource-id="40248718" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-10-25_11-48-11.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209049" data-linked-resource-container-version="19" data-media-id="8cdf51b4-6700-4438-b175-8dde569290a4" data-media-type="file"></span></li></ul></li></ul></li><li><p class="auto-cursor-target"><span>Note that using the container should be as close to the entry point of the application as possible. This allows you to bootstrap DI as soon as possible, gives you a recognized location to find the DI configuration, and helps you avoid leaking dependencies on the container throughout the application. <span style="color: rgb(23,43,77);">(McLean Hall, TBD)</span></span></p></li></ul><p><span><span style="color: rgb(23,43,77);">see <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">Stable vs Volatile Dependences</a>, <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">Dependency Inversion Principle (DIP)</a>, <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">Single Responsibility Principle (SRP)</a></span></span></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40248766.png">image2020-10-25_10-47-27.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40248760.png">image2020-10-25_10-48-36.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40248754.png">image2020-10-25_10-56-5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40248748.png">image2020-10-25_11-5-25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40248730.png">image2020-10-25_11-30-28.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40248724.png">image2020-10-25_11-39-8.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40248718.png">image2020-10-25_11-48-11.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40248712.png">image2020-10-25_11-49-29.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209049/40263141.png">image2021-8-17_13-5-56.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

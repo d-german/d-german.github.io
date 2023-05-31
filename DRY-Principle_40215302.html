@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : DRY Principle</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="General-Design-Principles_40215060.html">General Design Principles</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : DRY Principle
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Mar 24, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>DRY = Don’t Repeat Yourself - <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself" class="external-link" rel="nofollow"><span>DRY principle</span></a></p><p><span style="color: rgb(17,17,17);">Every piece of knowledge must have a single, unambiguous, a</span><span style="color: rgb(17,17,17);">uthoritative representation within a system. (Hunt 27)</span></p><p><span style="color: rgb(17,17,17);">Duplication may be the root of all evil in software. Many principles and practices have been created for the purpose of controlling or eliminating it. (2008 Martin 48)</span></p><h4 id="DRYPrinciple-AKA"><span>AKA</span></h4><ul><li><strong>One rule, one place</strong><span> (</span><span>Shalloway 131)</span><span> </span></li><li><strong>Once and Only Once rule </strong>(<span>Beck 108)</span></li></ul><p><br/></p><p>Duplication is a problem because it bloats the code and will require multiple changes should the algorithm ever have to change. If you change one, you have to remember to change the others.  (2008 Martin 48)</p><h4 id="DRYPrinciple-ReasonstoviolatetheDRYprinciple:"><span>Reasons to violate the DRY principle:</span></h4><ol><li><span>There are different kinds of duplication. There is true duplication, in which every change to one instance causes the same change to every duplicate of that instance. Then there is false or accidental duplication. If two apparently duplicated sections of code evolve along different paths—if they change at different rates, and for different reasons—then they are not true duplicates. Return to them in a few years, and you’ll find that they diverge from each other. <em>Be careful. Resist the temptation to commit the sin of the knee-jerk elimination of duplication. Make sure the duplication is real</em>. (2017 Martin 154)</span></li><li><span>Since causing code bloat and/or needing to update multiple places if the algorithm changes are the reasons to follow the DRY principles then it seems that if there is a very low probability that an algorithm will change and it requires more lines of code to not have the duplication then the DRY principle does not apply. </span></li></ol><p><span>Example:</span></p><p><span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="57" loading="lazy" src="attachments/40215302/40232468.png?height=57" data-image-src="attachments/40215302/40232468.png" data-unresolved-comment-count="0" data-linked-resource-id="40232468" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-3-23_15-40-1.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40215302" data-linked-resource-container-version="6" data-media-id="8358e45b-5283-43ff-851a-977db8f7de3c" data-media-type="file"></span></span></p><p>As of this time, this line of code is repeated in a few services in a typescript project. Typescript does not have <a href="https://stackoverflow.com/questions/38434337/how-to-create-an-extension-method-in-typescript-for-date-data-type" class="external-link" rel="nofollow">extension </a>methods like C# and our project does not have a globally accessible utility class to put this method in. To remove the duplication we could create a utility class or create a base class, but that would add more code and dependencies than just leaving it as is. Also, I don't think we would ever need to change the method. So I think it's ok to repeat this method in a few places.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40215302/40232468.png">image2021-3-23_15-40-1.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

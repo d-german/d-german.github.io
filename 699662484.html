@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Handling Eager and Lazy Evaluation in LINQ Queries: A Case Study</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Handling Eager and Lazy Evaluation in LINQ Queries: A Case Study
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on May 16, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>In this article, we take a close look at a specific method <code>GetContentInfosAsync</code> in our codebase, showcasing a practical use of eager and lazy evaluation with LINQ queries.</p><h2 id="HandlingEagerandLazyEvaluationinLINQQueries:ACaseStudy-Overview">Overview</h2><p>Here is the method in question:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">private async Task&lt;RepositoryResponse&lt;ContentInfos&gt;&gt; GetContentInfosAsync(HttpResponseMessage response, string authToken, bool includePatientContent)
+{
+    if (!response.IsSuccessStatusCode)
+    {
+        return (await response.Content.ReadAsAsync&lt;ProblemDetails&gt;()).CreateFailedRepositoryResponse&lt;ContentInfos&gt;();
+    }
+
+    var contentInfos = await response.Content.ReadAsAsync&lt;ContentInfos&gt;();
+
+    // Evaluate nonProxiedSystems now (avoids multiple enumerations) and proxiedSystems after successful token exchange.
+    var nonProxiedSystems = contentInfos.ContentInfosDictionary.Where(contentInfoKv =&gt; !IsProxiedSystem(contentInfoKv.Value)).ToList();
+    var proxiedSystems = contentInfos.ContentInfosDictionary.Where(contentInfoKv =&gt; IsProxiedSystem(contentInfoKv.Value));
+
+    TokenExchangeResult tokenExchangeResult = null;
+
+    if (nonProxiedSystems.Any())
+    {
+        tokenExchangeResult = await GetExchangeToken(authToken);
+        if (tokenExchangeResult is { IsError: true })
+        {
+            // If token exchange fails for non-proxied systems, we return an error to avoid confusion, despite possible successful proxied system processing.
+            return CreateTokenExchangeErrorResponse(tokenExchangeResult);
+        }
+    }
+
+    var updatedNonProxiedSystemsDictionary = BuildUpdatedNonProxiedSystems(nonProxiedSystems, tokenExchangeResult, includePatientContent);
+    var updatedProxiedSystemsDictionary = BuildUpdatedProxiedSystems(proxiedSystems, includePatientContent);
+
+    return new RepositoryResponse&lt;ContentInfos&gt;
+    {
+        Status = (int)response.StatusCode,
+        ResponseObject = new ContentInfos { ContentInfosDictionary = updatedNonProxiedSystemsDictionary.Concat(updatedProxiedSystemsDictionary).ToImmutableDictionary() }
+    };
+}</pre>
+</div></div><p>The focus of our discussion is on lines 11 and 12, where we declare two LINQ queries, <code>nonProxiedSystems</code> and <code>proxiedSystems</code>.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>These variables are declared together for clarity and readability, while it would be possible to declare <code>proxiedSystems</code> further down, after the token exchange, keeping these related variable declarations together improves the overall structure and coherence of the code.</p></div></div><h2 id="HandlingEagerandLazyEvaluationinLINQQueries:ACaseStudy-EagervsLazyEvaluation">Eager vs Lazy Evaluation</h2><p>Before delving into the specifics of the code, let's briefly discuss the concept of eager and lazy evaluation.</p><ul><li><p><strong>Eager Evaluation</strong>: This means that the query is executed immediately when it is defined. This was done by calling <code>.ToList()</code> on the query. Executing or evaluating the query can happen in several ways, such as looping over the results with a <code>foreach</code> loop or calling a method that requires the entire sequence to be evaluated like <code>.ToList()</code>, <code>.ToArray()</code>, <code>.Count()</code>, etc.</p></li><li><p><strong>Lazy Evaluation</strong>: This is the default behavior of LINQ queries, where the execution is deferred until the query results are enumerated. This means the actual data retrieval is postponed until you iterate over the query.</p></li></ul><h2 id="HandlingEagerandLazyEvaluationinLINQQueries:ACaseStudy-Why.ToList()onnonProxiedSystems?">Why <code>.ToList()</code> on <code>nonProxiedSystems</code>?</h2><p>On line 11, we use <code>.ToList()</code> on <code>nonProxiedSystems</code> to force immediate (eager) evaluation. This is done because <code>nonProxiedSystems</code> is used in multiple places in our code: firstly, to check if any non-proxied systems exist (<code>nonProxiedSystems.Any()</code>) and then to build the updated dictionary (<code>BuildUpdatedNonProxiedSystems(nonProxiedSystems, ...)</code>). Calling <code>.ToList()</code> not only ensures the query is executed only once, avoiding multiple enumerations of the same sequence, but also creates an in-memory snapshot of the LINQ query results, effectively &quot;freezing&quot; the current state of the data.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><code>.Any()</code> is optimized: it uses <code>Count</code> if available or enumerates only until it finds a single element, thus, ensuring efficiency.</p></div></div><h2 id="HandlingEagerandLazyEvaluationinLINQQueries:ACaseStudy-Whyno.ToList()onproxiedSystems?">Why no <code>.ToList()</code> on <code>proxiedSystems</code>?</h2><p>On line 12, we do not use <code>.ToList()</code> on <code>proxiedSystems</code>, hence it remains as a lazy evaluated query. This is done because <code>proxiedSystems</code> is enumerated only once in <code>BuildUpdatedProxiedSystems(proxiedSystems, ...)</code>. By deferring the execution until it's necessary, we save memory and processing time.</p><p>Furthermore, this also allows us to postpone the evaluation of <code>proxiedSystems</code> until after the token exchange has occurred and completed without error. This ensures we don't do unnecessary work if an error occurs during the token exchange for non-proxied systems.</p><h2 id="HandlingEagerandLazyEvaluationinLINQQueries:ACaseStudy-Conclusion">Conclusion</h2><p>The use of eager and lazy evaluation in this method highlights the flexibility and efficiency of LINQ queries. By understanding the semantics of these evaluations, we can write more performant and efficient code. It's a simple yet powerful technique that improves our code's performance and readability.</p><p />
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

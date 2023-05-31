@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : var keyword</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Coding-Conventions_40207090.html">Coding Conventions</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : var keyword
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Oct 22, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p style="margin-left: 40.0px;">CONSIDER using the <code>var</code> keyword whenever the resulting type of the variable is obvious. Avoid using it if it decreases readability.</p><p style="margin-left: 40.0px;"><code>var names = new List&lt;string&gt;(); // good usage of var</code></p><p style="margin-left: 40.0px;"><code>string source = GetSource();</code><br/><code>var tokens = source.Split(' '); // ok; most developers know String.Split</code></p><p style="margin-left: 40.0px;"><code>var id = GetId(); // probably not good; it's not clear what the type of id is</code></p><p><br/></p><p>Framework Design Guidelines Conventions, Idioms, and Patterns for Reusable .NET Libraries Second Edition (367)</p><p><br/></p><p><a href="https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions#implicitly-typed-local-variables" class="external-link" rel="nofollow">Official Microsoft recommendation</a></p><p><br/></p><ul><li><code>var </code>requires less typing. It also is shorter and easier to read.</li><li><span style="color: rgb(17,17,17);"><code>var </code>encourages you to use a descriptive name for the variable..</span></li><li>You shouldn't have to care what the type of the object is</li><li>TBD</li></ul><p>Add more information.</p><p><br/></p><p>In this example:</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="86" loading="lazy" src="attachments/40207062/40270025.png?height=86" data-image-src="attachments/40207062/40270025.png" data-unresolved-comment-count="0" data-linked-resource-id="40270025" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-10-22_9-52-58.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40207062" data-linked-resource-container-version="5" data-media-id="48782d0b-7f9f-48eb-a0fc-e1637a7445fa" data-media-type="file"></span></p><p>If you wrote <code>test.First()</code> <span style="color: rgb(35,38,41);">you could retrieve lots of rows from the database to get only the first one. If you used<span> </span><code style="text-align: left;">var</code><span> </span>or<span> </span><code style="text-align: left;">IQueryable&lt;CaseTable&gt;</code>, you would retrieve only the first row.</span></p><p>If the underlying type is actually <code>IQueryable&lt;CaseTable&gt;</code> then the performance would be much slower although the code compiles and looks correct.</p><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40207062/40255870.png">image2021-10-12_8-38-16.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40207062/40270025.png">image2021-10-22_9-52-58.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

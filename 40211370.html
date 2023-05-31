@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Inversion of Control (IoC)</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Glossary_40212597.html">Glossary</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Inversion of Control (IoC)
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Sep 04, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p /><p>Instead of you being in control of when a piece of code is executed, you hand the control to something else. The flow of control is now inverted. It also known this as the Hollywood principle, “Dont call us, we will call you.” </p><p>Inversion of Control moves secondary responsibilities from an object to other objects that are dedicated to the purpose, supporting the<a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page"> Single Responsibility Principle</a>. (Martin 209)</p><h4 id="InversionofControl(IoC)-Examples">Examples</h4><h5 id="InversionofControl(IoC)-LINQ">LINQ</h5><p>In LINQ, you supply the lambda expression, but LINQ controls when and how often it gets called.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/40211370/290959500.png?width=680" data-image-src="attachments/40211370/290959500.png" data-height="44" data-width="645" data-unresolved-comment-count="0" data-linked-resource-id="290959500" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-5-2_13-38-43.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211370" data-linked-resource-container-version="14" data-media-id="957bf979-6ef4-4a14-addb-e849fc16b07a" data-media-type="file"></span><h5 id="InversionofControl(IoC)-WindowsForms">Windows Forms</h5><p>In Windows Forms, the framework declares events on controls. You can then bind a method to the event by using a delegate.</p><p>In this example, the user is in control when the <code>ui_CalculateButton_Click</code> method is executed by clicking the <code>ui_CalculateButton</code>.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/40211370/291023915.png?width=680" data-image-src="attachments/40211370/291023915.png" data-height="17" data-width="573" data-unresolved-comment-count="0" data-linked-resource-id="291023915" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-5-2_13-31-35.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211370" data-linked-resource-container-version="14" data-media-id="cc9ea170-4d61-42e7-9e22-27d5ad7bdadd" data-media-type="file"></span><p /><h5 id="InversionofControl(IoC)-UnityGameFramework">Unity Game Framework</h5><p>In Unity, a game object must inherit from <code>MonoBehavior</code> and must have certain defined methods that the framework calls while the game is running. Like <code>Update()</code> for example.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/40211370/291116991.png?width=680" data-image-src="attachments/40211370/291116991.png" data-height="215" data-width="438" data-unresolved-comment-count="0" data-linked-resource-id="291116991" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2022-5-2_13-14-19.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211370" data-linked-resource-container-version="14" data-media-id="c709ddf6-f91f-4268-9adf-16738ebfd462" data-media-type="file"></span><p /><h5 id="InversionofControl(IoC)-IoCContainers">IoC Containers</h5><p>In dependency management, an object should not take responsibility for instantiating dependencies itself. Instead, it should pass this responsibility to another “authoritative” mechanism, inverting the control. (Martin 2009)</p><p>IoC is most well known in the context of IoC containers. These systems allow you to link the interfaces of your application to their implementations and retrieve an instance of a class by resolving all its dependencies. (McLean Hall, Gary) I think this might be why people use the words inversion of control, dependency injection and dependency inversion interchangeably, although there is a distinction.</p><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="680" loading="lazy" src="attachments/40211370/291085241.png?width=680" data-image-src="attachments/40211370/291085241.png" data-height="111" data-width="841" data-unresolved-comment-count="0" data-linked-resource-id="291085241" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20220502-201116.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211370" data-linked-resource-container-version="14" data-media-id="29b987f7-1afd-4561-8e8d-5c620f307d65" data-media-type="file"></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211370/291182079.png">image2022-5-2_13-14-19.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211370/291244558.png">image2022-5-2_13-22-59.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211370/291278225.png">image2022-5-2_13-31-35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211370/291734598.png">image2022-5-2_13-38-43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211370/290959500.png">image2022-5-2_13-38-43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211370/291023915.png">image2022-5-2_13-31-35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211370/291116991.png">image2022-5-2_13-14-19.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211370/291085241.png">image-20220502-201116.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

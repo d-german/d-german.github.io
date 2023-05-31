@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Abstract Classes vs Interfaces</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Abstract Classes vs Interfaces
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Aug 20, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h3 id="AbstractClassesvsInterfaces-Compareandcontrastabstractclassesandinterfaces.Whywouldyouuseanabstractclass?Whywouldyouuseaninterface?">Compare and contrast abstract classes and interfaces. Why would you use an abstract class? Why would you use an interface?</h3><p><span>One way to see the difference between the two is to compare programming languages that have explicit interfaces such as Java and C# and those that do not such as C++. C++ only has classes. In C++, you can simulate interfaces by using <em>pure abstract classes</em>. (GOF 17) Pure abstract classes in C++ are abstract classes that have only pure virtual functions. A pure virtual function is a function that has no implementation or body, it is pure signature. A virtual function is &quot;made pure&quot; by the &quot;pseudo initializer&quot; =0 (Stroustrup 598):</span></p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40210535/40257237.png?height=250" data-image-src="attachments/40210535/40257237.png" data-unresolved-comment-count="0" data-linked-resource-id="40257237" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_12-58-4.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210535" data-linked-resource-container-version="41" data-media-id="0787bf60-69a4-43cf-b922-aa8ccb7a5a56" data-media-type="file"></span></p><p><br/></p><p>Note that there is nothing keeping a developer from updating Shape to contain a non-pure virtual function, but in that case it would no longer be an &quot;Interface&quot;.</p><p>How would we write a &quot;pure abstract class&quot; in C#? In C# we declare a pure virtual function or method using the <code>abstract</code> keyword modifier. If we declare any of a classes' method <code>abstract</code>, then we must also declare the containing class as <code>abstract</code>. So the equivalent Pure Abstract class looks like this:</p><h3 id="AbstractClassesvsInterfaces-C#&quot;Interface&quot;UsingPureAbstractClass"><span>C# &quot;Interface&quot; Using Pure Abstract Class</span></h3><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40210535/40254595.png" data-image-src="attachments/40210535/40254595.png" data-unresolved-comment-count="0" data-linked-resource-id="40254595" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-8-19_15-53-33.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210535" data-linked-resource-container-version="41" data-media-id="3d2c03d5-5c65-477d-b4c4-8370116f4ff2" data-media-type="file"></span></p><p>Like before, there is nothing stopping this class from being updated to contain virtual methods, i.e. methods that have implementation. </p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40210535/40257211.png" data-image-src="attachments/40210535/40257211.png" data-unresolved-comment-count="0" data-linked-resource-id="40257211" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_12-58-51.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210535" data-linked-resource-container-version="41" data-media-id="edc819f7-2be0-4b9e-8a12-a6b35f53b71d" data-media-type="file"></span></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40210535/40263171.png" data-image-src="attachments/40210535/40263171.png" data-unresolved-comment-count="0" data-linked-resource-id="40263171" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-8-17_13-0-5.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210535" data-linked-resource-container-version="41" data-media-id="d36a01bb-933c-4a4a-a2ce-6dde2e15aaa9" data-media-type="file"></span></p><h4 id="AbstractClassesvsInterfaces-Compareandcontrastabstractclassesandinterfaces.">Compare and contrast abstract classes and interfaces.</h4><p>Since both are missing at least some implementation, neither can be instantiated (or newed up). This also means they do not need a public and/ or default constructor. Abstract classes may contain some instance fields and default implementation meant to be shared or overridden by derived classes. If an abstract class has instance fields, you can use a protected constructor to initialize them. C# allows you to declare an abstract base class constructor as public, but I do not recommend this. (FDG 95-96).</p><p>You can say that you inherit from a base class but implement an interface. Inheritance is an “is-a” relationship. We say “a cat is a mammal” and “a mammal is an animal.” In both cases it's common to call this an &quot;is-a&quot; relationship.  Some refer to implementing an interface as a &quot;can-do&quot; relationship.</p><p>C# structs can implement interfaces but cannot inherit from classes.</p><p>C# and Java does not allow derived classes to inherit from more than one base class (multiple inheritance), but it allows a class to inherit from a single base class and/or implement many interfaces.</p><h3 id="AbstractClassesvsInterfaces-RelationshiptoGeneralDesignPrinciples">Relationship to General Design Principles</h3><p>&quot;<a href="40218230.html" data-linked-resource-id="40218230" data-linked-resource-version="5" data-linked-resource-type="page">Program to an interface; not an implementation</a>&quot; (GOF 18), the word interface refers to both pure abstract classes or interfaces. We can restate this as &quot;Program to an interface or (pure?) abstract class; not an implementation”.</p><p>&quot;<a href="40218236.html" data-linked-resource-id="40218236" data-linked-resource-version="8" data-linked-resource-type="page">Prefer composition (&quot;has-a&quot;) over class inheritance</a>&quot; (GOF 20). Here &quot;class inheritance&quot; is being distinguished from &quot;interface inheritance&quot; (GOF 17). &quot;Interface inheritance&quot; is equivalent to deriving from a pure abstract class or implementing an interface.</p><p>TBD</p><h3 id="AbstractClassesvsInterfaces-RelationshiptoSOLIDDesignPrinciples">Relationship to SOLID Design Principles</h3><p>Both pure abstract classes and interfaces enable us to follow the <a href="40210191.html" data-linked-resource-id="40210191" data-linked-resource-version="6" data-linked-resource-type="page">Open Closed Principle</a> (OPC), and the <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">Dependency Inversion Principle</a> (DIP). </p><p>Abstract classes can contain implementation. It is possible that derived classes may override the default behavior in a way that makes them not fully substitutional for the base class. When this happens, they lose their ability to be used polymorphically. The “is-a” relationship had degenerated into a “is-like-a” relationship (Coplien 251). Here, it violates <a href="40210175.html" data-linked-resource-id="40210175" data-linked-resource-version="9" data-linked-resource-type="page">Liskov Substitution Principle</a> (LSP). Since interfaces lack implementation, in theory its harder to violate the LSP using interfaces.</p><p>Since we typically use interfaces for <em>unrelated</em> classes, they tend to have a leaner set of members. Remember, each member of an interface must be implemented in derived classes, but we should not force clients to implement methods they do not use. This “interface pollution” or “fat interface” tends to violate the <a href="40210122.html" data-linked-resource-id="40210122" data-linked-resource-version="8" data-linked-resource-type="page">Interface Segregation Principle</a> (ISP). </p><h3 id="AbstractClassesvsInterfaces-ExampleFatInterface">Example Fat Interface</h3><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40210535/40264316.png" data-image-src="attachments/40210535/40264316.png" data-unresolved-comment-count="0" data-linked-resource-id="40264316" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-9-11_14-5-29.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210535" data-linked-resource-container-version="41" data-media-id="fc43b874-ee75-49c0-ab19-6c968d9f7b0d" data-media-type="file"></span></p><p><br/></p><p>A class that implements this interface must implement every method. The problem is that the implementing class would most likely violate the SRP. The class <code>A</code> implementations would need to be updated for different reasons and for different times than the <code>B</code> or <code>C</code> implementations.</p><p><br/></p><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" loading="lazy" src="attachments/40210535/40260298.png" data-image-src="attachments/40210535/40260298.png" data-unresolved-comment-count="0" data-linked-resource-id="40260298" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-9-5_15-14-52.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210535" data-linked-resource-container-version="41" data-media-id="4e67188b-d394-48a2-bbda-f6745d9853cd" data-media-type="file"></span></p><h3 id="AbstractClassesvsInterfaces-UsingInterfaceswithbaseclasses">Using Interfaces with base classes</h3><p>Sometimes it’s good to use an Interface along with a base class so developers can choose which is best for them. They can get free default implementation if they use the base class. This is a common practice in the .Net framework as we can see in <a href="https://docs.microsoft.com/en-us/dotnet/api/system.collections?view=netcore-3.1" class="external-link" rel="nofollow">System.Collections Namespace</a>.</p><p><br/></p><h1 id="AbstractClassesvsInterfaces-TBD">TBD</h1><p>edit notes</p><p>List ADT example of AC or I</p><p>An ADT like a Stack is an example how a classes public interface - the public constructors and methods belong together (high cohesion) and represent the essential properties of an object. (Dianxiang Xu 86)</p><p><code>Stack(), Push(), Pop(), Peek(), IsEmpty()</code></p><p>With a Stack, I would prefer to implement it as an abstract class. It would be OK if we forced clients to implement every member since these methods belong together and their implementation should not violate the SRP.</p><p>Summery</p><p>If you public interface contains more than a few members (Don't know how many) and they belong together (high cohesion) then represent them as an abstract class. If the members do not relate well (low cohesion) then we should divide them into multiple smaller Interfaces.</p><p class="auto-cursor-target">**<a href="https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/default-interface-methods-versions" class="external-link" rel="nofollow">Beginning with C# 8.0 on .NET Core 3.0, you can define an implementation when you declare a member of an interface. The most common scenario is to safely add members to an interface already released and used by innumerable clients.</a> This includes static fields and methods and excludes instance fields. You can provide a body to interface methods, but the method does not have access to any instance fields.</p><p><br/></p><p><br/></p><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40254913.png">image2020-8-19_13-22-51.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40254595.png">image2020-8-19_15-53-33.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40254507.png">image2020-8-19_16-9-47.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40254517.png">image2020-8-19_16-13-43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40255061.png">image2020-9-3_14-35-30.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40255055.png">image2020-9-3_14-44-20.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40255038.png">image2020-9-3_14-45-35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40255021.png">image2020-9-3_14-46-34.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40255015.png">image2020-9-3_14-49-2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40260256.png">image2020-9-5_13-6-38.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40260298.png">image2020-9-5_15-14-52.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40260587.png">image2020-9-10_9-16-51.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40264328.png">image2020-9-11_14-0-6.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40264322.png">image2020-9-11_14-4-0.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40264316.png">image2020-9-11_14-5-29.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40257205.png">image2021-8-17_12-54-39.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40257237.png">image2021-8-17_12-58-4.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40257211.png">image2021-8-17_12-58-51.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210535/40263171.png">image2021-8-17_13-0-5.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : DIP - The Dependency Rule</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40210080.html">Dependency Inversion Principle (DIP)</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : DIP - The Dependency Rule
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Nov 03, 2022
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><br/></p><ul><li><p>The long-term health, adaptability, and possibly the viability of a project relies on sound management of dependencies. A mess of spaghetti-like interdependencies will occur if developers create classes that reference each other without careful consideration, which can seriously affect a team’s ability to deliver business value in a consistent, predictable fashion. (McLean Hall, Gary)</p></li><li><p>All software systems can be decomposed into two major elements: <strong>policy </strong>and <strong>details</strong>. (2017 Martin 140)</p><ul><li><p>The <strong>policy </strong>element embodies all the business rules. The policy is where the true value of the system lives. The policy should have no knowledge of the details and does not depend on the details in any way.</p></li><li><p>The <strong>details </strong>are those things that are necessary to enable humans, other systems, and programmers to communicate with the policy, but that does not impact the behavior of the policy at all. They include IO devices, databases, web systems, servers, frameworks, GUI, communication protocols, and so forth.</p></li></ul></li><li><p><strong>Business rules</strong> are rules or procedures that make or save the business money. </p><ul><li><p>Some business rules are considered Critical Business Rules and are critical to the business itself and would exist even if there were no system to automate them. The fact that a bank charges N% interest for a loan is a business rule that makes the bank money. </p></li><li><p>Other business rules may be closely tied to the application, or they may be more general. For example, the validation of input fields is a business rule that is closely tied to the application itself.</p></li></ul></li><li><p><strong>Critical Business Rules</strong> / <strong>Application Specific Business Rules</strong></p><ul><li><p>These two different kinds of rules will change at different rates, and for different reasons—so they should be separated so that they can be independently changed. <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">Single Responsibility Principle (SRP)</a> (2017 Martin 190)</p></li></ul></li><li><p><strong>Entities</strong>: Critical Business Rules</p><ul><li><p>An <strong>Entity</strong> is a class that contains a small set of <em>critical business rules</em> operating on <em>Critical Business Data</em>. Loan, for example:</p></li><li><p> <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40217905/40258567.png?height=250" data-image-src="attachments/40217905/40258567.png" data-unresolved-comment-count="0" data-linked-resource-id="40258567" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-29_9-53-10.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="68f4b6b0-85d3-4463-a89b-4093717a7d3b" data-media-type="file"></span></p></li></ul></li></ul><ul><li><p><strong>Use Cases:</strong> <strong>application-specific</strong> business rules</p><ul><li><p>Use cases specifies the input to be provided by the user, the output to be returned to the user, and the processing steps involved in producing that output.</p><ul><li><p> <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40217905/40258573.png?height=250" data-image-src="attachments/40217905/40258573.png" data-unresolved-comment-count="0" data-linked-resource-id="40258573" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-29_9-54-55.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="3f0b6036-9076-48ed-a88f-4b54c336fc89" data-media-type="file"></span></p></li></ul></li></ul></li><li><p>Entities classes are at a higher level than classes that implement use cases.</p><ul><li><p>Why? Because use cases are specific to a single application and, therefore, are closer to the inputs and outputs of that system. Entities are generalizations that can be used in many different applications, so they are farther from the inputs and outputs of the system. Use cases depend on Entities; Entities do not depend on use cases. (2017 Martin 193)</p></li></ul></li><li><p>Policies that change for the same reasons, and at the same time, are at the same level. Policies that change for different reasons, or at different times, are at different levels.  <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">Single Responsibility Principle (SRP)</a></p></li><li><p>The code that implements high-level (HL) policy should not depend on the code that implements low-level (LL) details. Rather, details should depend on policies.</p></li><li><p>Here we are letting a simple red arrow </p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="0" loading="lazy" src="attachments/40217905/40257512.png?width=0" data-image-src="attachments/40217905/40257512.png" data-height="27" data-width="58" data-unresolved-comment-count="0" data-linked-resource-id="40257512" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-1_9-4-5.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="13c69594-8c98-4d9b-b2e5-d864a3cf5b2c" data-media-type="file"></span><p> represent any type of dependency and we represent <a href="Inheritance_40212286.html" data-linked-resource-id="40212286" data-linked-resource-version="2" data-linked-resource-type="page">inheritance </a>with the red open arrow. </p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="0" loading="lazy" src="attachments/40217905/40257503.png?width=0" data-image-src="attachments/40217905/40257503.png" data-height="28" data-width="71" data-unresolved-comment-count="0" data-linked-resource-id="40257503" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-1_9-6-50.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="7fbaa0ac-3fd4-47b7-903b-ca4810a90eff" data-media-type="file"></span><ul><li><p><em><strong>The reason for the distinction is that inheritance is the strongest, and most rigid, of all the source code relationships; consequently, it should be used with great care. </strong></em>(2017 Martin 88)</p></li></ul></li><li><p>For a class, its dependencies include all the modules on which each of its elements depends. The key problem with dependencies is that a module may break whenever one of its dependent modules has changed. Here, change is not only about the syntax but also the semantics of the coupled modules. (Dianxiang Xu 89)</p></li><li><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="170" loading="lazy" src="attachments/40217905/40257611.png?width=170" data-image-src="attachments/40217905/40257611.png" data-height="88" data-width="347" data-unresolved-comment-count="0" data-linked-resource-id="40257611" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-1_9-48-34.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="4beb43fc-8ad7-46eb-a3a0-41b54f922eea" data-media-type="file"></span></li><li><p>In this diagram module A has no dependencies but module B depends on A. This means that module A is protected from changes made to module B. This also means that module B can break if changes are made to module A. We should organize our dependencies so that higher-level modules are protected from changes from lower-level modules.</p><ul><li><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="306" loading="lazy" src="attachments/40217905/40258590.png?width=306" data-image-src="attachments/40217905/40258590.png" data-height="171" data-width="624" data-unresolved-comment-count="0" data-linked-resource-id="40258590" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-29_10-14-18.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="6356c948-77cb-4302-a048-65e0b03275e2" data-media-type="file"></span></li></ul></li><li><p>Organizing Levels and Dependencies - Where to put items that belong to the same level?</p><ul><li><p>For small to medium applications</p><ul><li><p> folders or namespaces.</p></li></ul></li><li><p>For larger applications </p></li></ul><ul><li><p>Components (assemblies in .NET) are the units of deployment.</p><ul><li><p>Java- jar files;  .NET - dll;  c++ lib, dll, ...</p><ul><li><p>Can be linked together into a single executable. Or they can be aggregated together into a single archive, such as a .war file. </p></li><li><p>Can be independently deployed as separate dynamically loaded plugins, such as.jar or .dll or .exe files.</p></li></ul></li></ul></li></ul></li><li><p>The Dependency Rule</p><ul><li><p>Source code dependencies must point only toward higher-level (HL) software artifacts (classes, modules, components, etc.).</p></li><li><p>That includes functions, classes, variables, or any other software artifact.</p></li><li><p>Data Formats (DTO etc.) declared in LL code should not be used by HL code, especially if those formats are generated by a framework in the LL (database models). We don’t want anything in the LL code to impact the HL</p></li></ul><ul><li><p>Data that crosses the boundaries should be simple data structures. (Structs or DTOs)</p></li><li><p>Don’t pass Entity objects or database rows.</p></li><li><p>When passing data across a boundary, it is always in the form that is most convenient for the HL module.</p></li></ul></li><li><p /><ul><li><p>Nothing at a HL can know anything at all about something in a lower level (LL). </p></li><li><p>The name of something declared in LL code must not be mentioned in HL code. </p></li><li><p>Suppose something in a HL module (namespace or component) needs to call (flow of control) something in a LL module. <br/></p><ul><li><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="306" loading="lazy" src="attachments/40217905/40258615.png?width=306" data-image-src="attachments/40217905/40258615.png" data-height="198" data-width="646" data-unresolved-comment-count="0" data-linked-resource-id="40258615" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-29_10-37-2.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="e19f341a-a2dd-4cb8-993c-396870b9ff4e" data-media-type="file"></span></li></ul></li><li><p>This call must not be direct because that would violate the Dependency Rule. <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">Dependency Inversion Principle (DIP)</a></p></li><li><p>Instead have the HL code call an interface that the LL code implements.</p></li><li><p>Also, the interface must be declared in the HL module.</p></li><li><p> </p><ul><li><span class="confluence-embedded-file-wrapper image-left-wrapper"><img class="confluence-embedded-image image-left" loading="lazy" src="attachments/40217905/40258727.png" data-image-src="attachments/40217905/40258727.png" data-height="684" data-width="1000" data-unresolved-comment-count="0" data-linked-resource-id="40258727" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-29_11-14-10.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="0cc5f637-cd3e-47e1-b0b9-b733a882361e" data-media-type="file"></span></li></ul></li><li><p>The HL component is calling the <code>DataProvider </code>via the <code>IDataProvider</code> interface. Notice that whenever a dependency arrow crosses the border of a component the direction is always in the direction of LL to HL.</p><ul><li><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="510" loading="lazy" src="attachments/40217905/40258764.png?width=510" data-image-src="attachments/40217905/40258764.png" data-height="861" data-width="1006" data-unresolved-comment-count="0" data-linked-resource-id="40258764" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-29_11-32-26.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40217905" data-linked-resource-container-version="13" data-media-id="798780d7-1f60-43d8-bf7b-db712cf7f8e0" data-media-type="file"></span></li></ul></li><li><p>This is not the correct design since a dependency arrow is crossing from a HL to a LL component.</p></li></ul></li></ul><p><br/></p><p>See <a href="Coupling_40212681.html" data-linked-resource-id="40212681" data-linked-resource-version="7" data-linked-resource-type="page">Coupling</a>, <a href="Inheritance_40212286.html" data-linked-resource-id="40212286" data-linked-resource-version="2" data-linked-resource-type="page">Inheritance</a>, </p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258567.png">image2021-1-29_9-53-10.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258573.png">image2021-1-29_9-54-55.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258561.png">image2021-1-29_9-58-40.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258590.png">image2021-1-29_10-14-18.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258627.png">image2021-1-29_10-36-52.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258615.png">image2021-1-29_10-37-2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258727.png">image2021-1-29_11-14-10.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258770.png">image2021-1-29_11-31-23.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40258764.png">image2021-1-29_11-32-26.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40257512.png">image2021-2-1_9-4-5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40257503.png">image2021-2-1_9-6-50.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40217905/40257611.png">image2021-2-1_9-48-34.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

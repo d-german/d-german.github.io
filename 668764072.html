@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : You Gotta Have Faith in init – How We Embraced Immutability in .NET</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : You Gotta Have Faith in init – How We Embraced Immutability in .NET
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on May 19, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>When working with .NET, developers often grapple with the choice between mutable and immutable objects. In many situations, immutability can lead to more predictable and safer code. However, the transition from mutable objects to immutable ones can be a daunting task, especially when faced with the unfamiliarity of new C# features like the <code>init</code> keyword and the <code>with</code> operator. In this article, I will give an example of adding immutability to our codebase, showing how we converted a class with mutable properties to a record with immutable ones.</p><h3 id="YouGottaHaveFaithininit–HowWeEmbracedImmutabilityin.NET-FromClasstoRecord:ConvertingaMutableObjecttoanImmutableOne">From Class to Record: Converting a Mutable Object to an Immutable One</h3><p>Originally, our <code>ConnectionInfo</code>object was a class with mutable properties using the <code>set</code> keyword. During a refactoring effort, we decided to convert it to a record and make all properties immutable using the <code>init</code> keyword. However, we encountered a build error when attempting to change the <code>URI</code> property from set to <code>init</code>, as we were updating its value in our code. We decided to tackle this problem in a separate story, which is the focus of this example.</p><p>We began by converting the <code>ConnectionInfo</code>class to a record and updating all properties to use the <code>init</code> keyword, except for the <code>URI</code> property, which was left as a mutable property using the <code>set</code> keyword.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// Original code snippet - Before
+public record ConnectionInfo
+{
+    /// &lt;summary&gt;
+    /// Gets or sets the resource URI.
+    /// &lt;/summary&gt;
+    /// &lt;remarks&gt;
+    /// Cannot be init because it is updated when we swap the Uri path for XDS
+    /// &lt;/remarks&gt;
+    public string URI { get; set; }
+
+    public string URIType { get; init; }
+
+    public string MediaType { get; init; }
+    
+    public int TotalPages { get; init; }
+    
+    public IImmutableList&lt;NameValuePair&gt; Headers { get; init; }
+    
+    public IImmutableList&lt;NameValuePair&gt; CustomProperties { get; init; }
+}</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// Original code snippet - Before
+private async Task&lt;RepositoryResponse&lt;ContentInfo&gt;&gt; BuildContentInfoResponse(
+    HttpResponseMessage response,
+    string contentId,
+    bool swapXDSUri,
+    PatientContent patientContent)
+{
+    // Code omitted for brevity...
+
+    if (response.IsSuccessStatusCode)
+    {
+         var convertedContent = Converter.ToContentInfoFrom(
+                    await response.Content.ReadAsAsync&lt;HCContentView&gt;(), patientContent);
+                    
+        if (_serviceConfiguration.EnableXDSContentViewing &amp;&amp; swapXDSUri)
+        {
+            foreach (var connectionInfo in convertedContent.Uris)
+            {
+                if (connectionInfo.CustomProperties.Any(pair =&gt; pair.Name == IsXDSKeyName))
+                {
+                    SwapXDSUriPath(connectionInfo, contentId);
+                }
+            }
+        }
+        repoResponse.ResponseObject = convertedContent;
+    }
+    // Code omitted for brevity...
+}</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// Original code snippet - Before
+private void SwapXDSUriPath(ConnectionInfo connectionInfo, string contentId)
+{
+    // Code omitted for brevity...
+
+    var uriBuilder = new UriBuilder($&quot;{referer.Trim(/)}/{convertEndpointPath}{querystring}&quot;);
+    connectionInfo.URI = WebUtility.UrlDecode(uriBuilder.Uri.AbsoluteUri);
+}</pre>
+</div></div><p>This original code works and is fully covered by automated tests. This is crucial because it provides the confidence to refactor code without worrying about breaking anything. </p><p>Now in a separate story we addressed the <code>URI</code> property by making it <code>init</code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// Updated code snippet - After
+public record ConnectionInfo
+{
+    public string URI { get; init; }
+
+    public string URIType { get; init; }
+
+    public string MediaType { get; init; }
+    
+    public int TotalPages { get; init; }
+    
+    public IImmutableList&lt;NameValuePair&gt; Headers { get; init; }
+    
+    public IImmutableList&lt;NameValuePair&gt; CustomProperties { get; init; }
+}</pre>
+</div></div><p>We then needed to refactor the <code>SwapXDSUriPath</code> because it was modifying that <code>URI</code> property directly, to return a new <code>ConnectionInfo</code> object with the updated <code>URI</code>, using the <code>with</code> operator for non-destructive mutation. </p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Note how the original <code>SwapXDSUriPath</code> method contains a side effect because it updates or mutates its passed-in <code>connectionInfo</code> parameter. In contrast, the updated method does not have any side effects, which is considered better from a functional programming point of view. </p></div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// Updated code snippet - After
+private ConnectionInfo SwapXDSUriPath(ConnectionInfo connectionInfo, string contentId)
+{
+    // Code omitted for brevity...
+
+    var uriBuilder = new UriBuilder($&quot;{referer.Trim(/)}/{convertEndpointPath}{querystring}&quot;);
+    return connectionInfo with { URI = WebUtility.UrlDecode(uriBuilder.Uri.AbsoluteUri) };
+}</pre>
+</div></div><p>Then we refactored the <code>BuildContentInfoResponse</code> method to also use the <code>with</code> operator, since <code>SwapXDSUriPath</code> now returns a <code>ConnectionInfo</code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// Updated code snippet - After
+// Code omitted for brevity...
+
+    if (response.IsSuccessStatusCode)
+    {
+         var convertedContent = Converter.ToContentInfoFrom(
+                    await response.Content.ReadAsAsync&lt;HCContentView&gt;(), patientContent);
+        if (_serviceConfiguration.EnableXDSContentViewing &amp;&amp; swapXDSUri)
+        {
+            var updatedUris = new List&lt;ConnectionInfo&gt;();
+            
+            foreach (var connectionInfo in convertedContent.Uris)
+            {
+                updatedUris.Add(connectionInfo.CustomProperties
+                    .Any(pair =&gt; pair.Name == IsXDSKeyName)
+                    ? SwapXDSUriPath(connectionInfo, contentId)
+                    : connectionInfo);
+            }
+
+            repoResponse.ResponseObject = convertedContent with { Uris = updatedUris.ToImmutableArray() };
+        }
+        else
+        {
+            repoResponse.ResponseObject = convertedContent;
+        }
+
+    }
+    // Code omitted for brevity...
+}</pre>
+</div></div><p>In this refactored version of <code>BuildContentInfoResponse</code>, we use a new <code>List&lt;ConnectionInfo&gt;</code> called <code>updatedUris</code> to store the new instances of <code>ConnectionInfo</code> objects after applying the <code>with</code> operator. We then assign this new list to the <code>ResponseObject</code> using the <code>with</code> operator, ensuring that the original <code>convertedContent</code> remains unchanged.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>I intentionally use the word &quot;refactor&quot; because notably, none of the tests needed to be updated for any of these code changes.</p></div></div><p>In the final update to the <code>BuildContentInfoResponse</code> method, the imperative <code>foreach</code> loop has been replaced with a declarative LINQ expression. This change simplifies the code by eliminating the need for a new variable (<code>updatedUris</code>) and the process of updating its state. Instead, the <code>Select</code> method is used to transform each <code>ConnectionInfo</code> object in the <code>Uris</code> collection based on whether the <code>IsXDSKeyName</code> is present in the <code>CustomProperties</code>. The result is a more concise and readable implementation that leverages the power of LINQ.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">    // Code omitted for brevity...
+
+    if (response.IsSuccessStatusCode)
+    {
+         var convertedContent = Converter.ToContentInfoFrom(
+                    await response.Content.ReadAsAsync&lt;HCContentView&gt;(), patientContent);
+                    
+        if (_serviceConfiguration.EnableXDSContentViewing &amp;&amp; swapXDSUri)
+        {
+            var updatedUris = convertedContent.Uris.
+                Select(connectionInfo =&gt; connectionInfo.CustomProperties
+                    .Any(pair =&gt; pair.Name == IsXDSKeyName)
+                    ? SwapXDSUriPath(connectionInfo, contentId)
+                    : connectionInfo);
+
+            repoResponse.ResponseObject = convertedContent with { Uris = updatedUris.ToImmutableArray() };
+        }
+        else
+        {
+            repoResponse.ResponseObject = convertedContent;
+        }
+
+    }
+    // Code omitted for brevity...
+}</pre>
+</div></div><p>In summary, this article highlights the process of transitioning from mutable objects to immutable ones in a .NET codebase, making use of C#'s <code>init</code> keyword and the <code>with</code> operator. Through a step-by-step example, we demonstrate how converting a class to a record and refactoring methods can lead to more predictable and safer code. Additionally, the importance of having comprehensive automated tests is emphasized to ensure that refactoring efforts do not inadvertently break existing functionality.</p><p>See:</p><p><a href="40211000.html" data-linked-resource-id="40211000" data-linked-resource-version="32" data-linked-resource-type="page">Imperative vs Functional (Declarative, Expressive) Style of Programming</a> </p><p><a href="Functional-in-the-Small%2C-Object-Oriented-in-the-Large_470647891.html" data-linked-resource-id="470647891" data-linked-resource-version="103" data-linked-resource-type="page">Functional in the Small, Object-Oriented in the Large</a> </p><p><a href="Transitioning-from-Classes-to-Records-and-Adopting-IImmutableList-in-C%23_678134834.html" data-linked-resource-id="678134834" data-linked-resource-version="9" data-linked-resource-type="page">Transitioning from Classes to Records and Adopting IImmutableList in C#</a> </p><p />
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

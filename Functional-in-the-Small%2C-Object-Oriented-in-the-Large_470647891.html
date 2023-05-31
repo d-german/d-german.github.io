@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Functional in the Small, Object-Oriented in the Large</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Functional in the Small, Object-Oriented in the Large
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on May 19, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<style type='text/css'>/*<![CDATA[*/
+div.rbtoc1685539431346 {padding: 0px;}
+div.rbtoc1685539431346 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1685539431346 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1685539431346'>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-“Functionalinthesmallandobject-orientedinthelarge”'>“Functional in the small and object-oriented in the large”</a></li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-SideEffects'>Side Effects</a>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-Actions,Calculations,andData'>Actions, Calculations, and Data</a>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-DifferentiatingbetweenActionandCalculationExamples'>Differentiating between Action and Calculation Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-First-classobjects'>First-class objects</a>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-First-classfunctionscanreplaceanysyntax.'>First-class functions can replace any syntax.</a>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-Higherorderfunctions'>Higher order functions</a>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-Examplesoftakingfunctionsasarguments.'>Examples of taking functions as arguments.</a></li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-Convertingif,elseintoahigher-orderfunction.'>Converting if, else into a higher-order function.</a></li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-FormoreonthisseeHigherOrderFunctionExamples.'>For more on this see Higher Order Function Examples.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-FunctionalToolsforCollections:Map(),Filter(),Reduce()'>Functional Tools for Collections: Map(), Filter(), Reduce()</a>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-DerivingMap()'>Deriving Map()</a>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-EagerversusLazyevaluation'>Eager versus Lazy evaluation</a></li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-LazyMap()ExtensionMethod'>Lazy Map() Extension Method</a></li>
+</ul>
+</li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-DerivingFilter()'>Deriving Filter()</a></li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-EagerLessThan5method'>Eager LessThan5 method</a></li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-LazyandGenericFilterExtensionMethod'>Lazy and Generic Filter Extension Method</a></li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-DerivingReduce()'>Deriving Reduce()</a></li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-UnderstandingDeferredExecutioninLINQQueries'>Understanding Deferred Execution in LINQ Queries</a>
+<ul class='toc-indentation'>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-ToList(),ToDictionary(),ToArray()etc.'>ToList(), ToDictionary(), ToArray() etc.</a></li>
+</ul>
+</li>
+<li><a href='#FunctionalintheSmall,Object-OrientedintheLarge-SummaryConclusion'>Summary Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="FunctionalintheSmall,Object-OrientedintheLarge-“Functionalinthesmallandobject-orientedinthelarge”">“Functional in the small and object-oriented in the large”</h1><p>This article is motivated by Eric Normand's book &quot;Grokking Simplicity: Taming complex software with functional thinking.&quot; <a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210256/Works+sighted#Grokking-Simplicity%3A-Taming-complex-software-with-functional-thinking-by-Eric-Normand-2021" rel="nofollow">(Normand 2021)</a> Even though I’m an object-oriented developer, I understand the benefits of functional programming and want to use it in some parts of my code. This is called &quot;functional in the small and OO in the large&quot;. <a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40210256/Works+sighted#Functional-Programming-in-C%23%3A-How-to-write-better-C%23-code-by-Enrico-Buonanno-2017" rel="nofollow">(Buonanno 2017)</a> <strong>This is a design philosophy that suggests using functional programming techniques within the methods of object-oriented objects, but still using an overall object-oriented design for the larger structure of the program. </strong>This article is a simple introduction to functional programming and how it's used in our C# code.</p><h1 id="FunctionalintheSmall,Object-OrientedintheLarge-SideEffects">Side Effects</h1><p><em><strong>Side effects</strong></em> refer to any action a function performs apart from returning a value. This can include activities like sending an email, launching a rocket, or altering global state. These can create issues because the side effects occur each time the function is executed. This can result in unintended consequences if the purpose of the function is only to return a value and not to produce side effects.</p><p>Functional programming is often reduced to the idea of &quot;No side effects!&quot;, but this is an oversimplification. Functional programming is not just about avoiding side effects, but it is a way to control and manage them. </p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The management of state is a key difference between functional programming and object-oriented programming. Class instance variables can be considered &quot;global&quot; to the class, and the methods of the class can change their values. (TBD) This is frequent practice in object-oriented programming. In functional programming, altering the state of global variables is discouraged. This is why I recommended making <a href="Static-Methods_40210978.html" data-linked-resource-id="40210978" data-linked-resource-version="2" data-linked-resource-type="page">class methods static</a>, when possible, to express that they do not alter any &quot;global&quot; variables.</p></div></div><h2 id="FunctionalintheSmall,Object-OrientedintheLarge-Actions,Calculations,andData">Actions, Calculations, and Data</h2><ul><li><p>All code can be divided into actions, calculations, and data.</p></li><li><p><strong>Actions</strong></p><ul><li><p> Also known as impure functions or functions that cause <em>side effects</em></p></li><li><p>Actions depend on when they are called or how many times they are called.</p></li><li><p>We must be extra careful when using them.</p></li><li><p>Examples:</p><ul><li><p><code>SendEmail(to, from, subject, body)</code> <code>SaveUserDb(user)</code> <code>GetCurrentTime()</code> </p></li><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">UpdateId() {this._id++;}</pre>
+</div></div></li></ul></li><li><p>Functional programmers try to avoid <em><u>unnecessary</u></em> side effects.</p><ul><li><p>Spend a lot of effort refactoring Actions into Calculations</p></li></ul></li></ul></li><li><p><strong>Calculations</strong></p><ul><li><p>Also known as pure functions. They do not cause side effects</p></li><li><p>Examples:</p><ul><li><p><code>Sum(numbers)</code> <code>StringLength(name)</code></p></li><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">List&lt;int&gt; Sort(List&lt;int&gt; numbers) {return numbers.OrderBy(num =&gt; num);}</pre>
+</div></div></li><li><p>It does not matter when you call <code>Sum</code>, <code>StringLength,</code> or <code>Sort</code>. It will give you the correct answer any time. And it doesn't matter how many times you call it. It won't influence the rest of the program or the outside world.</p></li><li><p>Calculations are opaque, meaning that the calculation is a black box, and the details of how it operates are hidden from the caller. The calculation is defined only by its inputs and outputs, and its internal logic and implementation are abstracted away.</p></li></ul></li><li><p>With Pure functions, you can be confident that the same inputs will always produce the same outputs, without having to worry about potential side effects. This makes it easier to test and debug the code, as well as reason about its behavior.</p></li></ul></li><li><p><strong>Data</strong></p><ul><li><p><strong>Data </strong>is recorded facts about things. Data provides the input for calculations and actions and is used to produce results and drive the behavior of the code.</p></li><li><p>Examples:</p><ul><li><p><code>[1, 10, 2, 45, 3, 98]</code> <code>{FirstName: John, LastName: Williams}</code> <a href="DTO---Data-Transfer-Object_40209511.html" data-linked-resource-id="40209511" data-linked-resource-version="10" data-linked-resource-type="page">DTOs</a></p></li><li><p>It can include values such as numbers, text, dates, or even more complex structures like arrays, dictionaries, or objects.</p></li></ul></li><li><p>Functional programmers often prefer to use <em>immutable data</em></p><ul><li><p><strong>Immutable data</strong> means that once it's created, its value can't change. This makes it more predictable and easier to use because you don't have to worry about unexpected changes to the data.</p></li><li><p><strong>Copy-on-write</strong> and <strong>defensive copying</strong> are two techniques used by functional programmers to implement immutable data.</p><ul><li><p><strong>Copy-on-write</strong>. Copy-on-write involves creating a new copy of the data before modifying it, so that the original data remains unchanged. This approach ensures that any changes made to the data do not affect other parts of the code that may be relying on the original data.</p></li><li><p><strong>Defensive copying.</strong> Involves making a copy of data that you want to keep, so that it can be safely used and modified without affecting the original data. This approach is particularly useful when passing data between functions or when sharing data across multiple threads.</p></li></ul></li></ul></li></ul></li><li><p>Calculations and Data are much easier to work with than Actions. </p></li><li><p> In general, functional programmers prefer data to calculations and calculations to actions. Data is the easiest to work with.</p></li><li><p>Functional programming emphasizes the use of data and calculations, but it's not always possible to write code that consists entirely of data and calculations. In many cases, actions are necessary to interact with the external world, such as reading from a file, sending a network request, or updating a database. In these cases, functional programmers strive to organize their actions in a way that reduces their impact on the rest of the code and makes them easier to manage.</p></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>A <code>with</code> expression in C# is designed to allow for non-destructive mutation. It creates a copy of the receiver expression and makes modifications to its properties based on the member initialize list.</p><ul><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var originalPoint = new Point { X = 1, Y = 2 }; //   (1,2)
+var modifiedPoint = originalPoint with { X = 3 }; // (3,2)</pre>
+</div></div></li></ul></div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The .NET <code>ImmutableArray&lt;T&gt;</code> uses <strong>defensive copying</strong>. When an element is added to an <code>ImmutableArray&lt;T&gt;</code>, a new copy of the array is created and returned, leaving the original array unchanged.</p><ul><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var originalArray = ImmutableArray.Create(1, 2, 3); // [1, 2, 3]
+var modifiedArray = originalArray.Add(4); // [1, 2, 3, 4]</pre>
+</div></div></li></ul></div></div><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-DifferentiatingbetweenActionandCalculationExamples">Differentiating between Action and Calculation Examples</h3><ul><li><p> Is the following method an Action or a Calculation?</p><ul><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">private FullTextSearchResponse buildErrorResponse(string errorMessage)
+{
+	_logger.LogError(&quot;FullTextSearch Error: {ErrorMessage}&quot;, errorMessage);
+	return new FullTextSearchResponse { IsError = true, ErrorMessage = errorMessage };
+}</pre>
+</div></div><ul><li><p>The method is an Action because <code>_logger.LogError()</code> causes a side effect.</p></li><li><p>A functional programmer would feel the need to move the logging out of this method.</p></li></ul></li><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">private FullTextSearchResponse buildErrorResponse(string errorMessage)
+{	
+	return new FullTextSearchResponse { IsError = true, ErrorMessage = errorMessage };
+}</pre>
+</div></div><ul><li><p>This now looks like a Calculation. But if <code>FullTextSearchResponse</code> is mutable then it's still an Action!</p><ul><li><p>If <code>FullTextSearchResponse</code> is mutable, then the <code>buildErrorResponse</code> method would still be considered an Action, even though it has no explicit side effects. This is because mutable data can have implicit side effects, as changes to the data can affect other parts of the program</p></li></ul></li></ul></li></ul></li><li><p>Is this method a Calculation or an Action, despite the fact that it modifies the <code>temp </code>array and <code>i</code> variable?</p></li><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">ImmutableArray&lt;int&gt; Add(ImmutableArray&lt;int&gt; numbers, int number)
+{
+    var temp = new int[numbers.Length];
+    for (var i = 0; i &lt; numbers.Length; i++)
+    {
+        temp[i] = numbers[i] + number;
+    }
+    return ImmutableArray.Create(temp);
+}</pre>
+</div></div><ul><li><p>It's a Calculation because immutability refers to the principle that an object or data structure cannot be changed once it has been created. Despite this, some initial modifications are necessary during its creation to set its values. The process of initializing local variables or values involves modifying them temporarily, but once they are set, they are considered immutable. These locally created and modified values are only visible within the function they are defined in and are returned once they have been fully initialized. </p></li></ul></li></ul><h1 id="FunctionalintheSmall,Object-OrientedintheLarge-First-classobjects">First-class objects</h1><ul><li><p> <strong>First-class</strong> object is an object that can be passed as an argument to a function, assigned to a variable, and returned as a value from a function.</p></li><li><p>In C# numbers are first-class objects. You can pass it to a function. You can return it from a function. You can store it in a variable. Store it in an array or object.</p><ul><li><p> And you can do the same with strings, booleans, arrays. These things are first-class because you can do all those things with them.</p></li></ul></li><li><p>In C#, methods or functions can be treated as first-class objects through the use of delegates, which allow them to be passed as arguments to other functions, returned as values from other functions, and assigned to variables.</p></li><li><p>There are many components of programming languages that cannot be treated like first-class objects. For example, arithmetic operators such as <code>+</code> or <code>*</code> cannot be used as values assigned to variables, nor can they be passed to functions as arguments. Similarly, keywords such as <code>if</code> and <code>for</code> are not first-class objects, meaning that they cannot be used in the same ways as other first-class objects.</p></li><li><p> A key concept in functional programming is to recognize when something is not first-class, and then to make it first-class. </p></li></ul><h2 id="FunctionalintheSmall,Object-OrientedintheLarge-First-classfunctionscanreplaceanysyntax.">First-class functions can replace any syntax.</h2><p>You can’t assign the <code>*</code> operator to a variable but you can make something equivalent to the <code>*</code> operator with a function: </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// declare a function that multiplies two numbers
+// Func&lt;T1,T2,TResult&gt;
+Func&lt;double, double, double&gt; multiply = (x, y) =&gt; x * y;
+
+Assert.That(multiply(2, 3), Is.EqualTo(6));</pre>
+</div></div><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p><code>Func&lt;T1,T2,TResult&gt;</code> is a delegate in .NET that represents a method that takes two input arguments of types <code>T1</code> and <code>T2</code> and returns a value of type <code>TResult</code>. </p>
+</div></div><p>In this example, <code>multiply</code> is a variable of type delegate <code>Func&lt;double, double, double&gt;</code>, meaning it can reference any method that takes two <code>double</code> values as inputs and returns a <code>double</code> value as output. By assigning the multiplication logic to a delegate, it can now be passed around as a value and manipulated just like any other value in the program, hence the term &quot;first-class&quot;.</p><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-Higherorderfunctions">Higher order functions</h3><p><strong>Higher-order</strong> functions are functions that can take one or more functions as arguments, and/or return a function as its result. Without first-class functions, higher-order functions would not be possible. </p><h4 id="FunctionalintheSmall,Object-OrientedintheLarge-Examplesoftakingfunctionsasarguments.">Examples of taking functions as arguments.</h4><h4 id="FunctionalintheSmall,Object-OrientedintheLarge-Convertingif,elseintoahigher-orderfunction.">Converting <code>if</code>, <code>else</code> into a higher-order function.</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">// Example of a higher-order function
+T If&lt;T&gt;(bool condition, Func&lt;T&gt; trueFunc, Func&lt;T&gt; falseFunc)
+{
+    if (condition)
+        return trueFunc();
+    else
+        return falseFunc();
+}
+
+var result = If(true, () =&gt; 1, () =&gt; 2);
+
+Assert.That(result, Is.EqualTo(1));</pre>
+</div></div><p>This is an example of a higher-order function that takes two functions as arguments and returns a result based on the given <code>condition</code>. The function <code>If</code> takes a <code>bool</code> condition, and two functions of type <code>Func&lt;T&gt;</code>. If the <code>condition </code>is true, it returns the result of <code>trueFunc()</code>, otherwise it returns the result of <code>falseFunc()</code>. In this example, <code>result</code> will be equal to 1 because the condition is true.</p><h4 id="FunctionalintheSmall,Object-OrientedintheLarge-FormoreonthisseeHigherOrderFunctionExamples.">For more on this see <a href="Higher-Order-Function-Examples_575048580.html" data-linked-resource-id="575048580" data-linked-resource-version="1" data-linked-resource-type="page">Higher Order Function Examples</a>.</h4><h1 id="FunctionalintheSmall,Object-OrientedintheLarge-FunctionalToolsforCollections:Map(),Filter(),Reduce()">Functional Tools for Collections: <code>Map()</code>, <code>Filter()</code>, <code>Reduce()</code></h1><p>Many functional languages come with a variety of powerful, abstract functions for dealing with collections of data. Let's derive the three common ones, namely <code>Map()</code>, <code>Filter()</code>, and <code>Reduce()</code>. These tools replace loops as the workhorse of the functional programmer. Since looping over collections is something, we do a lot, these tools are extremely useful.</p><p>See this for more details: <a href="https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211000/Imperative+vs+Functional+Declarative+Expressive+Style+of+Programming#Three-common-functional-programming-operations-on-collections-of-data-are-filter%2C-map-and-reduce%3A%5BhardBreak%5D" data-card-appearance="inline" rel="nofollow">https://hyland.atlassian.net/wiki/spaces/ASTRA/pages/40211000/Imperative+vs+Functional+Declarative+Expressive+Style+of+Programming#Three-common-functional-programming-operations-on-collections-of-data-are-filter%2C-map-and-reduce%3A%5BhardBreak%5D</a> </p><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-DerivingMap()">Deriving <code>Map()</code></h3><p>Let's say we have a collection of integers, and we want to create two new collections based on it:</p><ol start="1"><li><p>A new collection of integers with each item increased by 2.</p></li><li><p>A new collection of strings by converting each integer in the original collection to a string.</p></li></ol><div class="table-wrap"><table data-layout="wide" data-local-id="57a27c95-34d2-4375-980c-aa689092a8f2" class="confluenceTable"><colgroup><col style="width: 440.0px;"/><col style="width: 520.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Map number to number + 2</strong></p></th><th class="confluenceTh"><p><strong>Map number to string</strong></p></th></tr><tr><td class="confluenceTd"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">IEnumerable&lt;int&gt; Add2(IEnumerable&lt;int&gt; numbers)
+{
+    List&lt;int&gt; result = new List&lt;int&gt;();
+    
+    foreach (var number in numbers)
+    {
+        result.Add(number + 2);
+    }
+
+    return result;
+}</pre>
+</div></div></td><td class="confluenceTd"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">IEnumerable&lt;string&gt; IntToString(IEnumerable&lt;int&gt; numbers)
+{
+    List&lt;string&gt; result = new List&lt;string&gt;();
+
+    foreach (var number in numbers)
+    {
+        result.Add(number.ToString());
+    }
+
+    return result;
+}</pre>
+</div></div></td></tr></tbody></table></div><p>The only difference between the two functions lies in<em> how new elements are generated in the collection</em>. Using functional techniques and C# generics we can remove the repetitive boiler-plate code.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public static IEnumerable&lt;TResult&gt; Map&lt;TResult, TSource&gt;(
+    this IEnumerable&lt;TSource&gt; items,
+    Func&lt;TSource, TResult&gt; func)
+{
+    var result = new List&lt;TResult&gt;();
+
+    foreach (var item in items)
+    {
+        result.Add(func(item));
+    }
+
+    return result;
+}</pre>
+</div></div><p>The <code>Map </code>method is a generic function that takes an input collection of elements of type <code>TSource</code> and returns a new collection of elements of type <code>TResult</code>. The method uses a delegate <code>Func&lt;TSource, TResult&gt;</code> that defines the transformation or mapping from <code>TSource</code> to <code>TResult</code>. </p><p>And you can use it like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var numbers = new[] { 1, 2, 3 };
+var numbersPlus2 = numbers.Map(x =&gt; x + 2);
+var strings = numbers.Map(x =&gt; x.ToString());
+
+Assert.That(numbersPlus2, Is.EqualTo(new[] { 3, 4, 5 }));
+Assert.That(strings, Is.EqualTo(new[] { &quot;1&quot;, &quot;2&quot;, &quot;3&quot; })</pre>
+</div></div><h4 id="FunctionalintheSmall,Object-OrientedintheLarge-EagerversusLazyevaluation">Eager versus Lazy evaluation</h4><p>The <code>Map()</code> method uses <strong>eager evaluation</strong>, meaning that a new collection is created, and the entire source collection is iterated through, even if only a few items are needed. This can cause performance problems when working with large collections.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public static IEnumerable&lt;TResult&gt; Map&lt;TResult, TSource&gt;(
+    this IEnumerable&lt;TSource&gt; items,
+    Func&lt;TSource, TResult&gt; func)
+{
+    foreach (var item in items)
+    {
+        yield return func(item);
+    }
+}</pre>
+</div></div><p>The <code>Map()</code> method is now a <strong>lazy evaluation</strong> version using <code>yield return</code>. This returns items one at a time as requested, instead of all at once as in<strong> eager evaluation</strong>. It's more efficient as it only processes needed items. The code is simpler because the compiler handles much of the work. A <code>foreach</code> statement can be used to retrieve items from the method.</p><h4 id="FunctionalintheSmall,Object-OrientedintheLarge-LazyMap()ExtensionMethod"> <a href="522912022.html" data-linked-resource-id="522912022" data-linked-resource-version="3" data-linked-resource-type="page">Lazy Map() Extension Method</a> </h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+var numbersPlus2 = numbers.Map(x =&gt; x + 2);
+
+// At this point, the numbers are not yet mapped to numbersPlus2 
+// because the mapping is lazy
+
+var count = 0;
+foreach (var number in numbersPlus2)
+{
+    Console.WriteLine(number); // 3 4 5 6 7
+    count++;
+    if(count == 5) break;
+}
+
+// At this point, only the first 5 numbers were mapped to numbersPlus2
+// because the foreach loop only iterates 5 times</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>Lazy evaluation</strong> is a concept used in functional programming,<strong> Deferred execution</strong> is a type of lazy evaluation used in .NET's LINQ, where a query is run only when its results are needed, instead of right away.</p></div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The <code>Map()</code> implementation is a simplified version of the .NET <code>System.Linq.Select()</code> method. This article uses functional programming terms and provides examples, but it's worth noting that many of these examples already exist in .NET.</p></div></div><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-DerivingFilter()">Deriving <code>Filter()</code></h3><p>To derive <code>Filter()</code>, consider the scenario where you only want to retrieve numbers less than 5. As before, we will show an eager approach and compare it to a lazy, generic approach.</p><div class="table-wrap"><table data-layout="wide" data-local-id="9f0b7ec2-fe75-4cbe-943b-70db4df4f101" class="confluenceTable"><colgroup><col style="width: 423.0px;"/><col style="width: 427.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-EagerLessThan5method">Eager <code>LessThan5</code> method</h3></th><th class="confluenceTh"><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-LazyandGenericFilterExtensionMethod">Lazy and Generic <code>Filter</code> Extension Method</h3></th></tr><tr><td class="confluenceTd"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">IEnumerable&lt;int&gt; LessThan5(IEnumerable&lt;int&gt; numbers)
+{
+    List&lt;int&gt; result = new List&lt;int&gt;();
+
+    foreach (var number in numbers)
+    {
+        if (number &lt; 5) result.Add(number);
+    }
+
+    return result;
+}</pre>
+</div></div></td><td class="confluenceTd"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public static IEnumerable&lt;TSource&gt; Filter&lt;TSource&gt;(
+    this IEnumerable&lt;TSource&gt; items,
+    Func&lt;TSource, bool&gt; predicate)
+{
+    foreach (var item in items)
+    {
+        if (!predicate(item)) continue;
+        yield return item;
+    }
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Because <code>Map()</code> and <code>Filter()</code> return <code>IEnumerable&lt;T&gt;</code> we can chain them together.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+var numberLessThan5Plus2 = numbers
+    .Filter(x =&gt; x &lt; 5)
+    .Map(x =&gt; x + 2);
+
+// At this point, the numbers are not yet mapped
+
+foreach (var number in numberLessThan5Plus2)
+{
+    Console.WriteLine(number); // 3 4 5 6
+}</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Use <code>System.Linq.Where()</code> instead of our <code>Filter()</code> method</p></div></div><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-DerivingReduce()">Deriving <code>Reduce()</code> </h3><p>The <code>Reduce()</code> method in functional programming condenses a collection of items into a single result by iteratively applying an operation to each item and passing the result to the next iteration. The result is obtained by repeating this process until only one value remains. This technique can be used for operations such as addition, multiplication, or custom operations.</p><p>Let's add up all numbers in a list or translate a point in the x direction by using numbers in the list, <em>reducing </em>the collection to one item.</p></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var ints = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        
+int Total(IEnumerable&lt;int&gt; numbers)
+{
+    var result = 0;
+
+    foreach (var number in numbers)
+    {
+        result += number;
+    }
+
+    return result;
+}
+
+var total = Total(ints);
+Assert.That(total, Is.EqualTo(55));</pre>
+</div></div></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var ints = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        
+Point TranslateX(IEnumerable&lt;int&gt; numbers)
+{
+    var result = new Point(0,0);
+
+    foreach (var number in numbers)
+    {
+       result = result with {X = result.X + number};
+    }
+
+    return result;
+}
+
+var finalPoint = TranslateX(ints);
+Assert.That(finalPoint.X, Is.EqualTo(55));</pre>
+</div></div></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>In these two examples, the only differences are the way the initial value is set (line 5) and the calculation that updates the value on each iteration of the <code>foreach</code> loop (line 9). We use the previous value and the current element of the collection to compute a new value. To make this process generic, we can consider creating a single generic method that accepts an initial seed value and a calculation function to perform the updates.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public static TAccumulate Reduce&lt;TSource, TAccumulate&gt;(
+    this IEnumerable&lt;TSource&gt; source,
+    TAccumulate seed,
+    Func&lt;TAccumulate, TSource, TAccumulate&gt; func)
+{
+    TAccumulate result = seed;
+    foreach (TSource element in source)
+    {
+        result = func(result, element);
+    }
+
+    return result;
+}</pre>
+</div></div><p>And we can use it like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">var ints = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+var total = ints.Reduce(0, (acc, x) =&gt; acc + x);
+Assert.That(total, Is.EqualTo(55));
+
+var finalPoint = ints.Reduce(new Point(0, 0), (acc, x) =&gt; acc with { X = acc.X + x });
+Assert.That(finalPoint.X, Is.EqualTo(55));</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><code>(acc, x) =&gt; acc with { X = acc.X + x }</code> may not be the most efficient approach, but it does show how to use <code>Reduce()</code> to get an object instead of basic data types like numbers.</p></div></div><p>The <code>Reduce()</code> function is used to combine values in a collection into one final result. The way to combine these values is determined by a function that you provide. This function takes the current result and the current value from the collection and returns a new result. Examples of combining values could be adding them up, putting them in a map, or joining strings.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The <code>reduce</code> function in functional programming is <strong>not </strong>lazy evaluated because it's meant to produce a final answer, not delay the calculation. Unlike lazy evaluation, <code>reduce</code> runs immediately and combines a sequence of values into a single result.</p></div></div><p /><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>In LINQ, the method that performs a reduce operation is <code>Aggregate()</code>.Other LINQ methods that perform a reduce operation include <code>Sum()</code>, <code>Max()</code>, <code>Min()</code>, <code>Count()</code>, and <code>First()</code>/<code>FirstOrDefault()</code>. </p></div></div><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-UnderstandingDeferredExecutioninLINQQueries">Understanding <strong>Deferred Execution</strong> in LINQ Queries</h3><p>LINQ queries use <strong>deferred execution</strong> and are not executed immediately, but only when their results are enumerated, which can happen when you perform certain operations on the query like a <code>foreach</code>loop. Calling <code>Sum</code>, <code>Aggregate</code>, <code>ToList()</code>, or any other operation that requires the query to produce a final result will trigger the evaluation of the query. </p><h4 id="FunctionalintheSmall,Object-OrientedintheLarge-ToList(),ToDictionary(),ToArray()etc.">ToList(), ToDictionary(), ToArray() etc.</h4><p>By calling <code>ToList()</code>, the query results are stored in memory, allowing for subsequent operations to use the stored results instead of re-evaluating the query. This would be especially important if the query performs complex computations or retrieves data from a database.</p><p>However, it is important to keep in mind that converting the query results into a list can also consume a larger amount of memory, so it is a balance between improved performance and increased memory usage.</p><h3 id="FunctionalintheSmall,Object-OrientedintheLarge-SummaryConclusion">Summary Conclusion</h3><p>This article mentions several things about functional programming such as side effects, actions, calculations, immutable data, first-class objects, higher order functions, <code>Map()</code>, <code>Filter()</code>, <code>Reduce()</code> and Deferred Execution.  </p><p>Here are some key takeaways:</p><ol start="1"><li><p>Distinguish data classes (DTOs) from normal classes and make them immutable.</p></li><li><p>Express intentions clearly by using constants and read-only variables or static methods.</p></li><li><p>Be mindful of methods that cause side effects and consider refactoring them to keep actions distinct from calculations.</p></li><li><p>Understand the value of LINQ methods like Select(), Where(), and Aggregate() and be mindful of the concept of deferred execution.</p></li></ol></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

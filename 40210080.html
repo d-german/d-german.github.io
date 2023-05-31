@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Dependency Inversion Principle (DIP)</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Object-Oriented-Programming_40214223.html">Object Oriented Programming</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="SOLID-Design-Principles_40209224.html">SOLID Design Principles</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Dependency Inversion Principle (DIP)
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Apr 18, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <ul><li style="list-style-type: none;"><ul><li style="list-style-type: none;"><ul><li><span>Program to an interface, not an implementation. (GOF 18)</span><ul><li><span>By interface, we mean either an interface like in C# or Java or an abstract class. see <a href="Abstract-Classes-vs-Interfaces_40210535.html" data-linked-resource-id="40210535" data-linked-resource-version="41" data-linked-resource-type="page">Abstract Classes vs Interfaces</a>.</span></li></ul></li><li><span>Abstractions should not depend on details. Details should depend upon abstractions.</span></li><li><span>The DIP tells us that the most flexible systems are those in which source code dependencies refer only to abstractions, not concretions. (2017 Martin 87)</span></li><li><span>Every change to an interface corresponds to a change to its concrete implementation. Conversely, changes to concrete implementations do not always, or even usually, require changes to the interfaces that they implement. Therefore, interfaces are less volatile than implementations. (2017 Martin 88)</span></li><li><span><span>We should prefer dependencies on abstract classes (or interfaces) and avoid dependencies on concrete classes. Any line of code that uses the <code>new</code> keyword violates the DIP. Sometimes violation of the DIP is mostly harmless. The more likely a concrete class is to change, the more likely depending on it will lead to trouble. But if the concrete class is not volatile, then depending on it is not worrisome. (2002 Martin 269) see <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">Stable vs Volatile Dependences</a>.</span></span></li><ul><li><span>The <code>String</code> class, for example, is very stable. Changes to that class are very rare and tightly controlled. We do not have to worry about frequent and capricious changes to <code>String</code>.</span></li></ul><li><span>Interfaces describe what it can do, whereas classes describe how it is done. Only classes involve the implementation details—interfaces are completely unaware of how something is accomplished. Because only classes have constructors, constructors are an implementation detail. An interesting corollary to this is that, aside from a few exceptions, you can consider an appearance of the new keyword to be a code smell. (</span><span>McLean Hall, 83) see <a href="Using-the-new-keyword_40209049.html" data-linked-resource-id="40209049" data-linked-resource-version="19" data-linked-resource-type="page">Using the new keyword</a></span></li><ul><li><span>Presumably, it is OK to refer to concrete classes in the entry point of the application. This is usually the <code>Main</code> function the system invokes that when the application is first started.</span></li></ul><li><span>The DIP is the fundamental low-level mechanism behind many of the benefits claimed for OOD.</span></li><ul><li><span>The DIP is the hallmark of good OOD, if we do not invert the dependencies, it is a procedural design.</span></li></ul></ul><p><br/></p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" loading="lazy" src="attachments/40210080/40254023.png?height=400" data-image-src="attachments/40210080/40254023.png" data-unresolved-comment-count="0" data-linked-resource-id="40254023" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-27_17-0-23.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210080" data-linked-resource-container-version="15" data-media-id="9c1f41f0-9af6-4ec6-aec3-5b49dd5f456b" data-media-type="file"></span></p><p><br/></p><ul><ul><li>The green lines represent the flow of control. Notice that in the first diagram M<code>a</code>in calls the <code>Draw</code> method of <code>Circle</code>. In order for <code>Main</code> to call <code>Draw</code> it must somehow mention <code>Circle</code> as a source code dependency which is depicted using the red lines. In C it accomplished this with #include, in Java an import statement, and in C#, a using statement.</li><li>Notice that in the first diagram the dependency arrow and the flow of control arrow point in the <strong>same </strong>direction. This is procedural design. <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="75" loading="lazy" src="attachments/40210080/40254029.png?width=75" data-image-src="attachments/40210080/40254029.png" data-unresolved-comment-count="0" data-linked-resource-id="40254029" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-27_16-46-25.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210080" data-linked-resource-container-version="15" data-media-id="0f816045-d1cb-48a6-996a-31a00c8a2260" data-media-type="file"></span></li><li>With polymorphism, something very different can happen. In the second diagram, <code>Main</code> calls <code>Draw</code> through the <code>Shape</code> interface. Observe that the source code dependency (the inheritance arrow) points in the <strong>opposite </strong>direction compared to the flow of control. This is why it’s called dependency inversion. (2017 Martin 45)<span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="75" loading="lazy" src="attachments/40210080/40254038.png?width=75" data-image-src="attachments/40210080/40254038.png" data-unresolved-comment-count="0" data-linked-resource-id="40254038" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-27_16-50-55.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40210080" data-linked-resource-container-version="15" data-media-id="99d18782-72a4-43af-a7cc-a5fb5fb0c265" data-media-type="file"></span></li><li>In the second diagram <code>Main</code> is calling the <code>Draw</code> method of <code>Circle</code> and is <strong>not</strong> calling the <code>Draw</code> method on <code>Shape</code> because there is no such thing as a <code>Shape</code> object (<code>Shape</code> is an abstract class). Therefore, it is a circle, or a square, or a triangle masquerading as a shape. <span>(Riel 95)</span></li></ul></ul><p><br/></p></li></ul></li></ul><p>See <a href="Using-the-new-keyword_40209049.html" data-linked-resource-id="40209049" data-linked-resource-version="19" data-linked-resource-type="page">Using the new keyword</a>, <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">Stable vs Volatile Dependences</a></p><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40251596.png">image2021-1-26_16-21-15.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40251578.png">image2021-1-26_16-23-9.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40251572.png">image2021-1-26_16-24-22.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40251566.png">image2021-1-26_16-28-1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254094.png">image2021-1-27_16-10-20.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254100.png">image2021-1-27_16-10-52.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254072.png">image2021-1-27_16-16-20.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254066.png">image2021-1-27_16-17-5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254050.png">image2021-1-27_16-41-23.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254044.png">image2021-1-27_16-42-29.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254029.png">image2021-1-27_16-46-25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254038.png">image2021-1-27_16-50-55.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40210080/40254023.png">image2021-1-27_17-0-23.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:23</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

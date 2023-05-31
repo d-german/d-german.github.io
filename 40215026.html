@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Find What Is Varying and Encapsulate It (Shalloway 123)</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="General-Design-Principles_40215060.html">General Design Principles</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Find What Is Varying and Encapsulate It (Shalloway 123)
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Apr 18, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Take what varies, and “encapsulate” it so it won’t affect the rest of your code. The result? Fewer unintended consequences from code changes and more flexibility in your systems! (Freeman 9)</p><ul><li>Abstract out anything that is likely to change. (<span style="color: rgb(23,43,77);">Riel TBD)</span> </li><li>Using the word encapsulate may seem odd if you only think about encapsulation as data hiding. It is much more sensible when you think of encapsulation as hiding classes with an abstract class or interface — “type encapsulation.” Containing a reference of this abstract class or interface type hides these derived classes that represent variations in behavior. (i.e. polymorphism). The using class has a reference to an abstract class or interface that has more than one specialized derivation. We hide (encapsulated) these derivations from the using class. (Shalloway 123)</li><li>The deeper use of the word comes directly from the GOF, where they list out different things to consider when choosing a design pattern.<ul><li>This approach is the opposite of focusing on the causes of redesign. Instead of considering what might force a change to a design, consider what you want to change without redesign. The focus here is on <em>encapsulating </em>the concept that varies a theme of many design patterns. (GOF 29)</li></ul><ul><li>There are other ways other than object-oriented programming to &quot;encapsulate&quot; the things that vary. <ul><li>Generic programming can easily &quot;encapsulate&quot; things that vary. (Coplien 1999 47)<ul><li><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="530" loading="lazy" src="attachments/40215026/40246877.png?width=530" data-image-src="attachments/40215026/40246877.png" data-unresolved-comment-count="0" data-linked-resource-id="40246877" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-8-27_15-21-55.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40215026" data-linked-resource-container-version="18" data-media-id="1d09bc05-8ee2-4221-92b4-a75ac1490bc8" data-media-type="file"></span></li></ul></li><li>Another way to &quot;encapsulate&quot; differences is with method overloading. (Coplien 1999 49).<ul><li><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" loading="lazy" src="attachments/40215026/40246759.png?height=250" data-image-src="attachments/40215026/40246759.png" data-unresolved-comment-count="0" data-linked-resource-id="40246759" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-8-27_15-43-46.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40215026" data-linked-resource-container-version="18" data-media-id="3220db1a-76b8-41f4-91f8-00499c317e53" data-media-type="file"></span><ul><li>It's interesting that Generic Methods/classes and function overloading are also considered polymorphism. We call this static or compile time polymorphism. Also referred to as early binding. Thats why for example Foo(&quot;Hello&quot;); would cause a compile error. But &quot;true&quot; polymorphism, the kind we normally use the term for, we call runtime or dynamic polymorphism. Which is also referred to as late binding. That's why improper usage causes errors during program execution. (<strong>TBD</strong> find a source for this paragraph)</li></ul></li></ul></li><li>One design trick of procedural programing is to encapsulate varying algorithms in one procedure by using a formal parameter with <a href="40210350.html" data-linked-resource-id="40210350" data-linked-resource-version="3" data-linked-resource-type="page">explicit case analysis</a> to discriminate between alternatives. (Coplien 1999 57)</li><li>Still another mechanism to encapsulate the things that vary is to use C# Delegates or C++ Function Objects.<ul><li> <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="530" loading="lazy" src="attachments/40215026/40249530.png?width=530" data-image-src="attachments/40215026/40249530.png" data-unresolved-comment-count="0" data-linked-resource-id="40249530" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-8-29_15-44-19.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40215026" data-linked-resource-container-version="18" data-media-id="74c2905a-1175-44fd-b312-16b40fa9573a" data-media-type="file"></span></li></ul></li></ul></li><li>Finally, this principle is a general case of three of the five <a href="SOLID-Design-Principles_40209224.html" data-linked-resource-id="40209224" data-linked-resource-version="6" data-linked-resource-type="page">SOLID design principles</a>; The <a href="40210191.html" data-linked-resource-id="40210191" data-linked-resource-version="6" data-linked-resource-type="page">open/closed principle (OCP)</a>, the <a href="40210175.html" data-linked-resource-id="40210175" data-linked-resource-version="9" data-linked-resource-type="page">Liskov Substitutation Principle (LSP)</a> and the <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">Dependency Inversion Principle (DIP)</a>.</li></ul></li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40215026/40246894.png">image2020-8-27_15-20-45.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40215026/40246877.png">image2020-8-27_15-21-55.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40215026/40246765.png">image2020-8-27_15-39-59.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40215026/40246759.png">image2020-8-27_15-43-46.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40215026/40249530.png">image2020-8-29_15-44-19.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

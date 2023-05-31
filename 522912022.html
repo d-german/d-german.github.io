@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Lazy Map() Extension Method</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Low-level-or-IL-code_471925099.html">Low level or IL code</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Lazy Map() Extension Method
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Jan 02, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public static class ExtensionMethods
+{
+    public static IEnumerable&lt;TResult&gt; Map&lt;TResult, TSource&gt;(this IEnumerable&lt;TSource&gt; items, Func&lt;TSource, TResult&gt; func)
+    {
+        foreach (var item in items)
+        {
+            yield return func(item);
+        }
+    }
+}</pre>
+</div></div><p>“Note the <code>yield return</code> statement.  A normal <code>return</code> statement expresses, &quot;Here's the value you asked me to return from this method,” A <code>yield return</code> statement expresses, &quot;Here's the next element you asked me to yield from this enumerator.” On each yield statement, control is returned to the caller, but the callee’s state is maintained so that the method can continue executing as soon as the caller enumerates the next element. The compiler converts iterator methods into private classes that implement <code>IEnumerable&lt;T&gt;</code> and/or <code>IEnumerator&lt;T&gt;</code>. The logic within the iterator block is &quot;inverted&quot; and spliced into the <code>MoveNext</code> method and <code>Current</code> property on the compiler-written enumerator class. This means that when you call an iterator method, all you're doing is instantiating the compiler-written class; none of your code actually runs! Your code runs only when you start enumerating over the resultant sequence, typically with a <code>foreach</code> statement. “From Iterators in C# 10 in a Nutshell.</p><p>The above code is converted to this by the compiler:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Security;
+using System.Security.Permissions;
+using Microsoft.CodeAnalysis;
+
+[assembly: Extension]
+[assembly: CompilationRelaxations(8)]
+[assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]
+[assembly: Debuggable(DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints)]
+[assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
+[assembly: AssemblyVersion(&quot;0.0.0.0&quot;)]
+[module: UnverifiableCode]
+[module: System.Runtime.CompilerServices.RefSafetyRules(11)]
+
+[Extension]
+public static class ExtensionMethods
+{
+    [CompilerGenerated]
+    private sealed class &lt;Map&gt;d__0&lt;TResult, TSource&gt; : IEnumerable&lt;TResult&gt;, IEnumerable, IEnumerator&lt;TResult&gt;, IEnumerator, IDisposable
+    {
+        private int &lt;&gt;1__state;
+
+        private TResult &lt;&gt;2__current;
+
+        private int &lt;&gt;l__initialThreadId;
+
+        private IEnumerable&lt;TSource&gt; items;
+
+        public IEnumerable&lt;TSource&gt; &lt;&gt;3__items;
+
+        private Func&lt;TSource, TResult&gt; func;
+
+        public Func&lt;TSource, TResult&gt; &lt;&gt;3__func;
+
+        private IEnumerator&lt;TSource&gt; &lt;&gt;7__wrap1;
+
+        TResult IEnumerator&lt;TResult&gt;.Current
+        {
+            [DebuggerHidden]
+            get
+            {
+                return &lt;&gt;2__current;
+            }
+        }
+
+        object IEnumerator.Current
+        {
+            [DebuggerHidden]
+            get
+            {
+                return &lt;&gt;2__current;
+            }
+        }
+
+        [DebuggerHidden]
+        public &lt;Map&gt;d__0(int &lt;&gt;1__state)
+        {
+            this.&lt;&gt;1__state = &lt;&gt;1__state;
+            &lt;&gt;l__initialThreadId = Environment.CurrentManagedThreadId;
+        }
+
+        [DebuggerHidden]
+        void IDisposable.Dispose()
+        {
+            int num = &lt;&gt;1__state;
+            if (num == -3 || num == 1)
+            {
+                try
+                {
+                }
+                finally
+                {
+                    &lt;&gt;m__Finally1();
+                }
+            }
+        }
+
+        private bool MoveNext()
+        {
+            try
+            {
+                int num = &lt;&gt;1__state;
+                if (num != 0)
+                {
+                    if (num != 1)
+                    {
+                        return false;
+                    }
+                    &lt;&gt;1__state = -3;
+                }
+                else
+                {
+                    &lt;&gt;1__state = -1;
+                    &lt;&gt;7__wrap1 = items.GetEnumerator();
+                    &lt;&gt;1__state = -3;
+                }
+                if (&lt;&gt;7__wrap1.MoveNext())
+                {
+                    TSource current = &lt;&gt;7__wrap1.Current;
+                    &lt;&gt;2__current = func(current);
+                    &lt;&gt;1__state = 1;
+                    return true;
+                }
+                &lt;&gt;m__Finally1();
+                &lt;&gt;7__wrap1 = null;
+                return false;
+            }
+            catch
+            {
+                //try-fault
+                ((IDisposable)this).Dispose();
+                throw;
+            }
+        }
+
+        bool IEnumerator.MoveNext()
+        {
+            //ILSpy generated this explicit interface implementation from .override directive in MoveNext
+            return this.MoveNext();
+        }
+
+        private void &lt;&gt;m__Finally1()
+        {
+            &lt;&gt;1__state = -1;
+            if (&lt;&gt;7__wrap1 != null)
+            {
+                &lt;&gt;7__wrap1.Dispose();
+            }
+        }
+
+        [DebuggerHidden]
+        void IEnumerator.Reset()
+        {
+            throw new NotSupportedException();
+        }
+
+        [DebuggerHidden]
+        [return: System.Runtime.CompilerServices.Nullable(new byte[] { 1, 0 })]
+        IEnumerator&lt;TResult&gt; IEnumerable&lt;TResult&gt;.GetEnumerator()
+        {
+            &lt;Map&gt;d__0&lt;TResult, TSource&gt; &lt;Map&gt;d__;
+            if (&lt;&gt;1__state == -2 &amp;&amp; &lt;&gt;l__initialThreadId == Environment.CurrentManagedThreadId)
+            {
+                &lt;&gt;1__state = 0;
+                &lt;Map&gt;d__ = this;
+            }
+            else
+            {
+                &lt;Map&gt;d__ = new &lt;Map&gt;d__0&lt;TResult, TSource&gt;(0);
+            }
+            &lt;Map&gt;d__.items = &lt;&gt;3__items;
+            &lt;Map&gt;d__.func = &lt;&gt;3__func;
+            return &lt;Map&gt;d__;
+        }
+
+        [DebuggerHidden]
+        [return: System.Runtime.CompilerServices.Nullable(1)]
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable&lt;TResult&gt;)this).GetEnumerator();
+        }
+    }
+
+    [System.Runtime.CompilerServices.NullableContext(1)]
+    [IteratorStateMachine(typeof(&lt;Map&gt;d__0&lt;, &gt;))]
+    [Extension]
+    public static IEnumerable&lt;TResult&gt; Map&lt;[System.Runtime.CompilerServices.Nullable(2)] TResult, [System.Runtime.CompilerServices.Nullable(2)] TSource&gt;(IEnumerable&lt;TSource&gt; items, Func&lt;TSource, TResult&gt; func)
+    {
+        &lt;Map&gt;d__0&lt;TResult, TSource&gt; &lt;Map&gt;d__ = new &lt;Map&gt;d__0&lt;TResult, TSource&gt;(-2);
+        &lt;Map&gt;d__.&lt;&gt;3__items = items;
+        &lt;Map&gt;d__.&lt;&gt;3__func = func;
+        return &lt;Map&gt;d__;
+    }
+}
+
+namespace Microsoft.CodeAnalysis
+{
+    [CompilerGenerated]
+    [Embedded]
+    internal sealed class EmbeddedAttribute : Attribute
+    {
+    }
+}
+
+namespace System.Runtime.CompilerServices
+{
+    [CompilerGenerated]
+    [Microsoft.CodeAnalysis.Embedded]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Event | AttributeTargets.Parameter | AttributeTargets.ReturnValue | AttributeTargets.GenericParameter, AllowMultiple = false, Inherited = false)]
+    internal sealed class NullableAttribute : Attribute
+    {
+        public readonly byte[] NullableFlags;
+
+        public NullableAttribute(byte P_0)
+        {
+            byte[] array = new byte[1];
+            array[0] = P_0;
+            NullableFlags = array;
+        }
+
+        public NullableAttribute(byte[] P_0)
+        {
+            NullableFlags = P_0;
+        }
+    }
+
+    [CompilerGenerated]
+    [Microsoft.CodeAnalysis.Embedded]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Method | AttributeTargets.Interface | AttributeTargets.Delegate, AllowMultiple = false, Inherited = false)]
+    internal sealed class NullableContextAttribute : Attribute
+    {
+        public readonly byte Flag;
+
+        public NullableContextAttribute(byte P_0)
+        {
+            Flag = P_0;
+        }
+    }
+
+    [CompilerGenerated]
+    [Microsoft.CodeAnalysis.Embedded]
+    [AttributeUsage(AttributeTargets.Module, AllowMultiple = false, Inherited = false)]
+    internal sealed class RefSafetyRulesAttribute : Attribute
+    {
+        public readonly int Version;
+
+        public RefSafetyRulesAttribute(int P_0)
+        {
+            Version = P_0;
+        }
+    }
+}</pre>
+</div></div>
+                    </div>
+
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

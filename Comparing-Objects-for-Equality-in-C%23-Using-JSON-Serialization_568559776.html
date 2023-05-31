@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : Comparing Objects for Equality in C# Using JSON Serialization</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : Comparing Objects for Equality in C# Using JSON Serialization
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Feb 23, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public static void AssertAreEqualByJson(object expected, object actual)
+{
+	var expectedJson = JsonConvert.SerializeObject(expected);
+	var actualJson = JsonConvert.SerializeObject(actual);
+	Assert.AreEqual(expectedJson, actualJson);
+}        </pre>
+</div></div><p>This is a method that compares two objects for equality by converting them to JSON strings using the <code>JsonConvert.SerializeObject</code> method from the Newtonsoft.Json library, and then comparing the resulting strings using the <code>Assert.AreEqual</code> method from the unit testing library. If the two JSON strings are not equal, the <code>Assert.AreEqual </code>method will throw an exception indicating that the test has failed. This method can be useful for comparing complex objects in unit tests.</p><h2 id="ComparingObjectsforEqualityinC#UsingJSONSerialization-Thereareafewbenefitsofusingthiscode:">There are a few benefits of using this code:</h2><ol start="1"><li><p>Simplicity: The method is simple to use and understand, making it easy to integrate into existing unit tests.</p></li><li><p>Flexibility: The method can be used to compare any two objects, <em>regardless of their type or complexity,</em> although circular references can pose a pitfall. (See below)</p></li><li><p>JSON compatibility: By comparing the objects as JSON strings, the method can be used to compare objects that will <em>eventually be serialized to or deserialized from JSON,</em> ensuring that they are compatible with JSON.</p></li><li><p>Comparison of complex object: The method can be used to compare complex objects that contain <em>nested objects, collections, and other complex data structures</em>.</p></li><li><p>Human-readable output: The method <em>produces human-readable output,</em> making it easy to understand why a test failed. </p></li></ol><p>It's a simple and efficient way to compare two objects and ensure that they are equal. It's particularly useful in unit testing, where it can be used to validate that the results of a method or function match the expected results.</p><h2 id="ComparingObjectsforEqualityinC#UsingJSONSerialization-Thereareafewpotentialpitfallsinthiscode:">There are a few potential pitfalls in this code:</h2><ol start="1"><li><p>Floating point precision: If the objects being compared contain floating point numbers, the comparison may fail due to precision errors. </p></li><li><p>Unordered collections: If the objects being compared contain unordered collections (e.g. HashSet, List), the comparison may fail because the order of elements in the collections is not guaranteed. This can be addressed by <em>sorting the collections before comparing.</em></p></li><li><p><code>JsonConvert.SerializeObject</code> method does <em>not consider circular references.</em> If the objects being compared contain circular references, the comparison may fail because the <code>JsonConvert.SerializeObject</code> method might throw a <code>JsonSerializationException</code>. </p></li><li><p>pack order??</p></li><li><p>json property attribute??</p></li><li><p>json serialize settings??</p></li></ol><p /><p>The method <code>AssertAreEqualByJson</code> works best if the objects being compared are simple <em>Data Transfer Objects </em><a href="DTO---Data-Transfer-Object_40209511.html" data-linked-resource-id="40209511" data-linked-resource-version="10" data-linked-resource-type="page"><em>(DTOs)</em></a><em>.</em> If the objects being compared are complex objects with multiple levels of nesting, or if they contain properties with custom equality logic, then the method may not be as effective, and a more sophisticated comparison logic may be required.</p><h3 id="ComparingObjectsforEqualityinC#UsingJSONSerialization-Records(TBD)">Records (TBD)</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">public record CategoryCounts
+{
+    public IImmutableList&lt;CategoryCount&gt; Items { get; init; }
+}</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: c#; gutter: false; theme: Confluence" data-theme="Confluence">[Test]
+public void Test_CatCountsEquality()
+{
+    var catCounts1 = new CategoryCounts { Items = new List&lt;CategoryCount&gt; { new() { Count = 1 } }.ToImmutableList() };
+    var catCounts2 = catCounts1 with { };
+    var catCounts3 = catCounts1 with { Items = new List&lt;CategoryCount&gt; { new() { Count = 1 } }.ToImmutableList() };
+    var catCounts4 = catCounts1 with { Items = new List&lt;CategoryCount&gt; { new() { Count = 1 }, new() { Count = 2 } }.ToImmutableList() };
+
+    Assert.AreEqual(catCounts1, catCounts2);
+    Assert.AreNotEqual(catCounts1, catCounts3);
+    TestHelpers.AssertAreEqualByJson(catCounts1, catCounts3);
+
+    //TestHelpers.AssertAreEqualByJson(catCounts1, catCounts4);
+    //Expected string length 62 but was 113. Strings differ at index 60.
+    //Expected: &quot;...&quot;:false}]}&quot;
+    //But was:  &quot;...&quot;:false},{&quot;Id&quot;:null,&quot;Count&quot;:2,&quot;HasRestrictedContent&quot;:false}]}&quot;
+    //----------------------^
+}</pre>
+</div></div><p>The purpose of the test is to demonstrate that C# records have built-in value semantics and are compared by value, not by reference. However, if a record contains members that do not have value semantics, such as a collection, then the record's equality comparison may not work as expected.</p><p>In this case, the <code>CategoryCounts</code> record contains an immutable list, which does not have built-in value semantics. Therefore, even though two <code>CategoryCounts</code> records may have the same items, they will not be considered equal by the <code>==</code> operator or the <code>Equals</code> method. To test the equality of the two records, the <code>AssertAreEqualByJson</code> method is used to compare the JSON representations of the records, which is a reliable way to compare two objects that may have reference-type members.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/568559776/601819667.png">image-20230223-141746.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

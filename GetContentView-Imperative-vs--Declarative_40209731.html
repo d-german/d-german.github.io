@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : GetContentView Imperative vs  Declarative</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Functional-Programming_701696411.html">Functional Programming</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : GetContentView Imperative vs  Declarative
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Nov 10, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h4 id="GetContentViewImperativevsDeclarative-Introduction">Introduction</h4><p><br/></p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="124" loading="lazy" src="attachments/40209731/40237898.png?height=124" data-image-src="attachments/40209731/40237898.png" data-unresolved-comment-count="0" data-linked-resource-id="40237898" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-11-8_13-48-13.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209731" data-linked-resource-container-version="16" data-media-id="e4f13449-5f98-478e-9386-1dfe3226df98" data-media-type="file"></span></p><p>The <code>ContentView </code>contains a list of <code>Uris </code>and a <code>ResultStatus. </code>The different <code>Uris</code> represent the different ways of retrieving views of the content. For example, viewing content as a thumbnail would differ from viewing it in a fullscreen editor. For this example, there are 4 ways to view content <code>ViewerA, ViewerB, ViewerC, </code>and <code>ViewerD.</code></p><p>The following implementation examples have the method:<code> ContentView GetContentView(string contentId, ICollection&lt;string&gt; requestedUriTypes, </code>and support only 3 of the 4 Uri types: <code>ViewerA, ViewerC, </code>and <code>ViewerD </code>represented by the<code> AllSupportedUriTypes </code>collection<code>.</code></p><p>The basic algorithm is this: create a <code>ContentView </code>by transforming the list of <code>requestedUriTypes </code>to a list of Uris using the <code>contentId </code>and assign it to the<code> ContentView.Uris </code>property<code>.</code> If none of the <code>requestedUriTypes </code>can be converted, then throw an exception. If all can be converted, set <code>ContentView.ResultStatus</code> to <code>ResultStatusComplete </code>and if only some can be converted, then set the <code>ContentView.ResultStatus</code> property to <code>ResultStatusPartial</code>.  The items in the <code>requestedUriTypes </code>list ideally would only contain one or more of the possible 4 viewer types, but they can be anything, including duplicates. </p><h4 id="GetContentViewImperativevsDeclarative-ImperativeImplementation">Imperative Implementation</h4><p>This implementation creates and modifies several pieces of state to perform its task.</p><p>A list is created at line 21 and is updated several times in the <code>foreach </code>loop. Several boolean variables are created in lines 23-26 to handle duplicates and the <code>ResultStatus</code>.  These are also updated in the <code>foreach </code>loop.</p><p>The <code>GetContentView</code> method has a Cognitive Complexity score of 11 and is considered mildly complex. (Each <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="24" loading="lazy" src="attachments/40209731/40243155.png?width=24" data-image-src="attachments/40209731/40243155.png" data-unresolved-comment-count="0" data-linked-resource-id="40243155" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-11-9_16-7-31.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209731" data-linked-resource-container-version="16" data-media-id="75260c97-975d-4a83-aa96-1125c279a671" data-media-type="file"></span> marks an increase in complexity) </p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="1024" loading="lazy" src="attachments/40209731/40243140.png?width=1024" data-image-src="attachments/40209731/40243140.png" data-unresolved-comment-count="0" data-linked-resource-id="40243140" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-11-9_16-3-39.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209731" data-linked-resource-container-version="16" data-media-id="55290d2f-8f2b-4577-9236-2e4754664b13" data-media-type="file"></span></p><p><br/></p><p><br/></p><h4 id="GetContentViewImperativevsDeclarative-FunctionalorDeclarativeorExpressiveimplementation">Functional or Declarative or Expressive implementation</h4><p><br/></p><p>The first difference is that <code>AllSupportedUriTypes</code> is now an immutable set. It should be immutable since once we initialize there, it should not be updated. Using a set lets us take advantage of Microsofts built in set operations.</p><p>The first thing we do in <code>GetContentView</code> is convert the passed in <code>requestedUriTypes</code> into another immutable set called <code>subsetUriTypes</code> by performing the set intersect operation with the  <code>AllSupportedUriTypes</code>. This automatically takes care of duplicates and if the set is empty then we can throw the exception. Creating the <code>ContentView</code> is easy from there. We use another set operation to determine the <code>ContentView.ResultStatus</code> and use a LINQ <code>Select </code>statement to map the <code>subsetUriTypes </code>to the <code>ContentView.Uris.</code></p><p><br/></p><p>The <code>GetContentView</code> method has a Cognitive Complexity score of 5. (Each <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="24" loading="lazy" src="attachments/40209731/40243149.png?width=24" data-image-src="attachments/40209731/40243149.png" data-unresolved-comment-count="0" data-linked-resource-id="40243149" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-11-9_16-10-56.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209731" data-linked-resource-container-version="16" data-media-id="28cd25da-8053-49a7-9d11-6282f63270bb" data-media-type="file"></span> marks an increase in complexity) </p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="1024" loading="lazy" src="attachments/40209731/40243117.png?width=1024" data-image-src="attachments/40209731/40243117.png" data-unresolved-comment-count="0" data-linked-resource-id="40243117" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-11-9_16-12-57.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40209731" data-linked-resource-container-version="16" data-media-id="7eea75f0-652f-45da-8320-a3fb3bbdd6b6" data-media-type="file"></span></p><p>see <a href="Coding-Horror-Examples_40217152.html" data-linked-resource-id="40217152" data-linked-resource-version="2" data-linked-resource-type="page">Coding Horror Examples</a></p><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40238867.png">image2021-11-8_9-39-51.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40238893.png">image2021-11-8_9-42-7.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40238846.png">image2021-11-8_9-55-53.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40238817.png">image2021-11-8_9-58-37.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40237898.png">image2021-11-8_13-48-13.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40243140.png">image2021-11-9_16-3-39.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40243164.png">image2021-11-9_16-5-8.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40243155.png">image2021-11-9_16-7-31.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40243149.png">image2021-11-9_16-10-56.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40209731/40243117.png">image2021-11-9_16-12-57.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

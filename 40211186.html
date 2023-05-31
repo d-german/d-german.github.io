@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hyland Clinician Window : How do we write a test for a private method?</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">Hyland Clinician Window</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="40211380.html">Code Quality/Design Articles</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Testing-Considerations_677938309.html">Testing Considerations</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            Hyland Clinician Window : How do we write a test for a private method?
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Damon German</span>, last modified on Feb 03, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Normally we would test it indirectly through the class public interface but this could be difficult with legacy code. </p><p>Feathers discusses this in his excellent book: Working Effectively with Legacy Code - Michael C. Feathers 2005, chapter 20.</p><blockquote><p>So, how do we write a test for a private method? This has to be one of the most common testing-related questions. Fortunately, there is a very direct answer to this question: If we need to test a private method, we should make it public. If making it public bothers us, in most cases, it means that our class is doing too much and we ought to fix it. We can move the private methods to a new class. They can be public in that class and our class can create an internal instance of it. That makes the methods testable and the design better.</p></blockquote><p /><p>This class violates the <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">Single Responsibility Principle</a>.</p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="183" loading="lazy" src="attachments/40211186/40260778.png?width=183" data-image-src="attachments/40211186/40260778.png" data-height="387" data-width="349" data-unresolved-comment-count="0" data-linked-resource-id="40260778" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-9-15_15-2-14.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211186" data-linked-resource-container-version="5" data-media-id="5a8e2bc0-aa4e-4d78-8313-ea134243c926" data-media-type="file"></span><p style="margin-left: 30.0px;">It seems that <code>RuleParser </code>has the following responsibilities:</p><p style="margin-left: 30.0px;">• Parsing<br/>• Expression evaluation<br/>• Term tokenization<br/>• Variable management</p><p style="margin-left: 30.0px;">The <code>RuleParser </code>class has two public methods: <code>Evaluate </code>and <code>AddVariable</code>. Everything else is private. What would the <code>RuleParser </code>class be like if we made <code>NextTerm </code>and <code>HasMoreTerms </code>public? Well, it would seem pretty odd. Users of the <code>RuleParser </code>might get the idea that they have to use those two methods along with <code>Evaluate </code>to parse and evaluate expressions.</p><p style="margin-left: 30.0px;">It would be odd to have those methods public on the <code>RuleParser </code>class, but it is far less odd—and, actually, perfectly fine—to make them public methods on a <code>TermTokenizer </code>class.</p><p style="margin-left: 30.0px;"><br/></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="462" loading="lazy" src="attachments/40211186/40266752.png?width=462" data-image-src="attachments/40211186/40266752.png" data-height="358" data-width="800" data-unresolved-comment-count="0" data-linked-resource-id="40266752" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-9-15_15-4-18.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211186" data-linked-resource-container-version="5" data-media-id="eb46cf53-8837-45c8-85bb-79d6c42e85ab" data-media-type="file"></span><p>We moved the responsibility of Term tokenization into a different class. We can now test <code>NextTerms()</code> and <code>HasMoreTerms()</code> directly since they are now public.</p><p>Of course, if <code>TermTokenizer </code>is a <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">volatile dependency</a> then we need to hide it behind an interface to avoid violating the <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">DependencyInversion Principle</a>.</p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="652" loading="lazy" src="attachments/40211186/40266820.png?width=652" data-image-src="attachments/40211186/40266820.png" data-height="357" data-width="1120" data-unresolved-comment-count="0" data-linked-resource-id="40266820" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-9-15_15-26-34.png" data-base-url="https://hyland.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="40211186" data-linked-resource-container-version="5" data-media-id="1fb3dc56-ac8c-4d12-859f-1170f01b8063" data-media-type="file"></span><p>In conclusion, testing private methods can be a challenge, but it is important to have good test coverage for our code. If we need to test a private method, we should make it public or move it to a separate class. This helps to improve the design of the class and make the method more testable. In the case of the <code>RuleParser </code>class, it was found that it had multiple responsibilities and violated the Single Responsibility Principle. By moving the term tokenization responsibility to a separate class, the design became clearer, and the methods could be tested directly.</p><p>See: <a href="Stable-vs-Volatile-Dependences_40212174.html" data-linked-resource-id="40212174" data-linked-resource-version="9" data-linked-resource-type="page">Stable vs Volatile Dependences</a>, <a href="40210166.html" data-linked-resource-id="40210166" data-linked-resource-version="9" data-linked-resource-type="page">Single Responsibility Principle (SRP)</a>, <a href="40210080.html" data-linked-resource-id="40210080" data-linked-resource-version="15" data-linked-resource-type="page">Dependency Inversion Principle (DIP)</a></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p><p><br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211186/40260712.png">image2021-9-15_14-11-5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211186/40260778.png">image2021-9-15_15-2-14.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211186/40266752.png">image2021-9-15_15-4-18.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/40211186/40266820.png">image2021-9-15_15-26-34.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 31, 2023 06:24</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
